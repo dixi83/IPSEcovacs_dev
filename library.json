@@ -1,0 +1,13 @@
+{
+    "id": "{9a7714c2-c54c-4958-84fe-228802611a02}",
+    "author": "Martijn Diks",
+    "name": "Ecovacs",
+    "url": "http://github.com/dixi83/IPSEcovacs",
+    "compatibility": {
+        "version": "4.3",
+        "date": 1498241677
+    },
+    "version": "0.0.1",
+    "build": 0,
+    "date": 1545425184
+}
