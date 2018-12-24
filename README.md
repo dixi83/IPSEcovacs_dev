@@ -11,6 +11,7 @@
 5. [Anhang](#5-anhang)  
     1. [GUID der Module](#1-guid-der-module)
     2. [Changlog](#2-changlog)
+    3. [Special Thanks](#3-special-thanks)
 
 ## 1. Funktionsumfang
 

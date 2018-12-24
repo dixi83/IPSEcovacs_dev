@@ -1,8 +1,8 @@
 <?php
 
-namespace Fabiang\Xmpp\Stream;
+namespace xmpp\Stream;
 
-use Fabiang\Xmpp\Options;
+use xmpp\Options;
 
 class SocksProxy extends SocketClient
 {

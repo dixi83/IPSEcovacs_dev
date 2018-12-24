@@ -34,16 +34,16 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace Fabiang\Xmpp\Connection;
+namespace xmpp\Connection;
 
-use Fabiang\Xmpp\Stream\XMLStream;
-use Fabiang\Xmpp\EventListener\EventListenerInterface;
-use Fabiang\Xmpp\Event\EventManager;
-use Fabiang\Xmpp\Event\EventManagerInterface;
-use Fabiang\Xmpp\EventListener\BlockingEventListenerInterface;
-use Fabiang\Xmpp\Options;
-use Fabiang\Xmpp\Exception\TimeoutException;
-use Psr\Log\LogLevel;
+use xmpp\Stream\XMLStream;
+use xmpp\EventListener\EventListenerInterface;
+use xmpp\Event\EventManager;
+use xmpp\Event\EventManagerInterface;
+use xmpp\EventListener\BlockingEventListenerInterface;
+use xmpp\Options;
+use xmpp\Exception\TimeoutException;
+//use Psr\Log\LogLevel;
 
 /**
  * Connection test double.

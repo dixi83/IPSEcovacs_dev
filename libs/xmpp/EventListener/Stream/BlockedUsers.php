@@ -34,12 +34,12 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace Fabiang\Xmpp\EventListener\Stream;
+namespace xmpp\EventListener\Stream;
 
-use Fabiang\Xmpp\Event\XMLEvent;
-use Fabiang\Xmpp\EventListener\AbstractEventListener;
-use Fabiang\Xmpp\EventListener\BlockingEventListenerInterface;
-use Fabiang\Xmpp\Protocol\User\User;
+use xmpp\Event\XMLEvent;
+use xmpp\EventListener\AbstractEventListener;
+use xmpp\EventListener\BlockingEventListenerInterface;
+use xmpp\Protocol\User\User;
 
 /**
  * Listener
@@ -87,7 +87,7 @@ class BlockedUsers extends AbstractEventListener implements BlockingEventListene
     /**
      * Result received.
      *
-     * @param \Fabiang\Xmpp\Event\XMLEvent $event
+     * @param xmpp\Event\XMLEvent $event
      * @return void
      */
     public function result(XMLEvent $event)

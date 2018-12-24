@@ -34,12 +34,12 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace Fabiang\Xmpp\EventListener\Stream\Authentication;
+namespace xmpp\EventListener\Stream\Authentication;
 
-use Fabiang\Xmpp\EventListener\AbstractEventListener;
-use Fabiang\Xmpp\Event\XMLEvent;
-use Fabiang\Xmpp\Util\XML;
-use Fabiang\Xmpp\Exception\Stream\AuthenticationErrorException;
+use xmpp\EventListener\AbstractEventListener;
+use xmpp\Event\XMLEvent;
+use xmpp\Util\XML;
+use xmpp\Exception\Stream\AuthenticationErrorException;
 
 /**
  * Handler for "digest md5" authentication mechanism.

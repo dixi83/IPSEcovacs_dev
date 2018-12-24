@@ -34,11 +34,11 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace Fabiang\Xmpp\EventListener\Stream;
+namespace xmpp\EventListener\Stream;
 
-use Fabiang\Xmpp\Event\XMLEvent;
-use Fabiang\Xmpp\Exception\Stream\StreamErrorException;
-use Fabiang\Xmpp\EventListener\AbstractEventListener;
+use xmpp\Event\XMLEvent;
+use xmpp\Exception\Stream\StreamErrorException;
+use xmpp\EventListener\AbstractEventListener;
 
 /**
  * Listener for stream errors.
@@ -62,7 +62,7 @@ class StreamError extends AbstractEventListener
     /**
      * Throws an exception when stream error comes from input stream.
      *
-     * @param \Fabiang\Xmpp\Event\XMLEvent $event
+     * @param \xmpp\Event\XMLEvent $event
      * @throws StreamErrorException
      */
     public function error(XMLEvent $event)

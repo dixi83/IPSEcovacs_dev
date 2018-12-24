@@ -34,10 +34,10 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace Fabiang\Xmpp\EventListener\Stream\Authentication;
+namespace xmpp\EventListener\Stream\Authentication;
 
-use Fabiang\Xmpp\EventListener\AbstractEventListener;
-use Fabiang\Xmpp\Util\XML;
+use xmpp\EventListener\AbstractEventListener;
+use xmpp\Util\XML;
 
 /**
  * Handler for "plain" authentication mechanism.

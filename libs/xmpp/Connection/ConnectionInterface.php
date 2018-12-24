@@ -34,12 +34,12 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace Fabiang\Xmpp\Connection;
+namespace xmpp\Connection;
 
-use Fabiang\Xmpp\Stream\XMLStream;
-use Fabiang\Xmpp\Event\EventManagerAwareInterface;
-use Fabiang\Xmpp\EventListener\EventListenerInterface;
-use Fabiang\Xmpp\OptionsAwareInterface;
+use xmpp\Stream\XMLStream;
+use xmpp\Event\EventManagerAwareInterface;
+use xmpp\EventListener\EventListenerInterface;
+use xmpp\OptionsAwareInterface;
 
 /**
  * Connections must implement this interface.
