@@ -82,7 +82,7 @@
             $this->meta['account']      = encrypt($accountInfo['username']); //this is a md5 conerverted value
             $this->meta['password']     = encrypt($accountInfo['password']);
 
-            $MAIN_URL_FORMAT = 'https://'.$this->meta['country']'/v1/private/'.$this->meta['country'].'/'.$this->meta['lang'].'/'.$this->meta['deviceId'].'/'.$this->meta['appCode'].'/'.$this->meta['appVersion'].'/'.$this->meta['channel'].'/'.$this->meta['deviceType'];
+            $MAIN_URL_FORMAT = 'https://'.$this->meta['country'].'/v1/private/'.$this->meta['country'].'/'.$this->meta['lang'].'/'.$this->meta['deviceId'].'/'.$this->meta['appCode'].'/'.$this->meta['appVersion'].'/'.$this->meta['channel'].'/'.$this->meta['deviceType'];
 
             $order 				= array('account','appCode','appVersion','authTimeZone','authTimespan','channel','country','deviceId','deviceType','lang','password','requestId');
             $info4Sign 			= orderArray($order, $meta);	
