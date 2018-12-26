@@ -25,7 +25,7 @@
         public $ckey    = 'eJUWrzRv34qFSaYk';
         public $secret  = 'Cyu5jcR4zyK6QEPn1hdIGXB5QIDAQABMA0GC';
 
-        //public $meta;
+        public $meta;
         
         //$meta['country']        = $country;           //TODO: these 4 values should come from a "AccountInfo" Variable
         //$meta['continent']      = $continent;         //TODO
@@ -33,9 +33,9 @@
         //$meta['password']       = encrypt($password); //TODO
         
         // statics needed for logging in and the rest of the communication
-        public $meta['lang']           = 'en';
-        public $meta['appCode']        = 'i_eco_e';
-        public $meta['appVersion']     = '1.3.5';
+        $meta['lang']           = 'en';
+        $meta['appCode']        = 'i_eco_e';
+        $meta['appVersion']     = '1.3.5';
         public $meta['channel']        = 'c_googleplay';
         public $meta['deviceType']     = '1';
         public $meta['authTimespan']   = round(microtime(true)*1000);
@@ -45,9 +45,9 @@
         public $meta['authAppkey']     = $ckey;
         public $meta['realm']          = 'ecouser.net';
         
-        $function['login']			= 'user/login';
-        $function['getAuthCode']	= 'user/getAuthCode';
-        $function['loginByItToken']	= 'loginByItToken';
+        public $function['login']			= 'user/login';
+        public $function['getAuthCode']	= 'user/getAuthCode';
+        public $function['loginByItToken']	= 'loginByItToken';
         
         protected function getAccountInfo() {
             $json = $this->ReadAttributeString("AccountInfo");
