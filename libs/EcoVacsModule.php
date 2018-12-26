@@ -97,7 +97,7 @@
             $response = file_get_contents($url);
 
             if($response==false) {
-                IPS_LogMessage("Ecovacs", 'Login Failed!  No connection or wrong URL'; //echo 'Login Failed, No connection';
+                IPS_LogMessage("Ecovacs", 'Login Failed!  No connection or wrong URL'); //echo 'Login Failed, No connection';
                 return false;
             } else {
                 $return = json_decode($response,true);
@@ -137,7 +137,7 @@
             $response = file_get_contents($url);
 
             if($response==false) {
-                IPS_LogMessage("Ecovacs", 'GetAuthCode Failed! No connection or wrong URL'; //echo 'Error! no connection or URL is wrong.';
+                IPS_LogMessage("Ecovacs", 'GetAuthCode Failed! No connection or wrong URL'); //echo 'Error! no connection or URL is wrong.';
                 return false;
             } else {
                 $return = json_decode($response,true);
