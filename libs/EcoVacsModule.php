@@ -25,20 +25,20 @@
         public $ckey    = 'eJUWrzRv34qFSaYk';
         public $secret  = 'Cyu5jcR4zyK6QEPn1hdIGXB5QIDAQABMA0GC';
 
-        //public $meta;
+        public $this->meta = array();
         
         // statics needed for logging in and the rest of the communication
-        public $meta['lang']           = 'en';
-        public $meta['appCode']        = 'i_eco_e';
-        public $meta['appVersion']     = '1.3.5';
-        public $meta['channel']        = 'c_googleplay';
-        public $meta['deviceType']     = '1';
-        public $meta['authTimespan']   = round(microtime(true)*1000);
-        public $meta['authTimeZone']   = 'GMT-8';
-        public $meta['deviceId']       = md5(time()/5); 
-        public $meta['resource']       = substr($meta['deviceId'], 0, 8);
-        public $meta['authAppkey']     = $ckey;
-        public $meta['realm']          = 'ecouser.net';
+        $this->meta['lang']           = 'en';
+        $this->meta['appCode']        = 'i_eco_e';
+        $this->meta['appVersion']     = '1.3.5';
+        $this->meta['channel']        = 'c_googleplay';
+        $this->meta['deviceType']     = '1';
+        $this->meta['authTimespan']   = round(microtime(true)*1000);
+        $this->meta['authTimeZone']   = 'GMT-8';
+        $this->meta['deviceId']       = md5(time()/5); 
+        $this->meta['resource']       = substr($meta['deviceId'], 0, 8);
+        $this->meta['authAppkey']     = $ckey;
+        $this->meta['realm']          = 'ecouser.net';
         
         public $function['login']			= 'user/login';
         public $function['getAuthCode']	= 'user/getAuthCode';
