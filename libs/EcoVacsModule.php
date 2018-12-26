@@ -25,7 +25,7 @@
         public $ckey    = 'eJUWrzRv34qFSaYk';
         public $secret  = 'Cyu5jcR4zyK6QEPn1hdIGXB5QIDAQABMA0GC';
 
-        public $meta = array();
+        public $this->meta = array();
         public $function = array();
         
           public function __construct()
@@ -39,7 +39,7 @@
             $this->meta['authTimespan']   = round(microtime(true)*1000);
             $this->meta['authTimeZone']   = 'GMT-8';
             $this->meta['deviceId']       = md5(time()/5); 
-            $this->meta['resource']       = substr($meta['deviceId'], 0, 8);
+            $this->meta['resource']       = substr($this->meta['deviceId'], 0, 8);
             $this->meta['authAppkey']     = $ckey;
             $this->meta['realm']          = 'ecouser.net';
             
@@ -85,12 +85,12 @@
             $MAIN_URL_FORMAT = 'https://'.$this->meta['country'].'/v1/private/'.$this->meta['country'].'/'.$this->meta['lang'].'/'.$this->meta['deviceId'].'/'.$this->meta['appCode'].'/'.$this->meta['appVersion'].'/'.$this->meta['channel'].'/'.$this->meta['deviceType'];
 
             $order 				= array('account','appCode','appVersion','authTimeZone','authTimespan','channel','country','deviceId','deviceType','lang','password','requestId');
-            $info4Sign 			= orderArray($order, $meta);	
+            $info4Sign 			= orderArray($order, $this->meta);	
             $authSign 			= sign($info4Sign);
             $this->meta['authSign']	= md5($authSign);
 
             $order 		= array('account','password','requestId','authTimespan','authTimeZone','authAppkey','authSign');
-            $info4Url 	= orderArray($order, $meta);	
+            $info4Url 	= orderArray($order, $this->meta);	
             $query 		= "?".http_build_query($info4Url, '', '&');	
             $url	 	= $MAIN_URL_FORMAT.'/'.$function['login'].$query;
 
@@ -109,7 +109,7 @@
                     $this->WriteAttributeString("AccountInfo", "false");
                 } else {
                     unset($this->meta['requestId']);
-                    $meta = array_merge($this->meta,$return['data']);
+                    $this->meta = array_merge($this->meta,$return['data']);
                     return $return;
                 }
             }
@@ -118,19 +118,19 @@
         public function HTTPS_getAuthCode(){
             global $function;
 
-            public $meta['requestId']	= md5(round(microtime(true)*1000));  // this have to be different every call you make to the HTTPS API
+            public $this->meta['requestId']	= md5(round(microtime(true)*1000));  // this have to be different every call you make to the HTTPS API
             //$this->meta['requestId']	= $this->meta['requestId'];
 
-            $MAIN_URL_FORMAT = 'https://eco-'.$meta['country'].'-api.ecovacs.com/v1/private/'.$meta['country'].'/'.$meta['lang'].'/'.$meta['deviceId'].'/'.$meta['appCode'].'/'.$meta['appVersion'].'/'.$meta['channel'].'/'.$meta['deviceType'];
+            $MAIN_URL_FORMAT = 'https://eco-'.$this->meta['country'].'-api.ecovacs.com/v1/private/'.$this->meta['country'].'/'.$this->meta['lang'].'/'.$this->meta['deviceId'].'/'.$this->meta['appCode'].'/'.$this->meta['appVersion'].'/'.$this->meta['channel'].'/'.$this->meta['deviceType'];
 
             $order 				= array('accessToken','appCode','appVersion','authTimeZone','authTimespan','channel','country','deviceId','deviceType','lang','requestId','uid');
-            $info4Sign			= orderArray($order, $meta);
+            $info4Sign			= orderArray($order, $this->meta);
             $authSign 			= sign($info4Sign);
-            public $meta['authSign']	= md5($authSign);
+            public $this->meta['authSign']	= md5($authSign);
 
 
             $order 		= array('uid','accessToken','requestId','authTimespan','authTimeZone','authAppkey','authSign');
-            $info4Url 	= orderArray($order, $meta);
+            $info4Url 	= orderArray($order, $this->meta);
             $query 		= "?".http_build_query($info4Url, '', '&');	
             $url	 	= $MAIN_URL_FORMAT.'/'.$function['getAuthCode'].$query;
 
@@ -145,8 +145,8 @@
                     IPS_LogMessage("Ecovacs", 'GetAuthCode Failed! '.showMsg($return['code']));
                     return false;
                 } else {
-                    unset($meta['requestId']);
-                    $meta = array_merge($meta,$return['data']);
+                    unset($this->meta['requestId']);
+                    $this->meta = array_merge($this->meta,$return['data']);
                     return $return;
                 }
             }
@@ -168,14 +168,14 @@
 
         } // end of function encrypt
 
-        protected function sign($meta) {
+        protected function sign($this->meta) {
             global $ckey, $secret;
 
-            ksort($meta);
+            ksort($this->meta);
 
             $string = '';
 
-            foreach($meta as $key => $value) {
+            foreach($this->meta as $key => $value) {
                 $string = $string.$key.'='.$value;
             }
 
