@@ -168,14 +168,14 @@
 
         } // end of function encrypt
 
-        protected function sign($this->meta) {
+        protected function sign($meta) {
             global $ckey, $secret;
 
-            ksort($this->meta);
+            ksort($meta);
 
             $string = '';
 
-            foreach($this->meta as $key => $value) {
+            foreach($meta as $key => $value) {
                 $string = $string.$key.'='.$value;
             }
 
