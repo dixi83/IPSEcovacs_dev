@@ -25,10 +25,10 @@
         public $ckey    = 'eJUWrzRv34qFSaYk';
         public $secret  = 'Cyu5jcR4zyK6QEPn1hdIGXB5QIDAQABMA0GC';
 
-        public $this->meta = array();
+        public $meta = array();
         
         // statics needed for logging in and the rest of the communication
-        $this->meta['lang']           = 'en';
+        $meta['lang']           = 'en';
         $this->meta['appCode']        = 'i_eco_e';
         $this->meta['appVersion']     = '1.3.5';
         $this->meta['channel']        = 'c_googleplay';
