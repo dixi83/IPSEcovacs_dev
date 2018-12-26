@@ -26,24 +26,28 @@
         public $secret  = 'Cyu5jcR4zyK6QEPn1hdIGXB5QIDAQABMA0GC';
 
         public $meta = array();
+        public $function = array();
         
-        // statics needed for logging in and the rest of the communication
-        $meta['lang']           = 'en';
-        $this->meta['appCode']        = 'i_eco_e';
-        $this->meta['appVersion']     = '1.3.5';
-        $this->meta['channel']        = 'c_googleplay';
-        $this->meta['deviceType']     = '1';
-        $this->meta['authTimespan']   = round(microtime(true)*1000);
-        $this->meta['authTimeZone']   = 'GMT-8';
-        $this->meta['deviceId']       = md5(time()/5); 
-        $this->meta['resource']       = substr($meta['deviceId'], 0, 8);
-        $this->meta['authAppkey']     = $ckey;
-        $this->meta['realm']          = 'ecouser.net';
-        
-        public $function['login']			= 'user/login';
-        public $function['getAuthCode']	= 'user/getAuthCode';
-        public $function['loginByItToken']	= 'loginByItToken';
-        
+          public function __construct()
+        {
+            // statics needed for logging in and the rest of the communication
+            $this->meta['lang']           = 'en';
+            $this->meta['appCode']        = 'i_eco_e';
+            $this->meta['appVersion']     = '1.3.5';
+            $this->meta['channel']        = 'c_googleplay';
+            $this->meta['deviceType']     = '1';
+            $this->meta['authTimespan']   = round(microtime(true)*1000);
+            $this->meta['authTimeZone']   = 'GMT-8';
+            $this->meta['deviceId']       = md5(time()/5); 
+            $this->meta['resource']       = substr($meta['deviceId'], 0, 8);
+            $this->meta['authAppkey']     = $ckey;
+            $this->meta['realm']          = 'ecouser.net';
+            
+            $this->function['login']			= 'user/login';
+            $this->function['getAuthCode']	    = 'user/getAuthCode';
+            $this->function['loginByItToken']   = 'loginByItToken';
+        }
+                
         protected function getAccountInfo() {
             $json = $this->ReadAttributeString("AccountInfo");
             if ($json=="false"){
