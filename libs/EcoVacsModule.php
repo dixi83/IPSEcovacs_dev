@@ -25,10 +25,10 @@
         public $ckey    = 'eJUWrzRv34qFSaYk';
         public $secret  = 'Cyu5jcR4zyK6QEPn1hdIGXB5QIDAQABMA0GC';
 
-        public $this->meta = array();
+        public $meta = array();
         public $function = array();
         
-          public function __construct()
+        public function __construct()
         {
             // statics needed for logging in and the rest of the communication
             $this->meta['lang']           = 'en';
