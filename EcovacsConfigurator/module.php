@@ -9,7 +9,7 @@
             if(EVDB_HTTPS_Login()) {
                 echo "Login succesful and saved";
             } else {
-                echo "Login failed, please check your entered account information"
+                echo "Login failed, please check your entered account information";
             }
         }
     }
