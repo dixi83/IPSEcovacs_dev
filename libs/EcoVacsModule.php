@@ -25,7 +25,7 @@
         public $ckey    = 'eJUWrzRv34qFSaYk';
         public $secret  = 'Cyu5jcR4zyK6QEPn1hdIGXB5QIDAQABMA0GC';
 
-        public $meta[];
+        public $meta = array();
         
         //$meta['country']        = $country;           //TODO: these 4 values should come from a "AccountInfo" Variable
         //$meta['continent']      = $continent;         //TODO
