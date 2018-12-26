@@ -25,7 +25,7 @@
         public $ckey    = 'eJUWrzRv34qFSaYk';
         public $secret  = 'Cyu5jcR4zyK6QEPn1hdIGXB5QIDAQABMA0GC';
 
-        public $meta = array();
+        //public $meta;
         
         //$meta['country']        = $country;           //TODO: these 4 values should come from a "AccountInfo" Variable
         //$meta['continent']      = $continent;         //TODO
@@ -33,17 +33,17 @@
         //$meta['password']       = encrypt($password); //TODO
         
         // statics needed for logging in and the rest of the communication
-        $meta['lang']           = 'en';
-        $meta['appCode']        = 'i_eco_e';
-        $meta['appVersion']     = '1.3.5';
-        $meta['channel']        = 'c_googleplay';
-        $meta['deviceType']     = '1';
-        $meta['authTimespan']   = round(microtime(true)*1000);
-        $meta['authTimeZone']   = 'GMT-8';
-        $meta['deviceId']       = md5(time()/5); 
-        $meta['resource']       = substr($meta['deviceId'], 0, 8);
-        $meta['authAppkey']     = $ckey;
-        $meta['realm']          = 'ecouser.net';
+        public $meta['lang']           = 'en';
+        public $meta['appCode']        = 'i_eco_e';
+        public $meta['appVersion']     = '1.3.5';
+        public $meta['channel']        = 'c_googleplay';
+        public $meta['deviceType']     = '1';
+        public $meta['authTimespan']   = round(microtime(true)*1000);
+        public $meta['authTimeZone']   = 'GMT-8';
+        public $meta['deviceId']       = md5(time()/5); 
+        public $meta['resource']       = substr($meta['deviceId'], 0, 8);
+        public $meta['authAppkey']     = $ckey;
+        public $meta['realm']          = 'ecouser.net';
         
         $function['login']			= 'user/login';
         $function['getAuthCode']	= 'user/getAuthCode';
@@ -119,7 +119,7 @@
         public function HTTPS_getAuthCode(){
             global $function;
 
-            $meta['requestId']	= md5(round(microtime(true)*1000));  // this have to be different every call you make to the HTTPS API
+            public $meta['requestId']	= md5(round(microtime(true)*1000));  // this have to be different every call you make to the HTTPS API
             //$this->meta['requestId']	= $this->meta['requestId'];
 
             $MAIN_URL_FORMAT = 'https://eco-'.$meta['country'].'-api.ecovacs.com/v1/private/'.$meta['country'].'/'.$meta['lang'].'/'.$meta['deviceId'].'/'.$meta['appCode'].'/'.$meta['appVersion'].'/'.$meta['channel'].'/'.$meta['deviceType'];
@@ -127,7 +127,7 @@
             $order 				= array('accessToken','appCode','appVersion','authTimeZone','authTimespan','channel','country','deviceId','deviceType','lang','requestId','uid');
             $info4Sign			= orderArray($order, $meta);
             $authSign 			= sign($info4Sign);
-            $meta['authSign']	= md5($authSign);
+            public $meta['authSign']	= md5($authSign);
 
 
             $order 		= array('uid','accessToken','requestId','authTimespan','authTimeZone','authAppkey','authSign');
