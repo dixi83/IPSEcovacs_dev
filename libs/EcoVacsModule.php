@@ -60,7 +60,7 @@
             }
         }
         
-        public function setAccountInfo($country, $httpServer, $xmppServer, $account, $password) {
+        public function setAccountInfo(string $country, string $httpServer, string $xmppServer, string $account, string $password) {
             $md5pw  = md5($password); 
             $array  = array("httpsServer"=>$httpServer,"xmppServer"=>$xmppServer, "country"=>$country,"account"=>$account,"password"=>$md5pw);
             $json   = json_encode($array);
