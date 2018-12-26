@@ -27,11 +27,6 @@
 
         public $meta;
         
-        //$meta['country']        = $country;           //TODO: these 4 values should come from a "AccountInfo" Variable
-        //$meta['continent']      = $continent;         //TODO
-        //$meta['account']        = encrypt($username); //TODO //this is a md5 conerverted value
-        //$meta['password']       = encrypt($password); //TODO
-        
         // statics needed for logging in and the rest of the communication
         $meta['lang']           = 'en';
         $meta['appCode']        = 'i_eco_e';
