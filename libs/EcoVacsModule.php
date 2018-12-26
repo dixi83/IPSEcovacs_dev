@@ -1,6 +1,6 @@
 <?php
 
-    class EcoVacs extends Modules {
+    class EcoVacs extends IPSModule {
         
         // IPS functions needed for the Module:
         
