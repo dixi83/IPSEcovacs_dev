@@ -8,7 +8,7 @@
             // Diese Zeile nicht löschen oder ändern.
             parent::Create();
             
-            $this->RegisterAttributeString("AccountInfo", "false")
+            $this->RegisterAttributeString("AccountInfo", "false");
             //$this->RegisterAttributeBoolean("LoginSucces",false)
         }
         
