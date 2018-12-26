@@ -1,7 +1,7 @@
 {
     "id": "{8eb4291c-8ec8-4e10-b5d7-1f90cc37bd8d}",
-    "name": "Deebot",
-    "aliases": ["Deebot"],
+    "name": "EcoVacs",
+    "aliases": ["EcoVacs"],
     "type": 4,
     "vendor": "EcoVacs",
     "parentRequirements": [],
