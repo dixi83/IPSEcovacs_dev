@@ -8,7 +8,7 @@
             // Diese Zeile nicht löschen oder ändern.
             parent::Create();
             
-            $id = RegisterVariableString ("EVDB_AccountInfo", "AccountInfo");
+            $id = RegisterVariableString ("EVDB_AccountInfo", "AccountInfo","",0);
             $this->SetValue("EVDB_AccountInfo", "false");   
             //$this->RegisterAttributeString("AccountInfo", "false");
             //$this->RegisterAttributeBoolean("LoginSucces",false);
@@ -54,7 +54,7 @@
         }
                 
         protected function getAccountInfo() {
-            $json = $this->ReadAttributeString("AccountInfo");
+            $json = $this->GetValue("EVDB_AccountInfo");
             if ($json=="false"){
                 return false;
             } else {
@@ -66,7 +66,7 @@
             $md5pw  = md5($password); 
             $array  = array("httpsServer"=>$httpServer,"xmppServer"=>$xmppServer, "country"=>$country,"account"=>$account,"password"=>$md5pw);
             $json   = json_encode($array);
-            $this->WriteAttributeString("AccountInfo", $json);
+            $this->SetValue("EVDB_AccountInfo", $json,"",0);
         }
         
         public function HTTPS_Login()
@@ -111,7 +111,7 @@
                     return false;
                 } elseif($return['code']==1005){
                     IPS_LogMessage("Ecovacs", 'Login Failed! '.showMsg($return['code']));
-                    $this->WriteAttributeString("AccountInfo", "false");
+                    $this->SetValue("EVDB_AccountInfo", "false","",0);
                 } else {
                     unset($this->meta['requestId']);
                     $this->meta = array_merge($this->meta,$return['data']);
