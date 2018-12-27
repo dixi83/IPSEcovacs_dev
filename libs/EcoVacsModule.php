@@ -8,7 +8,7 @@
             // Diese Zeile nicht löschen oder ändern.
             parent::Create();
             
-            $id = RegisterVariableString ("EVDB_AccountInfo", "AccountInfo","",0);
+            $id = $this->RegisterVariableString ("EVDB_AccountInfo", "AccountInfo","",0);
             $this->SetValue("EVDB_AccountInfo", "false");   
             //$this->RegisterAttributeString("AccountInfo", "false");
             //$this->RegisterAttributeBoolean("LoginSucces",false);
