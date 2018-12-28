@@ -16,8 +16,9 @@
 		{
 			//Never delete this line!
 			parent::ApplyChanges();	
-            $id = $this->RegisterVariableString ("EVDB_AccountInfo", "AccountInfo","",0);
-            $this->SetValue("EVDB_AccountInfo", "false");  
+            $this->MaintainVariable("EVDB_AccountInfo", "AccountInfo", 3, "false", 0, $this->ReadPropertyInteger("DeviceType") == 5);
+            //$id = $this->RegisterVariableString ("EVDB_AccountInfo", "AccountInfo","",0);
+            //$this->SetValue("EVDB_AccountInfo", "false");  
 		}
         
         
