@@ -6,7 +6,7 @@
     {
         // IPS functions needed for the Module:
         
-        use Ecovacs
+        use Ecovacs;
         
         public function Create(){
             //Never delete this line!
