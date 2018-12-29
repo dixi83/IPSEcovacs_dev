@@ -11,14 +11,14 @@
             //$this->RegisterPropertyString("AccountInfo", "false");
             //$this->RegisterAttributeString("AccountInfo", "false");
             //$this->RegisterAttributeBoolean("LoginSucces",false);
-            $id = $this->RegisterVariableString ("AccountInfo", "AccountInfo","",0);
-            $this->SetValue("AccountInfo", "false"); 
+            //$id = $this->RegisterVariableString ("AccountInfo", "AccountInfo","",0);
+            //$this->SetValue("AccountInfo", "false"); 
         }
         
         public function ApplyChanges(){
 			//Never delete this line!
 			parent::ApplyChanges();	
-            //$this->MaintainVariable("EVDB_AccountInfo", "AccountInfo", 3, "false", 0, $this->ReadPropertyInteger("DeviceType") == 5); 
+            $this->MaintainVariable("AccountInfo", "AccountInfo", 3, "false", 0, $this->ReadPropertyInteger("DeviceType") == 5); 
 		}
         
         
