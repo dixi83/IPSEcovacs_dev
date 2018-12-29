@@ -18,7 +18,7 @@
 			//Never delete this line!
 			parent::ApplyChanges();	
             $id = $this->RegisterVariableString ("AccountInfo", "AccountInfo","",0);
-            $this->SetValue("AccountInfo", "false"); 
+            //$this->SetValue("AccountInfo", "false"); 
 		}
         
         
