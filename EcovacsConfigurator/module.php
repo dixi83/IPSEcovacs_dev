@@ -16,7 +16,6 @@
             
             $this->RegisterVariableString ("AccountInfo", "AccountInfo");
 		}
-        
     }
 
 ?>
