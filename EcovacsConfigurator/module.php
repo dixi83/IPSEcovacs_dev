@@ -1,7 +1,5 @@
 <?php
 
-    require_once(__DIR__ . "/../libs/EcoVacsModule.php");
-
     class EcovacsSplitter extends IPSModule 
     {
         use EcovacsHTTP;
@@ -16,6 +14,8 @@
             
             $this->RegisterVariableString ("AccountInfo", "AccountInfo");
 		}
+        
+        include(__DIR__ . "/../libs/EcoVacsModule.php");        
     }
 
 ?>
