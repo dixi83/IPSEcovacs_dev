@@ -49,6 +49,15 @@ trait EcovacsHTTP {
         $json   = json_encode($array);
         $this->SetValue("EVDB_AccountInfo", $json);
     }
+    
+    public function TestAndSaveLogin($country,$httpServer,$xmppServer,$username,$password) {
+        $this->setAccountInfo($country, $httpServer, $xmppServer, $username, $password);
+        if($this->HTTPS_Login()) {
+            echo "Login succesful and saved";
+        } else {
+            echo "Login failed, please check your entered account information";
+        }
+    }
 
     public function HTTPS_Login()
     {            
