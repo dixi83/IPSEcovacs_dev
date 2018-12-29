@@ -1,9 +1,9 @@
 {
     "actions":
     [
-        { "type": "ValidationTextBox", "name": "account", "caption": "Ecovacs account" },
-        { "type": "PasswordTextBox", "name": "password", "caption": "Password" },
-        { "type": "Select", "name": "Countrys", "caption": "Countrys",
+        { "type": "ValidationTextBox", "name": "account", "caption": "Ecovacs account:" },
+        { "type": "PasswordTextBox", "name": "password", "caption": "Password:" },
+        { "type": "Select", "name": "Countrys", "caption": "Country:",
             "options": [
                 {"caption" : "Bangladesh", "value": [ {"name": "Country", "value": "bd"}, {"name": "HttpServer", "value": "eco-bd-api.ecovacs.com"}, {"name": "XmppServer", "value": "msg-as.ecouser.net"} ] },
                 {"caption" : "Belgium", "value": [ {"name": "Country", "value": "be"}, {"name": "HttpServer", "value": "eco-be-api.ecovacs.com"}, {"name": "XmppServer", "value": "msg-eu.ecouser.net"} ] },
@@ -229,6 +229,6 @@
                 {"caption" : "Qatar", "value": [ {"name": "Country", "value": "qa"}, {"name": "HttpServer", "value": "eco-qa-api.ecovacs.com"}, {"name": "XmppServer", "value": "msg-as.ecouser.net"} ] },
                 {"caption" : "Mozambique", "value": [ {"name": "Country", "value": "mz"}, {"name": "HttpServer", "value": "eco-mz-api.ecovacs.com"}, {"name": "XmppServer", "value": "msg-ww.ecouser.net"} ] }
             ]},       
-        { "type": "Button", "label": "Test and save account info", "onClick": "EVDB_TestAndSaveLogin($id,$Country,$HttpServer,$XmppServer,$account,$password);" }
+        { "type": "Button", "label": "Test and save account info", "onClick": "var_dump($Countrys);EVDB_TestAndSaveLogin($id,$Country,$HttpServer,$XmppServer,$account,$password);" }
     ]
 }
