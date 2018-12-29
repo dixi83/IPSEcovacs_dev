@@ -2,9 +2,9 @@
 
     require_once(__DIR__ . "/../libs/EcoVacsModule.php");
 
-    class EcovacsSplitter extends Ecovacs
+    class EcovacsSplitter extends IPSModule
     {
-        //use Ecovacs;
+        use Ecovacs;
         
         // IPS functions needed for the Module:
         public function Create(){
