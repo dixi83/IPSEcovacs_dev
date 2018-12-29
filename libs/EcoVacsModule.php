@@ -34,7 +34,7 @@ trait EcovacsHTTP {
         $this->function['loginByItToken']   = 'loginByItToken';
     }
 
-    protected function getAccountInfo() {
+    public function getAccountInfo() {
         $json = $this->GetValue("EVDB_AccountInfo");
         if ($json=="false"){
             return false;
