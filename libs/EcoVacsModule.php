@@ -47,7 +47,7 @@
             $md5pw  = md5($password); 
             $array  = array("httpsServer"=>$httpServer,"xmppServer"=>$xmppServer, "country"=>$country,"account"=>$account,"password"=>$md5pw);
             $json   = json_encode($array);
-            $this->SetValueString("EVDB_AccountInfo", $json);
+            $this->SetValue("EVDB_AccountInfo", $json);
         }
         
         public function TestAndSaveLogin($country,$httpServer,$xmppServer,$username,$password) {
