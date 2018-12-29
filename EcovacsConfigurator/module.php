@@ -2,7 +2,7 @@
 
     require_once(__DIR__ . "/../libs/EcoVacsModule.php");
 
-    class EcovacsSplitter extends IPSModule 
+    class EcovacsSplitter extends Ecovacs
     {
         use EcovacsHTTP;
         
