@@ -1,9 +1,9 @@
 {
     "id": "{8eb4291c-8ec8-4e10-b5d7-1f90cc37bd8d}",
     "name": "EcovacsSplitter",
-    "aliases": ["Ecovacs"],
+    "aliases": ["Ecovacs Splitter"],
     "type": 2,
-    "vendor": "Ecovacs",
+    "vendor": "Ecovacs DeeBot",
     "parentRequirements": [],
     "childRequirements": [],
     "implemented": [],
