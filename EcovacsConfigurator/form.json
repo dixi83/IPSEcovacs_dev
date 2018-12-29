@@ -229,6 +229,6 @@
                 {"caption" : "Qatar", "value": [ {"name": "Country", "value": "qa"}, {"name": "HttpServer", "value": "eco-qa-api.ecovacs.com"}, {"name": "XmppServer", "value": "msg-as.ecouser.net"} ] },
                 {"caption" : "Mozambique", "value": [ {"name": "Country", "value": "mz"}, {"name": "HttpServer", "value": "eco-mz-api.ecovacs.com"}, {"name": "XmppServer", "value": "msg-ww.ecouser.net"} ] }
             ]},       
-        { "type": "Button", "label": "Test and save account info", "onClick": "var_dump($Countrys);EVDB_TestAndSaveLogin($id,$Country,$HttpServer,$XmppServer,$account,$password);" }
+        { "type": "Button", "label": "Test and save account info", "onClick": "print_r($Countrys);EVDB_TestAndSaveLogin($id,$Countrys[0][\"value\"],$Countrys[1][\"value\"],$Countrys[2][\"value\"],$account,$password);" }
     ]
 }
