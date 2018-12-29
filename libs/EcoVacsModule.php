@@ -50,8 +50,8 @@
             $this->SetValue("EVDB_AccountInfo", $json,"",0);
         }
         
-        public function TestAndSaveLogin($country,$httpServer,$xmppserver,$username,$password) {
-            EVDB_setAccountInfo($country, $httpServer, $xmppServer, $account, $password);
+        public function TestAndSaveLogin($country,$httpServer,$xmppServer,$username,$password) {
+            EVDB_setAccountInfo($country, $httpServer, $xmppServer, $username, $password);
             if(EVDB_HTTPS_Login()) {
                 echo "Login succesful and saved";
             } else {
