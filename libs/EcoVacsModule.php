@@ -7,18 +7,12 @@
         public function Create(){
             //Never delete this line!
             parent::Create();
-            
-            //$this->RegisterPropertyString("AccountInfo", "false");
-            //$this->RegisterAttributeString("AccountInfo", "false");
-            //$this->RegisterAttributeBoolean("LoginSucces",false);
-
         }
         
         public function ApplyChanges(){
 			//Never delete this line!
 			parent::ApplyChanges();	
-            $id = $this->RegisterVariableString ("AccountInfo", "AccountInfo","",0);
-            //$this->SetValue("AccountInfo", "false"); 
+            $this->RegisterVariableString ("AccountInfo", "AccountInfo","",0);
 		}
         
         
