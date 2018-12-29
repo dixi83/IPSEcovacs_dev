@@ -4,7 +4,7 @@
 
     class EcovacsSplitter extends Ecovacs
     {
-        use Ecovacs;
+        //use Ecovacs;
         
         // IPS functions needed for the Module:
         public function Create(){
