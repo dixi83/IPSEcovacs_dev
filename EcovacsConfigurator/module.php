@@ -15,7 +15,8 @@
             $this->RegisterVariableString ("AccountInfo", "AccountInfo");
 		}
         
-        include(__DIR__ . "/../libs/EcoVacsModule.php");        
+         require_once(__DIR__ . "/../libs/EcoVacsModule.php");
+        
     }
 
 ?>
