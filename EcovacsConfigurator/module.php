@@ -4,6 +4,21 @@
 
     class Configurator extends EcoVacs 
     {
+        // IPS functions needed for the Module:
+        
+        public function Create(){
+            //Never delete this line!
+            parent::Create();
+        }
+        
+        public function ApplyChanges(){
+			//Never delete this line!
+			parent::ApplyChanges();	
+            $this->RegisterVariableString ("AccountInfo", "AccountInfo","",0);
+		}
+        
+        
+        
         public function TestAndSaveLogin($country,$httpServer,$xmppserver,$username,$password) {
             EVDB_setAccountInfo($country, $httpServer, $xmppServer, $account, $password);
             if(EVDB_HTTPS_Login()) {
