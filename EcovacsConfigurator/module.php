@@ -2,7 +2,7 @@
 
     require_once(__DIR__ . "/../libs/EcoVacsModule.php");
 
-    class Configurator extends EcoVacs 
+    class Configurator extends IPSModule 
     {
         // IPS functions needed for the Module:
         
