@@ -5,20 +5,20 @@
         // IPS functions needed for the Module:
         
         public function Create(){
-            // Diese Zeile nicht löschen oder ändern.
+            //Never delete this line!
             parent::Create();
-             
+            
+            //$this->RegisterPropertyString("AccountInfo", "false");
             //$this->RegisterAttributeString("AccountInfo", "false");
             //$this->RegisterAttributeBoolean("LoginSucces",false);
+            $id = $this->RegisterVariableString ("AccountInfo", "AccountInfo","",0);
+            $this->SetValue("AccountInfo", "false"); 
         }
         
-        public function ApplyChanges()
-		{
+        public function ApplyChanges(){
 			//Never delete this line!
 			parent::ApplyChanges();	
-            $this->MaintainVariable("EVDB_AccountInfo", "AccountInfo", 3, "false", 0, $this->ReadPropertyInteger("DeviceType") == 5);
-            //$id = $this->RegisterVariableString ("EVDB_AccountInfo", "AccountInfo","",0);
-            //$this->SetValue("EVDB_AccountInfo", "false");  
+            //$this->MaintainVariable("EVDB_AccountInfo", "AccountInfo", 3, "false", 0, $this->ReadPropertyInteger("DeviceType") == 5); 
 		}
         
         
