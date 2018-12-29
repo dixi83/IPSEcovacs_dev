@@ -47,12 +47,12 @@
             $md5pw  = md5($password); 
             $array  = array("httpsServer"=>$httpServer,"xmppServer"=>$xmppServer, "country"=>$country,"account"=>$account,"password"=>$md5pw);
             $json   = json_encode($array);
-            $this->SetValue("EVDB_AccountInfo", $json,"",0);
+            $this->SetValueString("EVDB_AccountInfo", $json);
         }
         
         public function TestAndSaveLogin($country,$httpServer,$xmppServer,$username,$password) {
             $this->setAccountInfo($country, $httpServer, $xmppServer, $username, $password);
-            if(EVDB_HTTPS_Login()) {
+            if($this->EVDB_HTTPS_Login()) {
                 echo "Login succesful and saved";
             } else {
                 echo "Login failed, please check your entered account information";
@@ -63,7 +63,7 @@
         {            
             global $function;
             
-            $accountInfo = getAccountInfo();
+            $accountInfo = $this->getAccountInfo();
             
             if($accountInfo=="false"){
                 IPS_LogMessage("Ecovacs", 'Login Failed! No account info please enter your info in the configurator.');
