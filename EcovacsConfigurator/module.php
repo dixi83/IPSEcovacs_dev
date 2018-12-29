@@ -18,7 +18,6 @@
 		}
         
         
-        
         public function TestAndSaveLogin($country,$httpServer,$xmppserver,$username,$password) {
             EVDB_setAccountInfo($country, $httpServer, $xmppServer, $account, $password);
             if(EVDB_HTTPS_Login()) {
