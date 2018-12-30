@@ -25,8 +25,6 @@ class EcovacsHTTP extends IPSModule
 
     public function HTTPS_Login()
     {            
-        global $function;
-        
         $this->key      = 'MIIB/TCCAWYCCQDJ7TMYJFzqYDANBgkqhkiG9w0BAQUFADBCMQswCQYDVQQGEwJjbjEVMBMGA1UEBwwMRGVmYXVsdCBDaXR5MRwwGgYDVQQKDBNEZWZhdWx0IENvbXBhbnkgTHRkMCAXDTE3MDUwOTA1MTkxMFoYDzIxMTcwNDE1MDUxOTEwWjBCMQswCQYDVQQGEwJjbjEVMBMGA1UEBwwMRGVmYXVsdCBDaXR5MRwwGgYDVQQKDBNEZWZhdWx0IENvbXBhbnkgTHRkMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDb8V0OYUGP3Fs63E1gJzJh+7iqeymjFUKJUqSD60nhWReZ+Fg3tZvKKqgNcgl7EGXp1yNifJKUNC/SedFG1IJRh5hBeDMGq0m0RQYDpf9l0umqYURpJ5fmfvH/gjfHe3Eg/NTLm7QEa0a0Il2t3Cyu5jcR4zyK6QEPn1hdIGXB5QIDAQABMA0GCSqGSIb3DQEBBQUAA4GBANhIMT0+IyJa9SU8AEyaWZZmT2KEYrjakuadOvlkn3vFdhpvNpnnXiL+cyWy2oU1Q9MAdCTiOPfXmAQt8zIvP2JC8j6yRTcxJCvBwORDyv/uBtXFxBPEC6MDfzU2gKAaHeeJUWrzRv34qFSaYkYta8canK+PSInylQTjJK9VqmjQ';
         $this->ckey     = 'eJUWrzRv34qFSaYk';
         $this->secret   = 'Cyu5jcR4zyK6QEPn1hdIGXB5QIDAQABMA0GC';
@@ -58,10 +56,8 @@ class EcovacsHTTP extends IPSModule
         }
 
         $this->meta['requestId']	= md5(round(microtime(true)*1000));	 // this have to be different every call you make to the HTTPS API
-        //$this->meta['requestId']	= $this->meta['requestId'];
         $this->meta['country']      = $accountInfo['country'];
-        //$this->meta['continent']    = $accountInfo['xmppServer'];
-        $this->meta['account']      = $this->encrypt($accountInfo['account']); //this is a md5 conerverted value
+        $this->meta['account']      = $this->encrypt($accountInfo['account']);
         $this->meta['password']     = $this->encrypt($accountInfo['password']);
 
         $MAIN_URL_FORMAT = 'https://'.$accountInfo['httpServer'].'/v1/private/'.$this->meta['country'].'/'.$this->meta['lang'].'/'.$this->meta['deviceId'].'/'.$this->meta['appCode'].'/'.$this->meta['appVersion'].'/'.$this->meta['channel'].'/'.$this->meta['deviceType'];
@@ -98,23 +94,20 @@ class EcovacsHTTP extends IPSModule
     }
 
     public function HTTPS_getAuthCode(){
-        global $function;
-
         $this->meta['requestId']	= md5(round(microtime(true)*1000));  // this have to be different every call you make to the HTTPS API
-        //$this->meta['requestId']	= $this->meta['requestId'];
 
         $MAIN_URL_FORMAT = 'https://'.$this->meta['httpServer'].'.ecovacs.com/v1/private/'.$this->meta['country'].'/'.$this->meta['lang'].'/'.$this->meta['deviceId'].'/'.$this->meta['appCode'].'/'.$this->meta['appVersion'].'/'.$this->meta['channel'].'/'.$this->meta['deviceType'];
 
         $order 				= array('accessToken','appCode','appVersion','authTimeZone','authTimespan','channel','country','deviceId','deviceType','lang','requestId','uid');
-        $info4Sign			= orderArray($order, $this->meta);
-        $authSign 			= sign($info4Sign);
+        $info4Sign			= $this->orderArray($order, $this->meta);
+        $authSign 			= $this->sign($info4Sign);
         $this->meta['authSign']	= md5($authSign);
 
 
         $order 		= array('uid','accessToken','requestId','authTimespan','authTimeZone','authAppkey','authSign');
-        $info4Url 	= orderArray($order, $this->meta);
+        $info4Url 	= $this->orderArray($order, $this->meta);
         $query 		= "?".http_build_query($info4Url, '', '&');	
-        $url	 	= $MAIN_URL_FORMAT.'/'.$function['getAuthCode'].$query;
+        $url	 	= $MAIN_URL_FORMAT.'/'.$this->function['getAuthCode'].$query;
 
         $response = file_get_contents($url);
 
@@ -124,12 +117,107 @@ class EcovacsHTTP extends IPSModule
         } else {
             $return = json_decode($response,true);
             if($return['code']!='0000') {
-                IPS_LogMessage("Ecovacs", 'GetAuthCode Failed! '.showMsg($return['code']));
+                IPS_LogMessage("Ecovacs", 'GetAuthCode Failed! '.$this->showMsg($return['code']));
                 return false;
             } else {
                 unset($this->meta['requestId']);
                 $this->meta = array_merge($this->meta,$return['data']);
                 return $return;
+            }
+        }
+    }
+    
+    function HTTPS_loginByItToken(){
+        $USER_URL_FORMAT = 'https://users-'.$this->meta['continent'].'.ecouser.net:8000/user.do';
+
+        $ch = curl_init($USER_URL_FORMAT);
+
+        $meta['todo'] 		= 'loginByItToken';
+
+        $order 		= array('authCode','realm','uid','resource','todo','country');
+        $info4Post 	= orderArray($order, $meta);
+        $newKeys	= array('token','realm','userId','resource','todo','country');
+        $info4Post	= renameKeysInArray($order,$newKeys,$info4Post);
+
+        $info4Post['country'] = strtoupper($info4Post['country']);
+
+        $json_str = json_encode($info4Post);
+
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json_str);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        if($result==false) {
+            echo 'Error! no connection or URL is wrong.';
+            return false;
+        } else {
+            $return = json_decode($result,true);
+            if($return['result']!='ok') {
+                echo 'Error! '.$return['error'];
+                return false;
+            } else {
+                $meta['token'] = $return['token'];
+                return $return;
+            }
+        }
+    }
+
+    function EcoVacsHTTPS_GetDeviceList(&$meta){
+        global $function;
+
+        $USER_URL_FORMAT = 'https://users-'.$meta['continent'].'.ecouser.net:8000/user.do';
+
+        $ch = curl_init($USER_URL_FORMAT);
+
+        $meta['todo'] 		= 'GetDeviceList';
+        $meta['with'] 		= 'users';
+
+        $order			= array('with','realm','token','uid','resource');
+        $auth	 		= orderArray($order, $meta);
+        $newKeys		= array('with','realm','token','userid','resource');
+        $meta['auth']	= renameKeysInArray($order,$newKeys,$auth);
+
+        $order 		= array('todo','uid','auth');
+        $info4Post 	= orderArray($order, $meta);
+        $newKeys	= array('todo','userid','auth');
+        $info4Post	= renameKeysInArray($order,$newKeys,$info4Post);
+
+        $json_str = json_encode($info4Post);
+
+        //print_r($json_str);
+
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json_str);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        if($result==false) {
+            echo 'Error! no connection or URL is wrong.';
+            return false;
+        } else {
+            $return = json_decode($result,true);
+            if($return['result']!='ok') {
+                echo 'Error! '.$return['error'];
+                return false;
+            } else {
+                $XMPP['username'] 	= $meta['uid'];//.'@'.$meta['realm'];
+                $XMPP['password'] 	= '0/'.$meta['resource'].'/'.$meta['token'];
+                $XMPP['continent']	= $meta['continent'];
+                $XMPP['resource']	= $meta['resource'];
+                $XMPP['domain']		= $meta['realm'];
+
+                $i = 0;
+                //print_r($return);
+                foreach($return['devices'] as $value){
+                    $XMPP['robot'][$i] = $return['devices'][$i]['did'].'@'.$return['devices'][$i]['class'].'.ecorobot.net/'.$return['devices'][$i]['resource'];
+                    ++$i;
+                }
+                return $XMPP;
             }
         }
     }

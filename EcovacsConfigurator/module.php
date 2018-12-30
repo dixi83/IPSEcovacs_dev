@@ -28,15 +28,15 @@ class EcovacsSplitter extends IPSModule
         }
     }
 
-    public function setAccountInfo(string $country, string $httpServer, string $xmppServer, string $account, string $password) {
+    public function setAccountInfo(string $country, string $continent, string $httpServer, string $xmppServer, string $account, string $password) {
         //$md5pw  = md5($password); do this in the form.json
-        $array  = array("httpServer"=>$httpServer,"xmppServer"=>$xmppServer, "country"=>$country,"account"=>$account,"password"=>$password);
+        $array  = array("httpServer"=>$httpServer,"xmppServer"=>$xmppServer, "country"=>$country, "continent"=>$continent ,"account"=>$account, "password"=>$password);
         $json   = json_encode($array);
         $this->SetValue("AccountInfo", $json);
     }
     
-    public function TestAndSaveLogin(string $country, string $httpServer, string $xmppServer, string $username, string $password) {
-        $this->setAccountInfo($country, $httpServer, $xmppServer, $username, $password);
+    public function TestAndSaveLogin(string $country, string $continent, string $httpServer, string $xmppServer, string $username, string $password) {
+        $this->setAccountInfo($country, $continent, $httpServer, $xmppServer, $username, $password);
         $EcovacsHTTP = new EcovacsHTTP($this->InstanceID);
         if($EcovacsHTTP->HTTPS_Login()) {
             echo "Login succesful and saved";
