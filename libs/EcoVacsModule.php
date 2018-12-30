@@ -1,6 +1,6 @@
 <?php
 
-class Ecovacs extends IPSModule
+class EcovacsHTTP extends IPSModule
 {    
     // IPS functions needed for the Module:
     public function Create(){
@@ -43,36 +43,13 @@ class Ecovacs extends IPSModule
         $this->function['loginByItToken']   = 'loginByItToken';
     }
 
-    public function getAccountInfo() {
-        $json = $this->GetValue("EVDB_AccountInfo");
-        if ($json=="false"){
-            return false;
-        } else {
-            return json_decode($json,true);
-        }
-    }
-
-    public function setAccountInfo(string $country, string $httpServer, string $xmppServer, string $account, string $password) {
-        $md5pw  = md5($password); 
-        $array  = array("httpsServer"=>$httpServer,"xmppServer"=>$xmppServer, "country"=>$country,"account"=>$account,"password"=>$md5pw);
-        $json   = json_encode($array);
-        $this->SetValue("EVDB_AccountInfo", $json);
-    }
-    
-    public function TestAndSaveLogin($country,$httpServer,$xmppServer,$username,$password) {
-        $this->setAccountInfo($country, $httpServer, $xmppServer, $username, $password);
-        if($this->HTTPS_Login()) {
-            echo "Login succesful and saved";
-        } else {
-            echo "Login failed, please check your entered account information";
-        }
-    }
-
     public function HTTPS_Login()
     {            
         global $function;
-
-        $accountInfo = $this->getAccountInfo();
+        
+        $EcovacsSplitter = new EcovacsSplitter;
+        
+        $accountInfo = $EcovacsSplitter->getAccountInfo();
 
         if($accountInfo=="false"){
             IPS_LogMessage("Ecovacs", 'Login Failed! No account info please enter your info in the configurator.');
@@ -209,4 +186,19 @@ class Ecovacs extends IPSModule
         return $nr.': '.$code[$nr];
     }
 }
+
+class EcovacsXMPP extends IPSModule {
+        // IPS functions needed for the Module:
+    public function Create(){
+        parent::Create(); //Never delete this line!
+    }
+    
+    public function ApplyChanges(){
+		parent::ApplyChanges();	//Never delete this line!
+	}
+    
+    // Functions needed for EcoVacs Vac
+    
+}
+
 ?>
