@@ -19,8 +19,8 @@ class EcovacsHTTP extends IPSModule
     public $meta = array();
     public $function = array();
     
-    public function __construct() {
-        parent::__construct();       
+    public function __construct($InstanzID) {
+        parent::__construct($InstanzID);       
     }
 
     public function HTTPS_Login()
@@ -48,7 +48,7 @@ class EcovacsHTTP extends IPSModule
         $this->function['getAuthCode']	    = 'user/getAuthCode';
         $this->function['loginByItToken']   = 'loginByItToken';
         
-        $EcovacsSplitter = new EcovacsSplitter;
+        $EcovacsSplitter = new EcovacsSplitter($this->InstanceID);
         
         $accountInfo = $EcovacsSplitter->getAccountInfo();
 
