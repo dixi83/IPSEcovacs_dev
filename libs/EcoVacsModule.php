@@ -59,12 +59,12 @@ class EcovacsHTTP extends IPSModule
 
         $this->meta['requestId']	= md5(round(microtime(true)*1000));	 // this have to be different every call you make to the HTTPS API
         //$this->meta['requestId']	= $this->meta['requestId'];
-        $this->meta['country']      = $accountInfo['httpServer'];
+        $this->meta['country']      = $accountInfo['country'];
         $this->meta['continent']    = $accountInfo['xmppServer'];
         $this->meta['account']      = encrypt($accountInfo['username']); //this is a md5 conerverted value
         $this->meta['password']     = encrypt($accountInfo['password']);
 
-        $MAIN_URL_FORMAT = 'https://'.$this->meta['country'].'/v1/private/'.$this->meta['country'].'/'.$this->meta['lang'].'/'.$this->meta['deviceId'].'/'.$this->meta['appCode'].'/'.$this->meta['appVersion'].'/'.$this->meta['channel'].'/'.$this->meta['deviceType'];
+        $MAIN_URL_FORMAT = 'https://'.$this->meta['httpServer'].'/v1/private/'.$this->meta['country'].'/'.$this->meta['lang'].'/'.$this->meta['deviceId'].'/'.$this->meta['appCode'].'/'.$this->meta['appVersion'].'/'.$this->meta['channel'].'/'.$this->meta['deviceType'];
 
         $order 				= array('account','appCode','appVersion','authTimeZone','authTimespan','channel','country','deviceId','deviceType','lang','password','requestId');
         $info4Sign 			= orderArray($order, $this->meta);	
@@ -103,7 +103,7 @@ class EcovacsHTTP extends IPSModule
         $this->meta['requestId']	= md5(round(microtime(true)*1000));  // this have to be different every call you make to the HTTPS API
         //$this->meta['requestId']	= $this->meta['requestId'];
 
-        $MAIN_URL_FORMAT = 'https://eco-'.$this->meta['country'].'-api.ecovacs.com/v1/private/'.$this->meta['country'].'/'.$this->meta['lang'].'/'.$this->meta['deviceId'].'/'.$this->meta['appCode'].'/'.$this->meta['appVersion'].'/'.$this->meta['channel'].'/'.$this->meta['deviceType'];
+        $MAIN_URL_FORMAT = 'https://'.$this->meta['httpServer'].'.ecovacs.com/v1/private/'.$this->meta['country'].'/'.$this->meta['lang'].'/'.$this->meta['deviceId'].'/'.$this->meta['appCode'].'/'.$this->meta['appVersion'].'/'.$this->meta['channel'].'/'.$this->meta['deviceType'];
 
         $order 				= array('accessToken','appCode','appVersion','authTimeZone','authTimespan','channel','country','deviceId','deviceType','lang','requestId','uid');
         $info4Sign			= orderArray($order, $this->meta);
