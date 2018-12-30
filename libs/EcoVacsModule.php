@@ -61,18 +61,18 @@ class EcovacsHTTP extends IPSModule
         //$this->meta['requestId']	= $this->meta['requestId'];
         $this->meta['country']      = $accountInfo['country'];
         $this->meta['continent']    = $accountInfo['xmppServer'];
-        $this->meta['account']      = encrypt($accountInfo['username']); //this is a md5 conerverted value
-        $this->meta['password']     = encrypt($accountInfo['password']);
+        $this->meta['account']      = $this->encrypt($accountInfo['username']); //this is a md5 conerverted value
+        $this->meta['password']     = $this->encrypt($accountInfo['password']);
 
         $MAIN_URL_FORMAT = 'https://'.$this->meta['httpServer'].'/v1/private/'.$this->meta['country'].'/'.$this->meta['lang'].'/'.$this->meta['deviceId'].'/'.$this->meta['appCode'].'/'.$this->meta['appVersion'].'/'.$this->meta['channel'].'/'.$this->meta['deviceType'];
 
         $order 				= array('account','appCode','appVersion','authTimeZone','authTimespan','channel','country','deviceId','deviceType','lang','password','requestId');
-        $info4Sign 			= orderArray($order, $this->meta);	
-        $authSign 			= sign($info4Sign);
+        $info4Sign 			= $this->orderArray($order, $this->meta);	
+        $authSign 			= $this->sign($info4Sign);
         $this->meta['authSign']	= md5($authSign);
 
         $order 		= array('account','password','requestId','authTimespan','authTimeZone','authAppkey','authSign');
-        $info4Url 	= orderArray($order, $this->meta);	
+        $info4Url 	= $this->orderArray($order, $this->meta);	
         $query 		= "?".http_build_query($info4Url, '', '&');	
         $url	 	= $MAIN_URL_FORMAT.'/'.$function['login'].$query;
 
