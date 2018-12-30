@@ -14,6 +14,10 @@ class EcovacsSplitter extends IPSModule
         
         $this->RegisterVariableString ("AccountInfo", "AccountInfo");
 	}
+    
+    public function __construct() {
+        parent::__construct();       
+    }
         
     public function getAccountInfo() {
         $json = $this->GetValue("AccountInfo");
