@@ -15,8 +15,8 @@ class EcovacsSplitter extends IPSModule
         $this->RegisterVariableString ("AccountInfo", "AccountInfo");
 	}
     
-    public function __construct() {
-        parent::__construct();       
+    public function __construct($InstanzID) {
+        parent::__construct($InstanzID);       
     }
         
     public function getAccountInfo() {
@@ -37,7 +37,7 @@ class EcovacsSplitter extends IPSModule
     
     public function TestAndSaveLogin($country,$httpServer,$xmppServer,$username,$password) {
         $this->setAccountInfo($country, $httpServer, $xmppServer, $username, $password);
-        $EcovacsHTTP = new EcovacsHTTP;
+        $EcovacsHTTP = new EcovacsHTTP($this->InstanceID);
         if($EcovacsHTTP->HTTPS_Login()) {
             echo "Login succesful and saved";
         } else {
