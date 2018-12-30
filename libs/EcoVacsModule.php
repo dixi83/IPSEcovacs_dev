@@ -134,7 +134,7 @@ class EcovacsHTTP extends IPSModule
         }
     }
 
-    protected function encrypt($plaintext) {
+    public function encrypt($plaintext) {
         $key = "-----BEGIN CERTIFICATE-----\r\n" . chunk_split($this->key) . "\r\n-----END CERTIFICATE-----";
 
         $x509 = new File_X509();
@@ -148,7 +148,7 @@ class EcovacsHTTP extends IPSModule
 
     } // end of function encrypt
 
-    protected function sign($meta) {
+    public function sign($meta) {
         global $ckey, $secret;
 
         ksort($meta);
@@ -162,21 +162,21 @@ class EcovacsHTTP extends IPSModule
         return $this->ckey.$string.$this->secret;
     }
 
-    protected function orderArray($order, $array) {
+    public function orderArray($order, $array) {
         foreach($order as $value) {
             $return[$value] = $array[$value];
         }
         return $return;
     }
 
-    protected function renameKeysInArray($oldNames, $newNames, $array) {
+    public function renameKeysInArray($oldNames, $newNames, $array) {
         foreach($oldNames as $key => $value) {
             $return[$newNames[$key]] = $array[$value];
         }
         return $return;
     }
 
-    protected function showMsg($nr) {
+    public function showMsg($nr) {
         $code['0000'] = 'login OK';
         $code['0001'] = 'operation failed';
         $code['0002'] = 'interface authentication failed';
