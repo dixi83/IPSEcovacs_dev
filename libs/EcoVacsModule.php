@@ -135,6 +135,9 @@ class EcovacsHTTP extends IPSModule
     }
 
     public function encrypt($plaintext) {
+        include('../libs/crypt/Crypt/RSA.php');
+        include('../libs/crypt/File/X509.php');
+        
         $key = "-----BEGIN CERTIFICATE-----\r\n" . chunk_split($this->key) . "\r\n-----END CERTIFICATE-----";
 
         $x509 = new File_X509();
