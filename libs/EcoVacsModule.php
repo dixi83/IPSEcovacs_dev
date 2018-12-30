@@ -74,7 +74,7 @@ class EcovacsHTTP extends IPSModule
         $order 		= array('account','password','requestId','authTimespan','authTimeZone','authAppkey','authSign');
         $info4Url 	= $this->orderArray($order, $this->meta);	
         $query 		= "?".http_build_query($info4Url, '', '&');	
-        $url	 	= $MAIN_URL_FORMAT.'/'.$function['login'].$query;
+        $url	 	= $MAIN_URL_FORMAT.'/'.$this->function['login'].$query;
 
         $response = file_get_contents($url);
 
