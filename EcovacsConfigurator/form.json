@@ -3,7 +3,7 @@
     [
         { "type": "ValidationTextBox", "name": "account", "caption": "Ecovacs account:" },
         { "type": "PasswordTextBox", "name": "password", "caption": "Password:" },
-        { "type": "Select", "name": "Country", "caption": "Country",
+        { "type": "Select", "name": "Countrys", "caption": "Country",
             "options": [
                 {"caption" : "Bangladesh", "value": [ {"name": "Country", "value": "bd"}, {"name": "Continent", "value": "as"}, {"name": "HttpServer", "value": "eco-bd-api.ecovacs.com"}, {"name": "XmppServer", "value": "msg-as.ecouser.net"}, ] },
                 {"caption" : "Belgium", "value": [ {"name": "Country", "value": "be"}, {"name": "Continent", "value": "eu"}, {"name": "HttpServer", "value": "eco-be-api.ecovacs.com"}, {"name": "XmppServer", "value": "msg-eu.ecouser.net"}, ] },
