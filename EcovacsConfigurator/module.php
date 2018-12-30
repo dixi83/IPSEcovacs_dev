@@ -16,7 +16,7 @@ class EcovacsSplitter extends IPSModule
 	}
         
     public function getAccountInfo() {
-        $json = $this->GetValue("EVDB_AccountInfo");
+        $json = $this->GetValue("AccountInfo");
         if ($json=="false"){
             return false;
         } else {
@@ -28,7 +28,7 @@ class EcovacsSplitter extends IPSModule
         //$md5pw  = md5($password); do this in the form.json
         $array  = array("httpsServer"=>$httpServer,"xmppServer"=>$xmppServer, "country"=>$country,"account"=>$account,"password"=>$password);
         $json   = json_encode($array);
-        $this->SetValue("EVDB_AccountInfo", $json);
+        $this->SetValue("AccountInfo", $json);
     }
     
     public function TestAndSaveLogin($country,$httpServer,$xmppServer,$username,$password) {
