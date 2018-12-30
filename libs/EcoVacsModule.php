@@ -19,9 +19,9 @@ class EcovacsHTTP extends IPSModule
     public $meta = array();
     public $function = array();
     
-    //public function __construct($InstanceID) {
-        //parent::__construct($InstanceID);
-        
+    //public function __construct() {
+    //    parent::__construct();
+    //    
     //}
 
     public function HTTPS_Login()
