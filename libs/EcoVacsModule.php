@@ -132,12 +132,12 @@ class EcovacsHTTP extends IPSModule
 
         $ch = curl_init($USER_URL_FORMAT);
 
-        $meta['todo'] 		= 'loginByItToken';
+        $this->meta['todo'] 		= 'loginByItToken';
 
         $order 		= array('authCode','realm','uid','resource','todo','country');
-        $info4Post 	= orderArray($order, $meta);
+        $info4Post 	= $this->orderArray($order, $this->meta);
         $newKeys	= array('token','realm','userId','resource','todo','country');
-        $info4Post	= renameKeysInArray($order,$newKeys,$info4Post);
+        $info4Post	= $this->renameKeysInArray($order,$newKeys,$info4Post);
 
         $info4Post['country'] = strtoupper($info4Post['country']);
 
@@ -165,10 +165,8 @@ class EcovacsHTTP extends IPSModule
         }
     }
 
-    function EcoVacsHTTPS_GetDeviceList(&$meta){
-        global $function;
-
-        $USER_URL_FORMAT = 'https://users-'.$meta['continent'].'.ecouser.net:8000/user.do';
+    function EcoVacsHTTPS_GetDeviceList(){
+        $USER_URL_FORMAT = 'https://users-'.$this->meta['continent'].'.ecouser.net:8000/user.do';
 
         $ch = curl_init($USER_URL_FORMAT);
 
@@ -176,18 +174,16 @@ class EcovacsHTTP extends IPSModule
         $meta['with'] 		= 'users';
 
         $order			= array('with','realm','token','uid','resource');
-        $auth	 		= orderArray($order, $meta);
+        $auth	 		= $this->orderArray($order, $this->meta);
         $newKeys		= array('with','realm','token','userid','resource');
-        $meta['auth']	= renameKeysInArray($order,$newKeys,$auth);
+        $meta['auth']	= $this->renameKeysInArray($order,$newKeys,$auth);
 
         $order 		= array('todo','uid','auth');
-        $info4Post 	= orderArray($order, $meta);
+        $info4Post 	= $this->orderArray($order, $this->meta);
         $newKeys	= array('todo','userid','auth');
-        $info4Post	= renameKeysInArray($order,$newKeys,$info4Post);
+        $info4Post	= $this->renameKeysInArray($order,$newKeys,$info4Post);
 
         $json_str = json_encode($info4Post);
-
-        //print_r($json_str);
 
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $json_str);
@@ -204,15 +200,15 @@ class EcovacsHTTP extends IPSModule
             if($return['result']!='ok') {
                 echo 'Error! '.$return['error'];
                 return false;
-            } else {
-                $XMPP['username'] 	= $meta['uid'];//.'@'.$meta['realm'];
-                $XMPP['password'] 	= '0/'.$meta['resource'].'/'.$meta['token'];
-                $XMPP['continent']	= $meta['continent'];
-                $XMPP['resource']	= $meta['resource'];
-                $XMPP['domain']		= $meta['realm'];
+            } else { // TODO save this for XMPP communication
+                $XMPP['username'] 	= $this->meta['uid'];
+                $XMPP['password'] 	= '0/'.$this->meta['resource'].'/'.$this->meta['token'];
+                $XMPP['continent']	= $this->meta['continent'];
+                $XMPP['resource']	= $this->meta['resource'];
+                $XMPP['domain']		= $this->meta['realm'];
 
                 $i = 0;
-                //print_r($return);
+                
                 foreach($return['devices'] as $value){
                     $XMPP['robot'][$i] = $return['devices'][$i]['did'].'@'.$return['devices'][$i]['class'].'.ecorobot.net/'.$return['devices'][$i]['resource'];
                     ++$i;
