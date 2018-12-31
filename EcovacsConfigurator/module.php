@@ -30,7 +30,7 @@ class EcovacsSplitter extends IPSModule
 
     public function setAccountInfo(string $country, string $continent, string $httpServer, string $xmppServer, string $account, string $password) {
         //$md5pw  = md5($password); do this in the form.json
-        $array  = array("httpServer"=>$httpServer,"xmppServer"=>$xmppServer, "country"=>$country, "continent"=>$continent ,"account"=>$account, "password"=>$password);
+        $array  = array("country"=>$country, "continent"=>$continent, "httpServer"=>$httpServer, "xmppServer"=>$xmppServer, "account"=>$account, "password"=>$password);
         $json   = json_encode($array);
         $this->SetValue("AccountInfo", $json);
     }
