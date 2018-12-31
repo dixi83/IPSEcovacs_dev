@@ -49,7 +49,7 @@ class EcovacsSplitter extends IPSModule
         if(filter_var($account, FILTER_VALIDATE_EMAIL)) { //check email address
             if(($password!="")) {
                 if(($country!="")) {
-                    if(($continent!="") {
+                    if(($continent!="")) {
                         $EcovacsHTTP = new EcovacsHTTP($this->InstanceID);
                         if($EcovacsHTTP->HTTPS_Login()) {
                             echo "Login succesful and saved";
