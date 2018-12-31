@@ -96,7 +96,7 @@ class EcovacsSplitter extends IPSModule
                     $this->SetValue("XMPP_Info", json_encode($XMPP));
                     
                     if ($EcovacsHTTP->EcoVacsHTTPS_GetDeviceList()) {
-                        $this->SetValue("XMPP_Info", json_encode($$EcovacsHTTP->meta['Robot']));
+                        $this->SetValue("XMPP_Info", json_encode($EcovacsHTTP->meta['Robot']));
                     } else {
                         return false;
                     }
