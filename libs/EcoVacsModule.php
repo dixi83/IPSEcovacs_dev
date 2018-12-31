@@ -170,7 +170,7 @@ class EcovacsHTTP extends IPSModule
         $order			= array('with','realm','token','uid','resource');
         $auth	 		= $this->orderArray($order, $this->meta);
         $newKeys		= array('with','realm','token','userid','resource');
-        $meta['auth']	= $this->renameKeysInArray($order,$newKeys,$auth);
+        $this->meta['auth']	= $this->renameKeysInArray($order,$newKeys,$auth);
 
         $order 		= array('todo','uid','auth');
         $info4Post 	= $this->orderArray($order, $this->meta);
