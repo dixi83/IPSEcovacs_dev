@@ -59,8 +59,8 @@ class EcovacsSplitter extends IPSModule
     public function RefreshXMPPinfo(){
         $EcovacsHTTP = new EcovacsHTTP($this->InstanceID);
         if($EcovacsHTTP->HTTPS_Login()) {
-            if(HTTPS_getAuthCode()) {
-                if (HTTPS_loginByItToken()) {
+            if($EcovacsHTTP->HTTPS_getAuthCode()) {
+                if ($EcovacsHTTP->HTTPS_loginByItToken()) {
                     $XMPP['username'] 	= $this->meta['uid'];
                     $XMPP['password'] 	= '0/'.$this->meta['resource'].'/'.$this->meta['token'];
                     $XMPP['continent']	= $this->meta['continent'];
