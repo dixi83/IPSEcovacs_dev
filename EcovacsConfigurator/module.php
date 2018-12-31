@@ -7,15 +7,15 @@ class EcovacsSplitter extends IPSModule
     // IPS functions needed for the Module:
     public function Create(){
         parent::Create(); //Never delete this line!
-    }
-        
-    public function ApplyChanges(){
-		parent::ApplyChanges();	//Never delete this line!
         
         $this->RegisterPropertyString("account", "");
         $this->RegisterPropertyString("password", "");
         $this->RegisterPropertyString("country", "");
         $this->RegisterPropertyString("continent", "");
+    }
+        
+    public function ApplyChanges(){
+		parent::ApplyChanges();	//Never delete this line!
         
         $this->RegisterVariableString ("XMPP_Info", "XMPP_Info"); // info for the EcoVacs XMPP comunication
 	}
