@@ -50,16 +50,23 @@ class Message implements ProtocolImplementationInterface
      */
 
     const TYPE_CHAT = 'chat';
-    /**
-     * Chat with Ecovacs Robot.
-     */
-
-    const TYPE_ECOVACS = 'set';
-
+    
     /**
      * Chat in a multi-user channel (MUC).
      */
     const TYPE_GROUPCHAT = 'groupchat';
+    
+    /**
+     * Send <iq> Set message to Ecovacs Vac.
+     */
+
+    const TYPE_EV_SET = 'set';
+    
+    /**
+     * Send <iq> Get Ecovacs Vac.
+     */
+
+    const TYPE_EV_SET = 'get';
 
     /**
      * Message type.
