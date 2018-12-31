@@ -200,7 +200,7 @@ class EcovacsHTTP extends IPSModule
                 $EcovacsSplitter = new EcovacsSplitter($this->InstanceID);
                 $oldRobotInfo = $EcovacsSplitter->GetValue("XMPP_Robots");
                 if(($oldRobotInfo!="")) {
-                    $oldRobotInfo = json_decode($oldRobotInfo);
+                    $oldRobotInfo = json_decode($oldRobotInfo,true);
                 }
                 $i = 0;                
                 foreach($return['devices'] as $value){
