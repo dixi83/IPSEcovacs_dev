@@ -61,11 +61,11 @@ class EcovacsSplitter extends IPSModule
         if($EcovacsHTTP->HTTPS_Login()) {
             if($EcovacsHTTP->HTTPS_getAuthCode()) {
                 if ($EcovacsHTTP->HTTPS_loginByItToken()) {
-                    $XMPP['username'] 	= $this->meta['uid'];
-                    $XMPP['password'] 	= '0/'.$this->meta['resource'].'/'.$this->meta['token'];
-                    $XMPP['continent']	= $this->meta['continent'];
-                    $XMPP['resource']	= $this->meta['resource'];
-                    $XMPP['domain']		= $this->meta['realm'];
+                    $XMPP['username'] 	= $EcovacsHTTP->meta['uid'];
+                    $XMPP['password'] 	= '0/'.$EcovacsHTTP->meta['resource'].'/'.$EcovacsHTTP->meta['token'];
+                    $XMPP['continent']	= $EcovacsHTTP->meta['continent'];
+                    $XMPP['resource']	= $EcovacsHTTP->meta['resource'];
+                    $XMPP['domain']		= $EcovacsHTTP->meta['realm'];
                     
                     $this->SetValue("XMPP_Info", json_encode($XMPP));
                 } else {
