@@ -155,7 +155,7 @@ class EcovacsHTTP extends IPSModule
                 return false;
             } else {
                 $this->meta['token'] = $return['token'];
-                print_r($this->meta);
+                //print_r($this->meta);
                 return $return;
             }
         }
@@ -166,8 +166,8 @@ class EcovacsHTTP extends IPSModule
 
         $ch = curl_init($USER_URL_FORMAT);
 
-        $meta['todo'] 	= 'GetDeviceList';
-        $meta['with'] 	= 'users';
+        $this->meta['todo'] 	= 'GetDeviceList';
+        $this->meta['with'] 	= 'users';
 
         $order			= array('with','realm','token','uid','resource');
         $auth	 		= $this->orderArray($order, $this->meta);
