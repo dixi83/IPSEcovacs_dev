@@ -12,7 +12,7 @@ class EcovacsSplitter extends IPSModule
     public function ApplyChanges(){
 		parent::ApplyChanges();	//Never delete this line!
         
-        $this->RegisterVariableString ("AccountInfo", "AccountInfo");
+        $this->RegisterVariableString ("AccountInfo", "AccountInfo"); // info for logging in to the EcoVacs Api
 	}
     
     public function __construct($InstanzID) {
@@ -36,13 +36,18 @@ class EcovacsSplitter extends IPSModule
     }
     
     public function TestAndSaveLogin(string $country, string $continent, string $httpServer, string $xmppServer, string $account, string $password) {
-        $this->setAccountInfo($country, $continent, $httpServer, $xmppServer, $account, $password);
-        $EcovacsHTTP = new EcovacsHTTP($this->InstanceID);
-        if($EcovacsHTTP->HTTPS_Login()) {
-            echo "Login succesful and saved";
+        if(filter_var($account, FILTER_VALIDATE_EMAIL)) { //check email address
+            $this->setAccountInfo($country, $continent, $httpServer, $xmppServer, $account, $password);
+            $EcovacsHTTP = new EcovacsHTTP($this->InstanceID);
+            if($EcovacsHTTP->HTTPS_Login()) {
+                echo "Login succesful and saved";
+            } else {
+                echo "Login failed, please check your entered account information";
+            }
         } else {
-            echo "Login failed, please check your entered account information";
+            echo "Login failed, please check the entered email address";
         }
+
     }
 } // end class EcovacsSplitter
 
