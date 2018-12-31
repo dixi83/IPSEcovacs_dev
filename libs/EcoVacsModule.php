@@ -81,11 +81,11 @@ class EcovacsHTTP extends IPSModule
             $return = json_decode($response,true);
             if($return['code']=='1005'){
                 IPS_LogMessage("Ecovacs", 'Login Failed! '.$this->showMsg($return['code']));
-                $this->SetValue("AccountInfo", "false","",0);
+                $EcovacsSplitter->SetValue("AccountInfo", "false","",0);
                 return false;
             } elseif($return['code']!='0000') { // 0000 = login succes
                 IPS_LogMessage("Ecovacs", 'Login Failed! '.$this->showMsg($return['code'])); 
-                $this->SetValue("AccountInfo", "false","",0);
+                $EcovacsSplitter->SetValue("AccountInfo", "false","",0);
                 return false;
             } else {
                 unset($this->meta['requestId']);
