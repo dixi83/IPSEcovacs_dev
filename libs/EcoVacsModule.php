@@ -116,6 +116,7 @@ class EcovacsHTTP extends IPSModule
             } else {
                 unset($this->meta['requestId']);
                 $this->meta = array_merge($this->meta,$return['data']);
+                print_r($this->meta);
                 return $return;
             }
         }
