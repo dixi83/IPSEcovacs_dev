@@ -230,6 +230,6 @@
                 {"caption" : "Mozambique", "value": [ {"name": "Country", "value": "mz"}, {"name": "Continent", "value": "ww"}, {"name": "HttpServer", "value": "eco-mz-api.ecovacs.com"}, {"name": "XmppServer", "value": "msg-ww.ecouser.net"}, ] }
             ]
         },      
-        { "type": "Button", "label": "Test and save account info", "onClick": "echo \"test\"; EVDB_TestAndSaveLogin($id, $Countrys[0][\"value\"], $Countrys[1][\"value\"], $Countrys[2][\"value\"], $Countrys[3][\"value\"], $account, md5($password));" }
+        { "type": "Button", "label": "Test and save account info", "onClick": "echo \"test\"; EVDB_TestAndSaveLogin($id, $Countrys[0][\"value\"], $Countrys[1][\"value\"], $Countrys[2][\"value\"], $Countrys[3][\"value\"], $account, md5($password),\"test\");" }
     ]
 }
