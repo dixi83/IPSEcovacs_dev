@@ -116,7 +116,7 @@ class EcovacsHTTP extends IPSModule
             } else {
                 unset($this->meta['requestId']);
                 $this->meta = array_merge($this->meta,$return['data']);
-                print_r($this->meta);
+                //print_r($this->meta);
                 return $return;
             }
         }
@@ -155,6 +155,7 @@ class EcovacsHTTP extends IPSModule
                 return false;
             } else {
                 $this->meta['token'] = $return['token'];
+                print_r($this->meta);
                 return $return;
             }
         }
