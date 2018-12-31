@@ -204,10 +204,9 @@ class EcovacsHTTP extends IPSModule
                 }
                 
                 $i = 0; 
-                print_r($oldRobotInfo);
                 foreach($return['devices'] as $value){
                     if(is_array($oldRobotInfo)){
-                        foreach($oldRobotInfo as $key => $value){
+                        foreach($oldRobotInfo as $value){
                             if(($return['devices'][$i]['did']==$value['RobotSerialNr'])) {
                                 $prevName   = $value['RobotName'];
                                 $prevId     = $value['InstanceId'];
