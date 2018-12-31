@@ -205,15 +205,16 @@ class EcovacsHTTP extends IPSModule
                 $i = 0;                
                 foreach($return['devices'] as $value){
                     if(is_array($oldRobotInfo)){
-                        foreach($oldRobotInfo as $value){
-                            if(($return['devices'][$i]['did']==$value['RobotSerialNr'])) {
-                                $prevName   = $value['RobotName'];
-                                $prevId     = $value['InstanceId'];
-                            } else {
+                        print_r($oldRobotInfo);
+                        //foreach($oldRobotInfo as $key => $value){
+                        //    if(($return['devices'][$i]['did']==$value[$key]['RobotSerialNr'])) {
+                        //        $prevName   = $value[$key]['RobotName'];
+                        //        $prevId     = $value[$key]['InstanceId'];
+                        //    } else {
                                 $prevName   = "";
                                 $prevId     = 0;
-                            }
-                        }
+                        //    }
+                        //}
                     } else {
                         $prevName   = "";
                         $prevId     = 0;
