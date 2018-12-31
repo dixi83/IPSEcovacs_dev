@@ -3,7 +3,7 @@
     [
         { "type": "ValidationTextBox", "name": "account", "caption": "Ecovacs account:" },
         { "type": "PasswordTextBox", "name": "password", "caption": "Password:" },
-        { "type": "Select", "name": "country", "caption": "Country",
+        { "type": "Select", "name": "country", "caption": "Country:",
             "options": [
                 {"caption" : "Bangladesh", "value": "bd"},
                 {"caption" : "Belgium", "value": "be"},
@@ -230,7 +230,7 @@
                 {"caption" : "Mozambique", "value": "mz"}
             ]
         },
-        { "type": "Select", "name": "continent", "caption": "Continent",
+        { "type": "Select", "name": "continent", "caption": "Continent:",
             "options": [
                 {"caption" : "Europe", "value": "eu"},
                 {"caption" : "North America", "value": "na"},
@@ -242,6 +242,6 @@
     ],
     "actions":
     [
-        { "type": "Button", "label": "Test account info", "onClick": "EVDB_TestAndSaveLogin($id);" }
+        { "type": "Button", "label": "Test account info", "onClick": "EVDB_TestLogin($id);" }
     ]
 }

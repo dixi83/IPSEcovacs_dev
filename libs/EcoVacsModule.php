@@ -48,17 +48,9 @@ class EcovacsHTTP extends IPSModule
         
         $EcovacsSplitter = new EcovacsSplitter($this->InstanceID);
         
-        //$accountInfo = $EcovacsSplitter->getAccountInfo();
-
-        //if($accountInfo=="false"){
-        //    IPS_LogMessage("Ecovacs", 'Login Failed! No account info please enter your info in the configurator.');
-        //    return false;
-        //}
         $account   = $EcovacsSplitter->ReadPropertyString("account");
         $password  = $EcovacsSplitter->ReadPropertyString("password");
-        //$country   = 
         
-
         $this->meta['requestId']	= md5(round(microtime(true)*1000));	 // this have to be different every call you make to the HTTPS API
         $this->meta['country']      = $EcovacsSplitter->ReadPropertyString("country");
         $this->meta['continent']    = $EcovacsSplitter->ReadPropertyString("continent");
@@ -84,13 +76,8 @@ class EcovacsHTTP extends IPSModule
             return false;
         } else {
             $return = json_decode($response,true);
-            if($return['code']=='1005'){
-                IPS_LogMessage("Ecovacs", 'Login Failed! '.$this->showMsg($return['code']));
-                //$EcovacsSplitter->SetValue("AccountInfo", "false");
-                return false;
-            } elseif($return['code']!='0000') { // 0000 = login succes
+            if($return['code']!='0000') { // 0000 = login succes
                 IPS_LogMessage("Ecovacs", 'Login Failed! '.$this->showMsg($return['code'])); 
-                //$EcovacsSplitter->SetValue("AccountInfo", "false");
                 return false;
             } else {
                 unset($this->meta['requestId']);
@@ -103,7 +90,7 @@ class EcovacsHTTP extends IPSModule
     public function HTTPS_getAuthCode(){
         $this->meta['requestId']	= md5(round(microtime(true)*1000));  // this have to be different every call you make to the HTTPS API
 
-        $MAIN_URL_FORMAT = 'https://'.$this->meta['httpServer'].'/v1/private/'.$this->meta['country'].'/'.$this->meta['lang'].'/'.$this->meta['deviceId'].'/'.$this->meta['appCode'].'/'.$this->meta['appVersion'].'/'.$this->meta['channel'].'/'.$this->meta['deviceType'];
+        $MAIN_URL_FORMAT = 'https://eco-'.$this->meta['country'].'-api.ecovacs.com/v1/private/'.$this->meta['country'].'/'.$this->meta['lang'].'/'.$this->meta['deviceId'].'/'.$this->meta['appCode'].'/'.$this->meta['appVersion'].'/'.$this->meta['channel'].'/'.$this->meta['deviceType'];
 
         $order 				= array('accessToken','appCode','appVersion','authTimeZone','authTimespan','channel','country','deviceId','deviceType','lang','requestId','uid');
         $info4Sign			= $this->orderArray($order, $this->meta);
@@ -119,12 +106,12 @@ class EcovacsHTTP extends IPSModule
         $response = file_get_contents($url);
 
         if($response==false) {
-            IPS_LogMessage("Ecovacs", 'GetAuthCode Failed! No connection or wrong URL'); //echo 'Error! no connection or URL is wrong.';
+            IPS_LogMessage("Ecovacs", 'getAuthCode Failed! No connection or wrong URL'); //echo 'Error! no connection or URL is wrong.';
             return false;
         } else {
             $return = json_decode($response,true);
             if($return['code']!='0000') {
-                IPS_LogMessage("Ecovacs", 'GetAuthCode Failed! '.$this->showMsg($return['code']));
+                IPS_LogMessage("Ecovacs", 'getAuthCode Failed! '.$this->showMsg($return['code']));
                 return false;
             } else {
                 unset($this->meta['requestId']);
@@ -139,12 +126,12 @@ class EcovacsHTTP extends IPSModule
 
         $ch = curl_init($USER_URL_FORMAT);
 
-        $this->meta['todo'] 		= 'loginByItToken';
+        $this->meta['todo'] = 'loginByItToken';
 
         $order 		= array('authCode','realm','uid','resource','todo','country');
-        $info4Post 	= $this->orderArray($order, $this->meta);
+        $info4Post  = $this->orderArray($order, $this->meta);
         $newKeys	= array('token','realm','userId','resource','todo','country');
-        $info4Post	= $this->renameKeysInArray($order,$newKeys,$info4Post);
+        $info4Post  = $this->renameKeysInArray($order,$newKeys,$info4Post);
 
         $info4Post['country'] = strtoupper($info4Post['country']);
 
@@ -158,15 +145,15 @@ class EcovacsHTTP extends IPSModule
         curl_close($ch);
 
         if($result==false) {
-            echo 'Error! no connection or URL is wrong.';
+            IPS_LogMessage("Ecovacs", 'LoginByToken Failed! No connection or wrong URL');
             return false;
         } else {
             $return = json_decode($result,true);
             if($return['result']!='ok') {
-                echo 'Error! '.$return['error'];
+                IPS_LogMessage("Ecovacs", 'LoginByToken Failed! '.$return['error']);
                 return false;
             } else {
-                $meta['token'] = $return['token'];
+                $this->meta['token'] = $return['token'];
                 return $return;
             }
         }
@@ -177,8 +164,8 @@ class EcovacsHTTP extends IPSModule
 
         $ch = curl_init($USER_URL_FORMAT);
 
-        $meta['todo'] 		= 'GetDeviceList';
-        $meta['with'] 		= 'users';
+        $meta['todo'] 	= 'GetDeviceList';
+        $meta['with'] 	= 'users';
 
         $order			= array('with','realm','token','uid','resource');
         $auth	 		= $this->orderArray($order, $this->meta);
@@ -208,14 +195,7 @@ class EcovacsHTTP extends IPSModule
                 echo 'Error! '.$return['error'];
                 return false;
             } else { // TODO save this for XMPP communication
-                $XMPP['username'] 	= $this->meta['uid'];
-                $XMPP['password'] 	= '0/'.$this->meta['resource'].'/'.$this->meta['token'];
-                $XMPP['continent']	= $this->meta['continent'];
-                $XMPP['resource']	= $this->meta['resource'];
-                $XMPP['domain']		= $this->meta['realm'];
-
-                $i = 0;
-                
+                $i = 0;                
                 foreach($return['devices'] as $value){
                     $XMPP['robot'][$i] = $return['devices'][$i]['did'].'@'.$return['devices'][$i]['class'].'.ecorobot.net/'.$return['devices'][$i]['resource'];
                     ++$i;
