@@ -35,8 +35,8 @@ class EcovacsSplitter extends IPSModule
         $this->SetValue("AccountInfo", $json);
     }
     
-    public function TestAndSaveLogin(string $country, string $continent, string $httpServer, string $xmppServer, string $username, string $password) {
-        $this->setAccountInfo($country, $continent, $httpServer, $xmppServer, $username, $password);
+    public function TestAndSaveLogin(string $country, string $continent, string $httpServer, string $xmppServer, string $account, string $password) {
+        $this->setAccountInfo($country, $continent, $httpServer, $xmppServer, $account, $password);
         $EcovacsHTTP = new EcovacsHTTP($this->InstanceID);
         if($EcovacsHTTP->HTTPS_Login()) {
             echo "Login succesful and saved";
