@@ -196,10 +196,30 @@ class EcovacsHTTP extends IPSModule
             if($return['result']!='ok') {
                 echo 'Error! '.$return['error'];
                 return false;
-            } else { // TODO save this for XMPP communication
+            } else {
+                $EcovacsSplitter = new EcovacsSplitter($this->InstanceID);
+                $oldRobotInfo = $EcovacsSplitter->GetValue("XMPP_Robots");
+                if(($oldRobotInfo!="")) {
+                    $oldRobotInfo = json_decode($oldRobotInfo);
+                }
                 $i = 0;                
                 foreach($return['devices'] as $value){
-                    $Robot[$i]['XMPPaddress'] = $return['devices'][$i]['did'].'@'.$return['devices'][$i]['class'].'.ecorobot.net/'.$return['devices'][$i]['resource'];
+                    if(is_array($oldRobotInfo)){
+                        foreach($oldRobotInfo as $value){
+                            if(($return['devices'][$i]['did']==$value['RobotSerialNr'])) {
+                                $name   = $value['RobotName'];
+                                $id     = $value['InstanceId'];
+                            } else {
+                                $name   = "";
+                                $id     = 0;
+                            }
+                        }
+                    }
+                    $Robot[$i]['RobotNr']       = $i;
+                    $Robot[$i]['RobotName']     = $name;
+                    $Robot[$i]['InstanceId']    = $id;
+                    $Robot[$i]['RobotSerialNr'] = $return['devices'][$i]['did'];
+                    $Robot[$i]['XMPPaddress']   = $return['devices'][$i]['did'].'@'.$return['devices'][$i]['class'].'.ecorobot.net/'.$return['devices'][$i]['resource'];
                     ++$i;
                 }
                 $this->meta['Robot'] = $Robot;
