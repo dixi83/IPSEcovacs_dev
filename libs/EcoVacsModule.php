@@ -121,7 +121,7 @@ class EcovacsHTTP extends IPSModule
         }
     }
     
-    function HTTPS_loginByItToken(){
+    public function HTTPS_loginByItToken(){
         $USER_URL_FORMAT = 'https://users-'.$this->meta['continent'].'.ecouser.net:8000/user.do';
 
         $ch = curl_init($USER_URL_FORMAT);
