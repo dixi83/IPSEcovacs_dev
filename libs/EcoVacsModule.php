@@ -75,16 +75,18 @@ class EcovacsHTTP extends IPSModule
         $response = file_get_contents($url);
 
         if($response==false) {
-            IPS_LogMessage("Ecovacs", 'Login Failed!  No connection or wrong URL'); //echo 'Login Failed, No connection';
+            IPS_LogMessage("Ecovacs", 'Login Failed!  No connection or wrong URL'); 
             return false;
         } else {
             $return = json_decode($response,true);
-            if($return['code']!='0000') { // 0000 = login succes
-                IPS_LogMessage("Ecovacs", 'Login Failed! '.$this->showMsg($return['code'])); //echo 'Login Failed! '.showMsg($return['code']);
-                return false;
-            } elseif($return['code']==1005){
+            if($return['code']=='1005'){
                 IPS_LogMessage("Ecovacs", 'Login Failed! '.$this->showMsg($return['code']));
-                $this->SetValue("EVDB_AccountInfo", "false","",0);
+                $this->SetValue("AccountInfo", "false","",0);
+                return false;
+            } elseif($return['code']!='0000') { // 0000 = login succes
+                IPS_LogMessage("Ecovacs", 'Login Failed! '.$this->showMsg($return['code'])); 
+                $this->SetValue("AccountInfo", "false","",0);
+                return false;
             } else {
                 unset($this->meta['requestId']);
                 $this->meta = array_merge($this->meta,$return['data']);
