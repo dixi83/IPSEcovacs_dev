@@ -48,19 +48,24 @@ class EcovacsHTTP extends IPSModule
         
         $EcovacsSplitter = new EcovacsSplitter($this->InstanceID);
         
-        $accountInfo = $EcovacsSplitter->getAccountInfo();
+        //$accountInfo = $EcovacsSplitter->getAccountInfo();
 
-        if($accountInfo=="false"){
-            IPS_LogMessage("Ecovacs", 'Login Failed! No account info please enter your info in the configurator.');
-            return false;
-        }
+        //if($accountInfo=="false"){
+        //    IPS_LogMessage("Ecovacs", 'Login Failed! No account info please enter your info in the configurator.');
+        //    return false;
+        //}
+        $account   = $EcovacsSplitter->ReadPropertyString("account");
+        $password  = $EcovacsSplitter->ReadPropertyString("password");
+        //$country   = 
+        
 
         $this->meta['requestId']	= md5(round(microtime(true)*1000));	 // this have to be different every call you make to the HTTPS API
-        $this->meta['country']      = $accountInfo['country'];
-        $this->meta['account']      = $this->encrypt($accountInfo['account']);
-        $this->meta['password']     = $this->encrypt($accountInfo['password']);
+        $this->meta['country']      = $EcovacsSplitter->ReadPropertyString("country");
+        $this->meta['continent']    = $EcovacsSplitter->ReadPropertyString("continent");
+        $this->meta['account']      = $this->encrypt($account);
+        $this->meta['password']     = $this->encrypt(md5($password));
 
-        $MAIN_URL_FORMAT = 'https://'.$accountInfo['httpServer'].'/v1/private/'.$this->meta['country'].'/'.$this->meta['lang'].'/'.$this->meta['deviceId'].'/'.$this->meta['appCode'].'/'.$this->meta['appVersion'].'/'.$this->meta['channel'].'/'.$this->meta['deviceType'];
+        $MAIN_URL_FORMAT = 'https://eco-'.$this->meta['country'].'-api.ecovacs.com/v1/private/'.$this->meta['country'].'/'.$this->meta['lang'].'/'.$this->meta['deviceId'].'/'.$this->meta['appCode'].'/'.$this->meta['appVersion'].'/'.$this->meta['channel'].'/'.$this->meta['deviceType'];
 
         $order 				= array('account','appCode','appVersion','authTimeZone','authTimespan','channel','country','deviceId','deviceType','lang','password','requestId');
         $info4Sign 			= $this->orderArray($order, $this->meta);	
@@ -81,11 +86,11 @@ class EcovacsHTTP extends IPSModule
             $return = json_decode($response,true);
             if($return['code']=='1005'){
                 IPS_LogMessage("Ecovacs", 'Login Failed! '.$this->showMsg($return['code']));
-                $EcovacsSplitter->SetValue("AccountInfo", "false");
+                //$EcovacsSplitter->SetValue("AccountInfo", "false");
                 return false;
             } elseif($return['code']!='0000') { // 0000 = login succes
                 IPS_LogMessage("Ecovacs", 'Login Failed! '.$this->showMsg($return['code'])); 
-                $EcovacsSplitter->SetValue("AccountInfo", "false");
+                //$EcovacsSplitter->SetValue("AccountInfo", "false");
                 return false;
             } else {
                 unset($this->meta['requestId']);
