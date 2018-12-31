@@ -197,10 +197,11 @@ class EcovacsHTTP extends IPSModule
             } else { // TODO save this for XMPP communication
                 $i = 0;                
                 foreach($return['devices'] as $value){
-                    $XMPP['robot'][$i] = $return['devices'][$i]['did'].'@'.$return['devices'][$i]['class'].'.ecorobot.net/'.$return['devices'][$i]['resource'];
+                    $Robot[$i]['XMPPaddress'] = $return['devices'][$i]['did'].'@'.$return['devices'][$i]['class'].'.ecorobot.net/'.$return['devices'][$i]['resource'];
                     ++$i;
                 }
-                return $XMPP;
+                $this->meta['Robot'] = $Robot;
+                return $Robot;
             }
         }
     }
