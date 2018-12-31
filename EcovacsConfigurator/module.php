@@ -56,8 +56,9 @@ class EcovacsSplitter extends IPSModule
         }
     }
     
-    public function RefreshXMPPinfo(){
+    public function RefreshXMPPinfo() {
         $EcovacsHTTP = new EcovacsHTTP($this->InstanceID);
+        
         if($EcovacsHTTP->HTTPS_Login()) {
             if($EcovacsHTTP->HTTPS_getAuthCode()) {
                 if ($EcovacsHTTP->HTTPS_loginByItToken()) {
@@ -68,6 +69,37 @@ class EcovacsSplitter extends IPSModule
                     $XMPP['domain']		= $EcovacsHTTP->meta['realm'];
                     
                     $this->SetValue("XMPP_Info", json_encode($XMPP));
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    
+    public function RefreshDeviceList() {
+        $EcovacsHTTP = new EcovacsHTTP($this->InstanceID);
+        
+        if($EcovacsHTTP->HTTPS_Login()) {
+            if($EcovacsHTTP->HTTPS_getAuthCode()) {
+                if ($EcovacsHTTP->HTTPS_loginByItToken()) {
+                    $XMPP['username'] 	= $EcovacsHTTP->meta['uid'];
+                    $XMPP['password'] 	= '0/'.$EcovacsHTTP->meta['resource'].'/'.$EcovacsHTTP->meta['token'];
+                    $XMPP['continent']	= $EcovacsHTTP->meta['continent'];
+                    $XMPP['resource']	= $EcovacsHTTP->meta['resource'];
+                    $XMPP['domain']		= $EcovacsHTTP->meta['realm'];
+                    
+                    $this->SetValue("XMPP_Info", json_encode($XMPP));
+                    
+                    if ($EcovacsHTTP->EcoVacsHTTPS_GetDeviceList()) {
+                        $this->SetValue("XMPP_Info", json_encode($$EcovacsHTTP->meta['Robot']));
+                    } else {
+                        return false;
+                    }
                 } else {
                     return false;
                 }
