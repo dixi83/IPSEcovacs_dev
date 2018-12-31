@@ -214,6 +214,9 @@ class EcovacsHTTP extends IPSModule
                                 $id     = 0;
                             }
                         }
+                    } else {
+                        $name   = "";
+                        $id     = 0;
                     }
                     $Robot[$i]['RobotNr']       = $i;
                     $Robot[$i]['RobotName']     = $name;
