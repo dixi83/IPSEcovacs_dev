@@ -47,9 +47,9 @@ class EcovacsSplitter extends IPSModule
         $continent = $this->ReadPropertyString("continent");
         
         if(filter_var($account, FILTER_VALIDATE_EMAIL)) { //check email address
-            if(($password!="")){
-                if (($country!=""){
-                    if (($continent!=""){
+            if(($password!="")) {
+                if(($country!="")) {
+                    if(($continent!="") {
                         $EcovacsHTTP = new EcovacsHTTP($this->InstanceID);
                         if($EcovacsHTTP->HTTPS_Login()) {
                             echo "Login succesful and saved";
@@ -58,18 +58,18 @@ class EcovacsSplitter extends IPSModule
                         }
                     } else {
                         echo "Login failed, please select a continent";
-                    }
+                    } 
                 } else {
                     echo "Login failed, please select a country";
-                }
+                }   
             } else {
                 echo "Login failed, please enter a password";
             }
         } else {
             echo "Login failed, please check the entered email address";
         }
-
     }
+                       
 } // end class EcovacsSplitter
 
 ?>
