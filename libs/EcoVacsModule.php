@@ -300,8 +300,59 @@ class EcovacsXMPP extends IPSModule {
 		parent::ApplyChanges();	//Never delete this line!
 	}
     
-    // Functions needed for EcoVacs Vac
+    // defining constants:
+    const CMD_STOP          = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="stop" speed="standard" /></ctl></query>';
+    const CMD_CLEAN_AUTO    = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="auto" speed="standard" /></ctl></query>';
     
+    // Functions needed for EcoVacs Vac
+    public function SetCommand($robotId) { // just send message, <iq type="set"> will not get any responce from ecovacs servers
+
+        $set['server'] 		= 'msg-'.$XMPP['continent'].'.ecouser.net'; //'msg-'.$glb_continent.'.ecouser.net';
+        $set['port']		= 5223;
+        $set['username']	= $XMPP['username'].'@'.$XMPP['domain'];	//sucks      DEBUG    username used to login: 201802265a9437ee73aa7
+        $set['password']	= $XMPP['password'];			            //sucks      DEBUG    password used to login: 0/372d00ce/glcTBbzoppbndSRpTflNTpk1gDCAYLQv
+        $set['resource']	= $XMPP['resource'];
+        $set['domain']		= $XMPP['domain'];
+        $set['vacAddr']		= $XMPP['robot'][$robotNr];		//self.vacuum['did'] + '@' + self.vacuum['class'] + '.ecorobot.net/atom'
+
+        $logger = new Logger('xmpp');
+        $logger->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::DEBUG));
+
+        print_r($set);
+
+        $message = new Message;
+        $message->setMessage('<ctl td="Clean"><clean type="auto" speed="standard"/></ctl>')
+            ->setTo($set['vacAddr'])
+            ->setFrom($set['username'].'/'.md5($set['resource']))
+            ->setType(Message::TYPE_EV_SET);
+
+        $options = new Options($set['server'].':'.$set['port']);
+
+        $options->setLogger($logger)
+            ->setUsername($set['username'])
+            ->setPassword($set['password'])
+            ->setTo($set['domain']);
+
+        $options->setSocksProxyAddress('localhost:8080');
+        $client = new Client($options);
+        $client->connect();
+        $client->send($message);
+
+        //print_r($message);
+
+        //print_r($client->receive());
+
+        //$run = true;
+        //while ($run) {
+        //	$messages = $client->getMessages(true); //blocking mode for get messages
+        //	if(count($messages) > 0){
+        //		print_r($messages);
+        //	} else {
+        //      $run = false;
+        //  }
+        //}
+        $client->disconnect();
+    }
 }
 
 ?>

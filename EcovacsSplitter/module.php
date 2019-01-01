@@ -8,18 +8,28 @@ class EcovacsSplitter extends IPSModule
     public function Create(){
         parent::Create(); //Never delete this line!
         
+        $this->RegisterPropertyBoolean("active", false);
         $this->RegisterPropertyString("account", "");
         $this->RegisterPropertyString("password", "");
         $this->RegisterPropertyString("country", "");
         $this->RegisterPropertyString("continent", "");
+        $this->RegisterPropertyInteger("RefreshXMPPinfo", "");
+        $this->RegisterTimer("RefreshXMPPinfo", 0, "EVDB_RefreshXMPPinfo();");
     }
         
     public function ApplyChanges(){
 		parent::ApplyChanges();	//Never delete this line!
         
-        //$this->RegisterVariableBolean ("AccountInfoTested", false); // info for the EcoVacs XMPP comunication
         $this->RegisterVariableString ("XMPP_Info", "XMPP_Info"); // info for the EcoVacs XMPP comunication
         $this->RegisterVariableString ("XMPP_Robots", "XMPP_Robots");
+        
+        if($this->ReadPropertyString("active")) {
+            $this->SetStatus(102);
+            $this->SetTimerInterval("RefreshXMPPinfo", (1000 * 3600));
+        } else {
+            $this->SetStatus(104);
+            $this->SetTimerInterval("RefreshXMPPinfo", 0);
+        }
 	}
     
     public function __construct($InstanzID) {
@@ -38,7 +48,7 @@ class EcovacsSplitter extends IPSModule
                     if(($continent!="")) {
                         $EcovacsHTTP = new EcovacsHTTP($this->InstanceID);
                         if($EcovacsHTTP->HTTPS_Login()) {
-                            echo "Login succesfull";
+                            echo "Login succesfull, the module can be activated now";
                         } else {
                             echo "Login failed, please check all your entered account information";
                         }

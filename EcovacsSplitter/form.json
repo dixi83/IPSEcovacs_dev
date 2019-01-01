@@ -1,6 +1,7 @@
 {
     "elements":
     [
+        { "type": "CheckBox", "name": "active", "caption": "Activate Module" },
         { "type": "ValidationTextBox", "name": "account", "caption": "Ecovacs account:" },
         { "type": "PasswordTextBox", "name": "password", "caption": "Password:" },
         { "type": "Select", "name": "country", "caption": "Country:",

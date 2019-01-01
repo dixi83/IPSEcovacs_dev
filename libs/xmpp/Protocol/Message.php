@@ -108,12 +108,21 @@ class Message implements ProtocolImplementationInterface
     {
         if($this->getType() == 'set'){
             return XML::quoteMessage(
-                '<iq id="%s" to="%s" from="%s" type="set"><query xmlns="com:ctl"><ctl td="Clean"><clean type="stop" speed="standard" /></ctl></query></iq>',
+                '<iq id="%s" to="%s" from="%s" type="%s">%s</iq>',
                 XML::generateId(),
                 $this->getTo(),
-                $this->getFrom()//,
-                //$this->getType()//,
-                //$this->getMessage($this->getType())
+                $this->getFrom(),
+                $this->getType(),
+                $this->getMessage()
+            );
+        } elseif($this->getType() == 'get'){
+            return XML::quoteMessage(
+                '<iq id="%s" to="%s" from="%s" type="%s">%s</iq>',
+                XML::generateId(),
+                $this->getTo(),
+                $this->getFrom(),
+                $this->getType(),
+                $this->getMessage()
             );
         } else {
             return XML::quoteMessage(
