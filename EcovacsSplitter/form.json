@@ -243,7 +243,7 @@
     ],
     "actions":
     [
-        { "type": "Button", "label": "Test account info", "onClick": "EVDB_TestLogin($id);" }
+        { "type": "Button", "label": "Test account info", "onClick": "EVSP_TestLogin($id);" }
     ],
     "status":
     [
