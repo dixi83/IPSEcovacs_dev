@@ -34,15 +34,15 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace xmpp\Connection;
+namespace EVlibs\xmpp\Connection;
 
-use xmpp\Stream\XMLStream;
-use xmpp\EventListener\EventListenerInterface;
-use xmpp\Event\EventManager;
-use xmpp\Event\EventManagerInterface;
-use xmpp\EventListener\BlockingEventListenerInterface;
-use xmpp\Options;
-use xmpp\Exception\TimeoutException;
+use EVlibs\xmpp\Stream\XMLStream;
+use EVlibs\xmpp\EventListener\EventListenerInterface;
+use EVlibs\xmpp\Event\EventManager;
+use EVlibs\xmpp\Event\EventManagerInterface;
+use EVlibs\xmpp\EventListener\BlockingEventListenerInterface;
+use EVlibs\xmpp\Options;
+use EVlibs\xmpp\Exception\TimeoutException;
 //use Psr\Log\LogLevel;
 
 /**

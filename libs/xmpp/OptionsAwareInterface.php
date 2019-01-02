@@ -34,7 +34,7 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace xmpp;
+namespace EVlibs\xmpp;
 
 /**
  * Classes that take options should implent this interface.

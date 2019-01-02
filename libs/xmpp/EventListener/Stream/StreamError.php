@@ -34,11 +34,11 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace xmpp\EventListener\Stream;
+namespace EVlibs\xmpp\EventListener\Stream;
 
-use xmpp\Event\XMLEvent;
-use xmpp\Exception\Stream\StreamErrorException;
-use xmpp\EventListener\AbstractEventListener;
+use EVlibs\xmpp\Event\XMLEvent;
+use EVlibs\xmpp\Exception\Stream\StreamErrorException;
+use EVlibs\xmpp\EventListener\AbstractEventListener;
 
 /**
  * Listener for stream errors.

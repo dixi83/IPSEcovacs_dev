@@ -34,9 +34,9 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace xmpp\Connection;
+namespace EVlibs\xmpp\Connection;
 
-use xmpp\Stream\SocketClient;
+use EVlibs\xmpp\Stream\SocketClient;
 
 /**
  * Interface for connection that connect to a socket.

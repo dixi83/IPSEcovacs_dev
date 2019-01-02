@@ -34,19 +34,19 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace xmpp;
+namespace EVlibs\xmpp;
 
-use xmpp\Options;
-use xmpp\Connection\ConnectionInterface;
-use xmpp\Connection\Socket;
-use xmpp\Protocol\ProtocolImplementationInterface;
-use xmpp\Protocol\Message;
-use xmpp\Protocol\Presence;
-use xmpp\Event\EventManagerAwareInterface;
-use xmpp\Event\EventManagerInterface;
-use xmpp\Event\EventManager;
-use xmpp\Event\XMLEventInterface;
-use xmpp\EventListener\Logger;
+use EVlibs\xmpp\Options;
+use EVlibs\xmpp\Connection\ConnectionInterface;
+use EVlibs\xmpp\Connection\Socket;
+use EVlibs\xmpp\Protocol\ProtocolImplementationInterface;
+use EVlibs\xmpp\Protocol\Message;
+use EVlibs\xmpp\Protocol\Presence;
+use EVlibs\xmpp\Event\EventManagerAwareInterface;
+use EVlibs\xmpp\Event\EventManagerInterface;
+use EVlibs\xmpp\Event\EventManager;
+use EVlibs\xmpp\Event\XMLEventInterface;
+use EVlibs\xmpp\EventListener\Logger;
 
 /**
  * Xmpp connection client.

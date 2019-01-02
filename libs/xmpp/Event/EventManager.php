@@ -34,9 +34,9 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace xmpp\Event;
+namespace EVlibs\xmpp\Event;
 
-use xmpp\Exception\InvalidArgumentException;
+use EVlibs\xmpp\Exception\InvalidArgumentException;
 
 /**
  * Event manager.

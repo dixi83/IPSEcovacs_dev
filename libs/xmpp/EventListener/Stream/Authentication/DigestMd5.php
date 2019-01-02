@@ -34,12 +34,12 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace xmpp\EventListener\Stream\Authentication;
+namespace EVlibs\xmpp\EventListener\Stream\Authentication;
 
-use xmpp\EventListener\AbstractEventListener;
-use xmpp\Event\XMLEvent;
-use xmpp\Util\XML;
-use xmpp\Exception\Stream\AuthenticationErrorException;
+use EVlibs\xmpp\EventListener\AbstractEventListener;
+use EVlibs\xmpp\Event\XMLEvent;
+use EVlibs\xmpp\Util\XML;
+use EVlibs\xmpp\Exception\Stream\AuthenticationErrorException;
 
 /**
  * Handler for "digest md5" authentication mechanism.

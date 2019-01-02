@@ -34,12 +34,12 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace xmpp\Connection;
+namespace EVlibs\xmpp\Connection;
 
-use xmpp\Stream\XMLStream;
-use xmpp\Event\EventManagerAwareInterface;
-use xmpp\EventListener\EventListenerInterface;
-use xmpp\OptionsAwareInterface;
+use EVlibs\xmpp\Stream\XMLStream;
+use EVlibs\xmpp\Event\EventManagerAwareInterface;
+use EVlibs\xmpp\EventListener\EventListenerInterface;
+use EVlibs\xmpp\OptionsAwareInterface;
 
 /**
  * Connections must implement this interface.
