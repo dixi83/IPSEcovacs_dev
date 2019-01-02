@@ -2,11 +2,12 @@
 
 // include xmpp library
 //require_once('xmpp/Client.php');
-namespace EVlibs
+namespace EVlibs;
+
 use EVlibs\xmpp\Options;
 use EVlibs\xmpp\Client;
 use EVlibs\xmpp\Protocol\Roster;
-use EVlibs\EVlibs\xmpp\Protocol\Presence;
+use EVlibs\xmpp\Protocol\Presence;
 use EVlibs\xmpp\Protocol\Message;
 use EVlibs\xmpp\Connection;
 
