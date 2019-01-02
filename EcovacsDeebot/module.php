@@ -99,14 +99,14 @@ class EcovacsDeebot extends IPSModule
         $command = EcovacsXMPP::GET_CLEANSTATE; // TODO: also include GET_CHARGESTATE
         $return = $this->GetCommand($command);
         
-        echo $return // not shure how to handle these XMPP replies yet
+        echo $return; // not shure how to handle these XMPP replies yet
     }
     
     public function RefreshBatery() { // experimental
         $command = EcovacsXMPP::GET_BATTERYINFO;
         $return = $this->GetCommand($command);
         
-        echo $return // not shure how to handle these XMPP replies yet
+        echo $return; // not shure how to handle these XMPP replies yet
     }
     
 }
