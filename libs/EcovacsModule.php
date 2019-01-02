@@ -1,15 +1,5 @@
 <?php
 
-// include xmpp library
-//require_once('xmpp/Client.php');
-namespace EVlibs;
-
-use EVlibs\xmpp\Options;
-use EVlibs\xmpp\Client;
-use EVlibs\xmpp\Protocol\Roster;
-use EVlibs\xmpp\Protocol\Presence;
-use EVlibs\xmpp\Protocol\Message;
-use EVlibs\xmpp\Connection;
 
 class EcovacsHTTP extends IPSModule
 {    
@@ -300,6 +290,17 @@ class EcovacsHTTP extends IPSModule
 }
 
 class EcovacsXMPP extends IPSModule {
+    // include xmpp library
+    //require_once('xmpp/Client.php');
+    namespace EVlibs;
+
+    use EVlibs\xmpp\Options;
+    use EVlibs\xmpp\Client;
+    use EVlibs\xmpp\Protocol\Roster;
+    use EVlibs\xmpp\Protocol\Presence;
+    use EVlibs\xmpp\Protocol\Message;
+    use EVlibs\xmpp\Connection;
+    
     // IPS functions needed for the Module:
     public function Create(){
         parent::Create(); //Never delete this line!
@@ -310,7 +311,6 @@ class EcovacsXMPP extends IPSModule {
 	}
     
     // defining command constants: for more info https://github.com/wpietri/sucks/blob/master/protocol.md
-    
     const GET_CLEANSTATE                = 'get:cleanState';
     const GET_CHARGESTATE               = 'get:chargeState';
     const GET_BATTERYINFO               = 'get:batteryInfo';
