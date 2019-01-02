@@ -38,6 +38,7 @@ $form = <<<EOT
             }, {
                 "caption": "XMPPaddress",
                 "name": "XMPPaddress",
+                "width": "0px",
                 "visible": false
             }
             ],
