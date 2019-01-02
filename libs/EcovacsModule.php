@@ -2,7 +2,7 @@
 
 namespace EVlibs;
 
-class EcovacsHTTP extends IPSModule
+class EcovacsHTTP extends ../IPSModule
 {    
     // IPS functions needed for the Module:
     public function Create() {
@@ -290,7 +290,7 @@ class EcovacsHTTP extends IPSModule
     }
 }
 
-class EcovacsXMPP extends IPSModule {
+class EcovacsXMPP extends ../IPSModule {
     // include xmpp library
     //require_once('xmpp/Client.php');
 
