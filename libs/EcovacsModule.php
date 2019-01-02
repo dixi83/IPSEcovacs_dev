@@ -476,7 +476,7 @@ class EcovacsXMPP extends IPSModule {
 
         $options = new Options($set['server'].':'.$set['port']);
 
-        $options->->setUsername($set['username'])
+        $options->setUsername($set['username'])
             ->setPassword($set['password'])
             ->setTo($set['domain']);
 
