@@ -1,6 +1,6 @@
 <?php
 
-$form1 = <<<EOT
+$form = <<<EOT
 {
     "type": "List",
     "name": "Devices",
