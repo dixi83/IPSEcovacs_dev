@@ -1,5 +1,6 @@
 <?php
 
+namespace EVlibs;
 
 class EcovacsHTTP extends IPSModule
 {    
@@ -288,8 +289,6 @@ class EcovacsHTTP extends IPSModule
         return $nr.': '.$code[$nr];
     }
 }
-
-namespace EVlibs;
 
 class EcovacsXMPP extends IPSModule {
     // include xmpp library
