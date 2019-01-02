@@ -1,5 +1,14 @@
 <?php
 
+// include xmpp library
+require_once('../libs/xmpp/xmpp.php');
+use xmpp\Options;
+use xmpp\Client;
+use xmpp\Protocol\Roster;
+use xmpp\Protocol\Presence;
+use xmpp\Protocol\Message;
+use xmpp\Connection;
+
 class EcovacsHTTP extends IPSModule
 {    
     // IPS functions needed for the Module:
@@ -324,14 +333,6 @@ class EcovacsXMPP extends IPSModule {
     
     // Functions needed for EcoVacs Vac
     public function XMPPsetCommand($robotSerialNr,$command) { // just send message, <iq type="set"> will not get any responce from ecovacs servers
-        // include xmpp library
-        require_once('../libs/xmpp/xmpp.php');
-        use xmpp\Options;
-        use xmpp\Client;
-        use xmpp\Protocol\Roster;
-        use xmpp\Protocol\Presence;
-        use xmpp\Protocol\Message;
-        use xmpp\Connection;
         
         $EcovacsSplitter = new EcovacsSplitter($this->InstanceID);
         
@@ -417,15 +418,7 @@ class EcovacsXMPP extends IPSModule {
     }
     
     public function XMPPgetCommand($robotSerialNr,$command) { // just send message, <iq type="set"> will not get any responce from ecovacs servers
-        // include xmpp library
-        require_once('../libs/xmpp/xmpp.php');
-        use xmpp\Options;
-        use xmpp\Client;
-        use xmpp\Protocol\Roster;
-        use xmpp\Protocol\Presence;
-        use xmpp\Protocol\Message;
-        use xmpp\Connection;
-        
+    
         $EcovacsSplitter = new EcovacsSplitter($this->InstanceID);
         
         $XMPP   = json_decode($EcovacsSplitter->GetValue("XMPP_Info"),true);
