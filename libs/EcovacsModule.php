@@ -288,8 +288,8 @@ class EcovacsHTTP extends IPSModule
     }
 }
 
-    // include xmpp library
-    require_once('xmpp/xmpp.php');
+// include xmpp library
+require_once('xmpp/xmpp.php');
 
 class EcovacsXMPP extends IPSModule {
     
@@ -322,7 +322,7 @@ class EcovacsXMPP extends IPSModule {
     const SET_CLEAN_BORDER_STRONG       = 'set:clean:border:strong';
     const SET_CLEAN_SPOT_STRONG         = 'set:clean:spot:strong';
     const SET_CLEAN_SINGLEROOM_STRONG   = 'set:clean:singleroom:strong';
-    const SET_STOP                = 'set:clean:stop';
+    const SET_STOP                      = 'set:clean:stop';
     const SET_CHARGE_GO                 = 'set:charge:go';
     
     // Functions needed for EcoVacs Vac
