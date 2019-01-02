@@ -1,5 +1,5 @@
 {
-    "id": "{8eb4291c-8ec8-4e10-b5d7-1f90cc37bd8d}",
+    "id": "{8EB4291C-8EC8-4E10-B5D7-1F90CC37BD8D}",
     "name": "EcovacsSplitter",
     "aliases": ["Ecovacs Splitter"],
     "type": 2,
@@ -7,5 +7,5 @@
     "parentRequirements": [],
     "childRequirements": [],
     "implemented": [],
-    "prefix": "EVDB"
+    "prefix": "EVSP"
 }

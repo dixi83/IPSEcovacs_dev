@@ -244,5 +244,10 @@
     "actions":
     [
         { "type": "Button", "label": "Test account info", "onClick": "EVDB_TestLogin($id);" }
+    ],
+    "status":
+    [
+        { "code": 102, "icon": "active", "caption": "Module active" },
+        { "code": 104, "icon": "inactive", "caption": "Module not activated" }
     ]
 }

@@ -9,7 +9,7 @@
 3. [Software-Installation](#3-software-installation) 
 4. [Einrichten der Instanzen in IP-Symcon](#4-einrichten-der-instanzen-in-ip-symcon)
 5. [Anhang](#5-anhang)  
-    1. [GUID der Module](#1-guid-der-module)
+    1. [GUID's of the modules](#1-guid-der-module)
     2. [Changlog](#2-changlog)
     3. [Special Thanks](#3-special-thanks)
 
@@ -40,22 +40,23 @@ Currently known to work with the Ecovacs Deebot N79, M80 Pro, M81, M88 Pro, and 
 
 Ist direkt in der Dokumentation der jeweiligen Module beschrieben.  
 
-## 5. Anhang
+## 5. Attached
 
-###  1. GUID der Module
+###  1. GUID's of the modules
 
  
-| Modul   | Typ    | Prefix  | GUID                                   |
-| :-----: | :----: | :-----: | :------------------------------------: |
-| Deebot  | Device | EVDB    | {8eb4291c-8ec8-4e10-b5d7-1f90cc37bd8d} |
+| Modul           | Typ      | Prefix  | GUID                                   |
+| :-------------: | :------: | :-----: | :------------------------------------: |
+| EcovacsSplitter | Splitter | EVSP    | {8EB4291C-8EC8-4E10-B5D7-1F90CC37BD8D} |
+| EcovacsDeebot   | Device   | EVDB    | {071BCBF7-66BA-4341-8258-A8BED6F1000C} |
 
 
 ### 2. Changlog
 
 Version 0.1:  
- - Erste start von das modul 
+ - First start of the module 
 
-### 3. Special thanks:
+### 3. Special thanks
 
 F. Grutschus and his good php library for XMPP communication (https://github.com/fabiang/xmpp)
 W. Pietri for his work on the good documented Python library/script (https://github.com/wpietri/sucks)

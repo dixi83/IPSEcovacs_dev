@@ -63,10 +63,10 @@ class Message implements ProtocolImplementationInterface
     const TYPE_EV_SET = 'set';
     
     /**
-     * Send <iq> Get Ecovacs Vac.
+     * Send <iq> Get message to Ecovacs Vac.
      */
 
-    const TYPE_EV_SET = 'get';
+    const TYPE_EV_GET = 'get';
 
     /**
      * Message type.

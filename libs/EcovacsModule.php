@@ -106,7 +106,7 @@ class EcovacsHTTP extends IPSModule
         $response = file_get_contents($url);
 
         if($response==false) {
-            IPS_LogMessage("Ecovacs", 'getAuthCode Failed! No connection or wrong URL'); //echo 'Error! no connection or URL is wrong.';
+            IPS_LogMessage("Ecovacs", 'getAuthCode Failed! No connection or wrong URL');
             return false;
         } else {
             $return = json_decode($response,true);
@@ -116,7 +116,6 @@ class EcovacsHTTP extends IPSModule
             } else {
                 unset($this->meta['requestId']);
                 $this->meta = array_merge($this->meta,$return['data']);
-                //print_r($this->meta);
                 return $return;
             }
         }
@@ -155,7 +154,6 @@ class EcovacsHTTP extends IPSModule
                 return false;
             } else {
                 $this->meta['token'] = $return['token'];
-                //print_r($this->meta);
                 return $return;
             }
         }
@@ -189,12 +187,12 @@ class EcovacsHTTP extends IPSModule
         curl_close($ch);
 
         if($result==false) {
-            echo 'Error! no connection or URL is wrong.';
+            IPS_LogMessage("Ecovacs", 'GetDeviceList Failed! no connection or URL is wrong.');
             return false;
         } else {
             $return = json_decode($result,true);
             if($return['result']!='ok') {
-                echo 'Error! '.$return['error'];
+                IPS_LogMessage("Ecovacs", 'GetDeviceList Error! '.$return['error']);
                 return false;
             } else {
                 $EcovacsSplitter = new EcovacsSplitter($this->InstanceID);
@@ -291,7 +289,7 @@ class EcovacsHTTP extends IPSModule
 }
 
 class EcovacsXMPP extends IPSModule {
-        // IPS functions needed for the Module:
+    // IPS functions needed for the Module:
     public function Create(){
         parent::Create(); //Never delete this line!
     }
@@ -300,25 +298,102 @@ class EcovacsXMPP extends IPSModule {
 		parent::ApplyChanges();	//Never delete this line!
 	}
     
-    // defining constants:
-    const CMD_STOP          = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="stop" speed="standard" /></ctl></query>';
-    const CMD_CLEAN_AUTO    = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="auto" speed="standard" /></ctl></query>';
+    // defining command constants: for more info https://github.com/wpietri/sucks/blob/master/protocol.md
+    
+    const GET_CLEANSTATE                = 'get:cleanState';
+    const GET_CHARGESTATE               = 'get:chargeState';
+    const GET_BATTERYINFO               = 'get:batteryInfo';
+    const GET_LIFESPAN_BRUSH            = 'get:lifespan:brush';
+    const GET_LIFESPAN_SIDEBRUSH        = 'get:lifespan:sidebrush';
+    const GET_LIFESPAN_DUSTCASEHEAP     = 'get:lifespan:dustcaseheap';
+    const GET_ERROR                     = 'get:error';
+    
+    const SPEED_STANDARD                = 'standard';
+    const SPEED_STRONG                  = 'strong';
+    
+    const SET_CLEAN_AUTO_STANDARD       = 'set:clean:auto:standard';
+    const SET_CLEAN_BORDER_STANDARD     = 'set:clean:border:standard';
+    const SET_CLEAN_SPOT_STANDARD       = 'set:clean:spot:standard';
+    const SET_CLEAN_SINGLEROOM_STANDARD = 'set:clean:singleroom:standard';
+    const SET_CLEAN_AUTO_STRONG         = 'set:clean:auto:strong';
+    const SET_CLEAN_BORDER_STRONG       = 'set:clean:border:strong';
+    const SET_CLEAN_SPOT_STRONG         = 'set:clean:spot:strong';
+    const SET_CLEAN_SINGLEROOM_STRONG   = 'set:clean:singleroom:strong';
+    const SET_STOP                = 'set:clean:stop';
+    const SET_CHARGE_GO                 = 'set:charge:go';
     
     // Functions needed for EcoVacs Vac
-    public function SetCommand($robotId) { // just send message, <iq type="set"> will not get any responce from ecovacs servers
-
-        $set['server'] 		= 'msg-'.$XMPP['continent'].'.ecouser.net'; //'msg-'.$glb_continent.'.ecouser.net';
+    public function XMPPsetCommand($robotSerialNr,$command) { // just send message, <iq type="set"> will not get any responce from ecovacs servers
+        // include xmpp library
+        require_once('../libs/xmpp/xmpp.php');
+        use xmpp\Options;
+        use xmpp\Client;
+        use xmpp\Protocol\Roster;
+        use xmpp\Protocol\Presence;
+        use xmpp\Protocol\Message;
+        use xmpp\Connection;
+        
+        $EcovacsSplitter = new EcovacsSplitter($this->InstanceID);
+        
+        $XMPP   = json_decode($EcovacsSplitter->GetValue("XMPP_Info"),true);
+        $robots = json_decode($EcovacsSplitter->GetValue("XMPP_Robots"),true);
+        
+        $set['server'] 		= 'msg-'.$XMPP['continent'].'.ecouser.net'; 
         $set['port']		= 5223;
-        $set['username']	= $XMPP['username'].'@'.$XMPP['domain'];	//sucks      DEBUG    username used to login: 201802265a9437ee73aa7
+        $set['username']	= $XMPP['username'];//.'@'.$XMPP['domain'];	//sucks      DEBUG    username used to login: 201802265a9437ee73aa7
         $set['password']	= $XMPP['password'];			            //sucks      DEBUG    password used to login: 0/372d00ce/glcTBbzoppbndSRpTflNTpk1gDCAYLQv
         $set['resource']	= $XMPP['resource'];
         $set['domain']		= $XMPP['domain'];
-        $set['vacAddr']		= $XMPP['robot'][$robotNr];		//self.vacuum['did'] + '@' + self.vacuum['class'] + '.ecorobot.net/atom'
-
-        $logger = new Logger('xmpp');
-        $logger->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::DEBUG));
-
-        print_r($set);
+        
+        
+        foreach($robots as $value){
+            if(($robotSerialNr==$value['RobotSerialNr'])){
+                $set['vacAddr']	= $value['XMPPaddress'];
+                break;
+            }
+        }
+        
+        if (!isset($set['vacAddr'])){
+            return false;
+        }
+        
+        switch ($command) {
+            case self::SET_CLEAN_AUTO_STANDARD:
+                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="auto" speed="standard"/></ctl></query>';
+                break;
+            case self::SET_CLEAN_BORDER_STANDARD:
+                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="border" speed="standard"/></ctl></query>';
+                break;
+            case self::SET_CLEAN_SPOT_STANDARD:
+                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="spot" speed="standard"/></ctl></query>';
+                break;
+            case self::SET_CLEAN_SINGLEROOM_STANDARD:
+                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="singleroom" speed="standard"/></ctl></query>';
+                break;
+            case self::SET_CLEAN_AUTO_STRONG:
+                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="auto" speed="strong"/></ctl></query>';
+                break;
+            case self::SET_CLEAN_BORDER_STRONG:
+                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="border" speed="strong"/></ctl></query>';
+                break;
+            case self::SET_CLEAN_SPOT_STRONG:
+                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="spot" speed="strong"/></ctl></query>';
+                break;
+            case self::SET_CLEAN_SINGLEROOM_STRONG:
+                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="singleroom" speed="strong"/></ctl></query>';
+                break;
+            case self::SET_STOP:
+                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="stop" speed="standard"/></ctl></query>';
+                break;
+            case self::SET_CHARGE_GO:
+                $SetMessage = '<query xmlns="com:ctl"><ctl td="Charge"><charge type="go"/></ctl></query>';
+                break;
+            default:
+                IPS_LogMessage("Ecovacs", 'Unknown Set command!');
+                return false;
+        }
+        //$logger = new Logger('xmpp');
+        //$logger->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::DEBUG));
 
         $message = new Message;
         $message->setMessage('<ctl td="Clean"><clean type="auto" speed="standard"/></ctl>')
@@ -328,8 +403,9 @@ class EcovacsXMPP extends IPSModule {
 
         $options = new Options($set['server'].':'.$set['port']);
 
-        $options->setLogger($logger)
-            ->setUsername($set['username'])
+        //$options->setLogger($logger)
+        //    ->setUsername($set['username'])
+        $options->setUsername($set['username'])
             ->setPassword($set['password'])
             ->setTo($set['domain']);
 
@@ -337,20 +413,90 @@ class EcovacsXMPP extends IPSModule {
         $client = new Client($options);
         $client->connect();
         $client->send($message);
+        $client->disconnect();
+    }
+    
+    public function XMPPgetCommand($robotSerialNr,$command) { // just send message, <iq type="set"> will not get any responce from ecovacs servers
+        // include xmpp library
+        require_once('../libs/xmpp/xmpp.php');
+        use xmpp\Options;
+        use xmpp\Client;
+        use xmpp\Protocol\Roster;
+        use xmpp\Protocol\Presence;
+        use xmpp\Protocol\Message;
+        use xmpp\Connection;
+        
+        $EcovacsSplitter = new EcovacsSplitter($this->InstanceID);
+        
+        $XMPP   = json_decode($EcovacsSplitter->GetValue("XMPP_Info"),true);
+        $robots = json_decode($EcovacsSplitter->GetValue("XMPP_Robots"),true);
+        
+        $set['server'] 		= 'msg-'.$XMPP['continent'].'.ecouser.net'; 
+        $set['port']		= 5223;
+        $set['username']	= $XMPP['username'];//.'@'.$XMPP['domain'];
+        $set['password']	= $XMPP['password'];
+        $set['resource']	= $XMPP['resource'];
+        $set['domain']		= $XMPP['domain'];
+        
+        
+        foreach($robots as $value){
+            if(($robotSerialNr==$value['RobotSerialNr'])){
+                $set['vacAddr']	= $value['XMPPaddress'];
+            }
+        }
+        
+        if (!isset($set['vacAddr'])){
+            return false;
+        }
+        
+        switch ($command) {
+            case self::GET_CLEANSTATE:
+                $GetMessage = '<query xmlns="com:ctl"><ctl td="GetCleanState" /></query>';
+                break;
+            case self::GET_CHARGESTATE:
+                $GetMessage = '<query xmlns="com:ctl"><ctl td="GetChargeState" /></query>';
+                break;
+            case self::GET_BATTERYINFO:
+                $GetMessage = '<query xmlns="com:ctl"><ctl td="GetBatteryInfo" /></query>';
+                break;
+            case self::GET_LIFESPAN_BRUSH:
+                $GetMessage = '<query xmlns="com:ctl"><ctl td="GetLifeSpan" type="Brush" /></query>';
+                break;
+            case self::GET_LIFESPAN_SIDEBRUSH:
+                $GetMessage = '<query xmlns="com:ctl"><ctl td="GetLifeSpan" type="SideBrush" /></query>';
+                break;
+            case self::GET_LIFESPAN_DUSTCASEHEAP:
+                $GetMessage = '<query xmlns="com:ctl"><ctl td="GetLifeSpan" type="DustCaseHeap" /></query>';
+                break;
+            case self::GET_ERROR:
+                $GetMessage = '<query xmlns="com:ctl"><ctl td="GetError" /></query>';
+            default:
+                IPS_LogMessage("Ecovacs", 'Unknown Get command!');
+                return false;
+        }
+        
+        $message = new Message;
+        $message->setMessage($GetMessage)
+            ->setTo($set['vacAddr'])
+            ->setFrom($set['username'].'/'.md5($set['resource']))
+            ->setType(Message::TYPE_EV_GET);
 
-        //print_r($message);
+        $options = new Options($set['server'].':'.$set['port']);
 
-        //print_r($client->receive());
+        $options->->setUsername($set['username'])
+            ->setPassword($set['password'])
+            ->setTo($set['domain']);
 
-        //$run = true;
-        //while ($run) {
-        //	$messages = $client->getMessages(true); //blocking mode for get messages
-        //	if(count($messages) > 0){
-        //		print_r($messages);
-        //	} else {
-        //      $run = false;
-        //  }
-        //}
+        $client = new Client($options);
+        $client->connect();
+        $client->send($message);
+
+        while () { // wait for messages
+        	$messages = $client->getMessages(true);
+        	if(count($messages) > 0){
+        		return $messages;
+        	} 
+        }
         $client->disconnect();
     }
 }

@@ -1,0 +1,11 @@
+{
+    "id": "{853E3621-FE4C-4C11-B361-72369ADAE026}",
+    "name": "EcovacsConfigurator",
+    "aliases": ["Ecovacs Configurator"],
+    "type": 4,
+    "vendor": "Ecovacs",
+    "parentRequirements": ["{8EB4291C-8EC8-4E10-B5D7-1F90CC37BD8D}"],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "EVCF"
+}

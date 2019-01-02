@@ -1,6 +1,6 @@
 <?php
 
-    require_once(__DIR__ . "/../libs/EcoVacsModule.php");
+require_once(__DIR__ . "/../libs/EcovacsModule.php");
 
 class EcovacsSplitter extends IPSModule
 {
@@ -23,7 +23,7 @@ class EcovacsSplitter extends IPSModule
         $this->RegisterVariableString ("XMPP_Info", "XMPP_Info"); // info for the EcoVacs XMPP comunication
         $this->RegisterVariableString ("XMPP_Robots", "XMPP_Robots");
         
-        if($this->ReadPropertyString("active")) {
+        if($this->ReadPropertyBoolean("active")) {
             $this->SetStatus(102);
             $this->SetTimerInterval("RefreshXMPPinfo", (1000 * 3600));
         } else {
@@ -51,18 +51,23 @@ class EcovacsSplitter extends IPSModule
                             echo "Login succesfull, the module can be activated now";
                         } else {
                             echo "Login failed, please check all your entered account information";
+                            $this->SetStatus(104);
                         }
                     } else {
                         echo "Login failed, please select a continent";
+                        $this->SetStatus(104);
                     } 
                 } else {
                     echo "Login failed, please select a country";
+                    $this->SetStatus(104);
                 }   
             } else {
                 echo "Login failed, please enter a password";
+                $this->SetStatus(104);
             }
         } else {
             echo "Login failed, please check the entered email address";
+            $this->SetStatus(104);
         }
     }
     
