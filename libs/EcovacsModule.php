@@ -288,9 +288,10 @@ class EcovacsHTTP extends IPSModule
     }
 }
 
-class EcovacsXMPP extends IPSModule {
     // include xmpp library
     require_once('xmpp/xmpp.php');
+
+class EcovacsXMPP extends IPSModule {
     
     // IPS functions needed for the Module:
     public function Create(){
