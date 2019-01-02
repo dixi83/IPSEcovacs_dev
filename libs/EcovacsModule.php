@@ -1,7 +1,7 @@
 <?php
 
 // include xmpp library
-require_once('../libs/xmpp/xmpp.php');
+require_once('libs/xmpp/Client.php');
 use xmpp\Options;
 use xmpp\Client;
 use xmpp\Protocol\Roster;

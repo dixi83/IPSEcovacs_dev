@@ -34,11 +34,11 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace Fabiang\Xmpp;
+namespace xmpp;
 
-use Fabiang\Xmpp\Connection\ConnectionInterface;
-use Fabiang\Xmpp\Protocol\ImplementationInterface;
-use Fabiang\Xmpp\Protocol\DefaultImplementation;
+use xmpp\Connection\ConnectionInterface;
+use xmpp\Protocol\ImplementationInterface;
+use xmpp\Protocol\DefaultImplementation;
 use Psr\Log\LoggerInterface;
 
 /**
