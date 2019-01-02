@@ -59,7 +59,7 @@ class EcovacsDeebot extends IPSModule
         $this->SetCommand($command);
     }
     
-    public function CMD_AutoClean($speed = EcovacsXMPP::SPEED_STANDARD) {
+    public function CMD_AutoClean(string $speed = EcovacsXMPP::SPEED_STANDARD) {
         if (($speed==EcovacsXMPP::SPEED_STRONG)) {
             $command = EcovacsXMPP::SET_CLEAN_AUTO_STRONG;
         } else {
@@ -68,7 +68,7 @@ class EcovacsDeebot extends IPSModule
         $this->SetCommand($command);
     }
     
-    public function CMD_BorderClean($speed = EcovacsXMPP::SPEED_STANDARD) {
+    public function CMD_BorderClean(string $speed = EcovacsXMPP::SPEED_STANDARD) {
         if (($speed==EcovacsXMPP::SPEED_STRONG)) {
             $command = EcovacsXMPP::SET_CLEAN_BORDER_STRONG;
         } else {
@@ -77,7 +77,7 @@ class EcovacsDeebot extends IPSModule
         $this->SetCommand($command);
     }
     
-    public function CMD_SpotClean($speed = EcovacsXMPP::SPEED_STANDARD) {
+    public function CMD_SpotClean(string $speed = EcovacsXMPP::SPEED_STANDARD) {
         if (($speed==EcovacsXMPP::SPEED_STRONG)) {
             $command = EcovacsXMPP::SET_CLEAN_SPOT_STRONG;
         } else {
@@ -86,7 +86,7 @@ class EcovacsDeebot extends IPSModule
         $this->SetCommand($command);
     }
     
-    public function CMD_SingleroomClean($speed = EcovacsXMPP::SPEED_STANDARD) {
+    public function CMD_SingleroomClean(string $speed = EcovacsXMPP::SPEED_STANDARD) {
         if (($speed==EcovacsXMPP::SPEED_STRONG)) {
             $command = EcovacsXMPP::SET_CLEAN_BORDER_STRONG;
         } else {
