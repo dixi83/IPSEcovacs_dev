@@ -33,7 +33,7 @@ $form = <<<EOT
             }, {
                 "caption": "Device Serial (identifier)",
                 "name": "DeviceSerialNr",
-                "width": "150px",
+                "width": "200px",
                 "visible": true
             }, {
                 "caption": "XMPPaddress",
