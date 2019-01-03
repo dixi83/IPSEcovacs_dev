@@ -28,7 +28,8 @@ $form = <<<EOT
                 "name": "RobotName",
                 "width": "auto",
                 "edit": {
-                    "type": "ValidationTextBox"
+                    "type": "ValidationTextBox",
+                    "onChange": "print_r($devices);"
                 }
             }, {
                 "caption": "Device Serial (identifier)",
@@ -43,7 +44,7 @@ $form = <<<EOT
             }
             ],
             "values": [{
-                "InstanceID": 0,
+                "InstanceID": 1234,
                 "RobotNr": 0,
                 "RobotName": "ABCD",
                 "DeviceSerialNr": "KOJSDAS78IJ89H3E98",
