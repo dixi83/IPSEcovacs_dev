@@ -10,7 +10,6 @@ $form = <<<EOT
             "rowCount": 5,
             "add": false,
             "delete": false,
-            "onChange": "echo 123;",
             "sort": {
                 "column": "RobotNr",
                 "direction": "ascending"
@@ -52,6 +51,7 @@ $form = <<<EOT
                 "rowColor": "#ff0000" //rot
             }]
         }
+        { "type": "Button", "caption": "Ausgabe", "onClick": "print_r($devices);" }
     ]
 }
 EOT;
