@@ -1,7 +1,7 @@
 <?php
 
 $data[0] = $this->GetValue("SplitterID");
-$data[1] = IPS_GetObjectIDByIdent("XMPP_Robots",$data[0])
+$data[1] = IPS_GetObjectIDByIdent("XMPP_Robots",$data[0]);
 $data[2] = GetValueString($data[1]);
 
 print_r()
