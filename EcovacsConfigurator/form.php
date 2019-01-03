@@ -10,6 +10,7 @@ $form = <<<EOT
             "rowCount": 5,
             "add": false,
             "delete": false,
+            "onChange": "print_r(\$devices);"
             "sort": {
                 "column": "RobotNr",
                 "direction": "ascending"
@@ -28,8 +29,7 @@ $form = <<<EOT
                 "name": "RobotName",
                 "width": "auto",
                 "edit": {
-                    "type": "ValidationTextBox",
-                    "onChange": "print_r(\$devices);"
+                    "type": "ValidationTextBox"
                 }
             }, {
                 "caption": "Device Serial (identifier)",
