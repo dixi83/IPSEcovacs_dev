@@ -51,7 +51,7 @@ $form = <<<EOT
                 "rowColor": "#ff0000" //rot
             }]
         }
-        { "type": "Button", "caption": "Ausgabe", "onClick": "print_r($devices);" }
+        { "type": "Button", "caption": "Ausgabe", "onClick": "print_r(\$devices);" }
     ]
 }
 EOT;
