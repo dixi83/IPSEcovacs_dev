@@ -50,7 +50,7 @@ $form = <<<EOT
                 "XMPPaddress": "ahsdkashjd@sadkjhsajdh.com/atom",
                 "rowColor": "#ff0000" //rot
             }]
-        }
+        },
         { "type": "Button", "caption": "Ausgabe", "onClick": "print_r(\$devices);" }
     ]
 }
