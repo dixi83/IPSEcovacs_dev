@@ -10,7 +10,7 @@ $form = <<<EOT
             "rowCount": 5,
             "add": false,
             "delete": false,
-            "onChange": "echo \"boe\";",
+            "onChange": "echo 123;",
             "sort": {
                 "column": "RobotNr",
                 "direction": "ascending"
