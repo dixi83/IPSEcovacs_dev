@@ -1,5 +1,15 @@
 <?php
 
+$EcovacsSplitter = new EcovacsSplitter($this->InstanceID);
+$values = $EcovacsSplitter->GetValue("XMPP_Robots");
+
+if ((strlen($values) > 2)){
+    $values = substr($values, 1, -1);
+}
+
+$values = ',
+            "values": [' .$values. ']';
+
 $form = <<<EOT
 {
     "actions": [
@@ -41,15 +51,8 @@ $form = <<<EOT
                 "width": "0px",
                 "visible": false
             }
-            ],
-            "values": [{
-                "InstanceID": 1234,
-                "RobotNr": 0,
-                "RobotName": "ABCD",
-                "DeviceSerialNr": "KOJSDAS78IJ89H3E98",
-                "XMPPaddress": "ahsdkashjd@sadkjhsajdh.com/atom",
-                "rowColor": "#ff0000" //rot
-            }]
+            ]$values
+            
         },
         { "type": "Button", "caption": "Ausgabe", "onClick": "print_r(\$devices);" }
     ]
