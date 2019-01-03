@@ -1,11 +1,11 @@
 <?php
 
-$EcovacsSplitter = new EcovacsSplitter($this->InstanceID);
-$values = $EcovacsSplitter->GetValue("XMPP_Robots");
+//$EcovacsSplitter = new EcovacsSplitter($this->InstanceID);
+//$values = $EcovacsSplitter->GetValue("XMPP_Robots");
 
-if ((strlen($values) > 2)){
-    $values = substr($values, 1, -1);
-}
+//if ((strlen($values) > 2)){
+//    $values = substr($values, 1, -1);
+//}
 
 $values = ',
             "values": [' .$values. ']';

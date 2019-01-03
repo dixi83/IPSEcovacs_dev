@@ -15,7 +15,8 @@ class EcovacsSplitter extends IPSModule
         $this->RegisterPropertyString("country", "");
         $this->RegisterPropertyString("continent", "");
         $this->RegisterPropertyInteger("RefreshXMPPinfo", 0);
-        $this->RegisterTimer("RefreshXMPPinfo", 0, "EVDB_RefreshXMPPinfo();");
+        $this->RegisterTimer("RefreshXMPPinfo", 0, "EVSP_RefreshXMPPinfo();");
+        $this->RegisterTimer("SendData", 1000, "EVSP_SendData();");
     }
         
     public function ApplyChanges(){
@@ -35,6 +36,10 @@ class EcovacsSplitter extends IPSModule
     
     public function __construct($InstanzID) {
         parent::__construct($InstanzID);       
+    }
+    
+    public function SendData(){
+        $this->SendDataToChildren(json_encode(Array("SplitterID" => $_IPS['SELF'])));
     }
         
     public function TestLogin() {
