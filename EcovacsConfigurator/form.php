@@ -5,6 +5,8 @@ $RobotData = GetValueString(IPS_GetObjectIDByIdent("XMPP_Robots",$SplitterID));
 
 if ((strlen($RobotData) > 2)){
     $values = substr($RobotData, 1, -1);
+} else {
+    $values = '';
 }
 
 $values = ',
