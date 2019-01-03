@@ -29,7 +29,7 @@ $form = <<<EOT
                 "width": "auto",
                 "edit": {
                     "type": "ValidationTextBox",
-                    "onChange": "print_r($devices);"
+                    "onChange": "print_r(\$devices);"
                 }
             }, {
                 "caption": "Device Serial (identifier)",
