@@ -4,8 +4,6 @@ $data[0] = $this->GetValue("SplitterID");
 $data[1] = IPS_GetObjectIDByIdent("XMPP_Robots",$data[0]);
 $data[2] = GetValue($data[1]);
 
-print_r($data);
-
 if ((strlen($data[2]) > 2)){
     $values = substr($data[2], 1, -1);
 } else {
