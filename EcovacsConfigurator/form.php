@@ -1,10 +1,13 @@
 <?php
 
-$SplitterID = $this->GetValue("SplitterID");
-$RobotData = GetValueString(IPS_GetObjectIDByIdent("XMPP_Robots",$SplitterID));
+$data[0] = $this->GetValue("SplitterID");
+$data[1] = IPS_GetObjectIDByIdent("XMPP_Robots",$data[0])
+$data[2] = GetValueString($data[1]);
 
-if ((strlen($RobotData) > 2)){
-    $values = substr($RobotData, 1, -1);
+print_r()
+
+if ((strlen($data[2]) > 2)){
+    $values = substr($data[2], 1, -1);
 } else {
     $values = '';
 }
