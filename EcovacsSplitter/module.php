@@ -38,9 +38,9 @@ class EcovacsSplitter extends IPSModule
         parent::__construct($InstanzID);       
     }
     
-    //public function SendData(){
-    //    $this->SendDataToChildren(json_encode(Array("DataID" => "{853E3621-FE4C-4C11-B361-72369ADAE026}", "SplitterID" => $this->InstanceID)));
-    //}
+    public function Test(){
+        print_r($this);
+    }
     
     public function ReceiveData($JSONString) {
         $data = json_decode($JSONString,true);
