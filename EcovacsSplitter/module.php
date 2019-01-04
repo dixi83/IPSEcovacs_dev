@@ -16,7 +16,7 @@ class EcovacsSplitter extends IPSModule
         $this->RegisterPropertyString("continent", "");
         $this->RegisterPropertyInteger("RefreshXMPPinfo", 0);
         $this->RegisterTimer("RefreshXMPPinfo", 0, 'EVSP_RefreshXMPPinfo($_IPS[\'TARGET\']);');
-        $this->RegisterTimer("SendData", 1000, 'EVSP_SendData($_IPS[\'TARGET\']);');
+        $this->RegisterTimer("SendData", (1000 * 3600), 'EVSP_SendData($_IPS[\'TARGET\']);');
     }
         
     public function ApplyChanges(){
