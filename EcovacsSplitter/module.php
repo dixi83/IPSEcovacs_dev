@@ -45,9 +45,10 @@ class EcovacsSplitter extends IPSModule
     public function ReceiveData($JSONString) {
         $data = json_decode($JSONString,true);
         if (isset($data['GetInstanceID'])){
-            echo "gevangen!";
+            $this->LogMessage("EV config", "gevangen");
             $this->SendDataToChildren(json_encode(Array("DataID" => "{853E3621-FE4C-4C11-B361-72369ADAE026}", "SplitterID" => $this->InstanceID)));
         } else {
+            $this->LogMessage("EV config", "niet gevangen");
             return false;
         }
     }
