@@ -21,6 +21,7 @@ class EcovacsConfigurator extends IPSModule
     
     public function test(){
         print_r($this);
+        print_r($_IPS);
     }
     
     public function ReceiveData($JSONString) {
