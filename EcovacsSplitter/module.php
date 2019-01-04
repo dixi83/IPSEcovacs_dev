@@ -39,7 +39,7 @@ class EcovacsSplitter extends IPSModule
     }
     
     public function Test(){
-        print_r($this);
+        print_r($this->GetReferenceList());
     }
     
     public function ReceiveData($JSONString) {
