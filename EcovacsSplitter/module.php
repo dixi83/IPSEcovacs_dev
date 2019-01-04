@@ -5,6 +5,10 @@ require_once(__DIR__ . "/../libs/EcovacsModule.php");
 class EcovacsSplitter extends IPSModule
 {
     // IPS functions needed for the Module:
+    public function __construct($InstanzID) {
+        parent::__construct($InstanzID);       
+    }
+    
     public function Create(){
         
         parent::Create(); //Never delete this line!
@@ -15,8 +19,8 @@ class EcovacsSplitter extends IPSModule
         $this->RegisterPropertyString("country", "");
         $this->RegisterPropertyString("continent", "");
         $this->RegisterPropertyInteger("RefreshXMPPinfo", 0);
-        $this->RegisterTimer("RefreshXMPPinfo", 0, 'EVSP_RefreshXMPPinfo($_IPS[\'TARGET\']);');
-        //$this->RegisterTimer("SendData", (1000 * 3600), 'EVSP_SendData($_IPS[\'TARGET\']);');
+        $this->RegisterTimer("RefreshXMPPinfo", 0, 'EVSP_RefreshXMPPinfo($this->InstanceID)));');
+        //$this->RegisterTimer("SendData", (1000 * 3600), 'EVSP_SendData($this->InstanceID)));');
     }
         
     public function ApplyChanges(){
@@ -34,15 +38,12 @@ class EcovacsSplitter extends IPSModule
         }
 	}
     
-    public function __construct($InstanzID) {
-        parent::__construct($InstanzID);       
+    // Module functions
+    public function Test(){ // module for DEV to test some things
+        //print_r($_IPS);
     }
     
-    public function Test(){
-        print_r($this->GetReferenceList());
-    }
-    
-    public function ReceiveData($JSONString) {
+    public function ForwardData($JSONString) {
         $data = json_decode($JSONString,true);
         if (isset($data['GetInstanceID'])){
             $this->LogMessage("EV config", "gevangen");
