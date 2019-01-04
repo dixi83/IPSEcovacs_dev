@@ -45,7 +45,7 @@ $form = <<<EOT
                 }
             }, {
                 "caption": "Device Serial (identifier)",
-                "name": "DeviceSerialNr",
+                "name": "RobotSerialNr",
                 "width": "200px",
                 "visible": true
             }, {
@@ -57,7 +57,7 @@ $form = <<<EOT
             ]$values
             
         },
-        { "type": "Button", "caption": "Ausgabe", "onClick": "print_r(\$devices);" }
+        { "type": "Button", "caption": "View", "onClick": "print_r(\$devices);" }
     ]
 }
 EOT;
