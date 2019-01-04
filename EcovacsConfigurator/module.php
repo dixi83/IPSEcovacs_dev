@@ -19,6 +19,10 @@ class EcovacsConfigurator extends IPSModule
         
 	}
     
+    public function test(){
+        print_r($this);
+    }
+    
     public function ReceiveData($JSONString) {
         $data = json_decode($JSONString,true);
         $this->SetValue("SplitterID",$data['SplitterID']);
