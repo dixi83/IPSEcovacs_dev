@@ -22,11 +22,11 @@ class EcovacsConfigurator extends IPSModule
         parent::__construct($InstanzID);       
     }
     
-    public function test(){
-        print_r($this->ParentID);
-        print_r(IPS_GetInstance($this->InstanceID));
-        //$this->SendDataToParent(json_encode(Array("DataID" => "{8EB4291C-8EC8-4E10-B5D7-1F90CC37BD8D}", "GetInstanceID" => true)));
-    }
+    //public function test(){
+    //    print_r($this->ParentID);
+    //    print_r(IPS_GetInstance($this->InstanceID));
+    //    //$this->SendDataToParent(json_encode(Array("DataID" => "{8EB4291C-8EC8-4E10-B5D7-1F90CC37BD8D}", "GetInstanceID" => true)));
+    //}
     
     public function ReceiveData($JSONString) {
         $data = json_decode($JSONString,true);
