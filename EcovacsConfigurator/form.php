@@ -2,7 +2,7 @@
 
 $InstanceInfo   = IPS_GetInstance($this->InstanceID);
 $SplitterID     = $InstanceInfo['ConnectionID'];
-$RobotsDataID   = IPS_GetObjectIDIPS_GetInstance($this->InstanceID)ByIdent("XMPP_Robots",$SplitterID);
+$RobotsDataID   = IPS_GetObjectIDByIdent("XMPP_Robots",$SplitterID);
 $RobotsData     = GetValue($RobotsDataID);
 
 if ((strlen($RobotsData) > 2)){
