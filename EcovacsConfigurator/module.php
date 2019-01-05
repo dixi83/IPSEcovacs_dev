@@ -23,7 +23,7 @@ class EcovacsConfigurator extends IPSModule
     }
     
     public function test(){
-        //print_r($this);
+        print_r($this->ParentID);
         //print_r($_IPS);
         $this->SendDataToParent(json_encode(Array("DataID" => "{8EB4291C-8EC8-4E10-B5D7-1F90CC37BD8D}", "GetInstanceID" => true)));
     }
