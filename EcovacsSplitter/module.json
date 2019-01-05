@@ -6,6 +6,6 @@
     "vendor": "Ecovacs DeeBot",
     "parentRequirements": [],
     "childRequirements": [],
-    "implemented": [],
+    "implemented": ["{853E3621-FE4C-4C11-B361-72369ADAE026}","{071BCBF7-66BA-4341-8258-A8BED6F1000C}"],
     "prefix": "EVSP"
 }
