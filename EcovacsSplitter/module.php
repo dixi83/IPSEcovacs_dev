@@ -43,7 +43,7 @@ class EcovacsSplitter extends IPSModule
         //print_r($_IPS);
     }
     
-    public function ForwardData($JSONString) {
+    public function ReceiveData($JSONString) {
         $data = json_decode($JSONString,true);
         if (isset($data['GetInstanceID'])){
             $this->LogMessage("EV config", "gevangen");
