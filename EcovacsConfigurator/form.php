@@ -1,7 +1,7 @@
 <?php
 
-$InstanceInfo   = IPS_GetInstance($this->InstanceID)
-$SplitterID     = $InstanceInfo['ConnectionID']
+$InstanceInfo   = IPS_GetInstance($this->InstanceID);
+$SplitterID     = $InstanceInfo['ConnectionID'];
 $RobotsDataID   = IPS_GetObjectIDIPS_GetInstance($this->InstanceID)ByIdent("XMPP_Robots",$SplitterID);
 $RobotsData     = GetValue($RobotsDataID);
 
