@@ -50,7 +50,7 @@ $form = <<<EOT
             
         },
         { "type": "Button", "caption": "View Array (debug)", "onClick": "print_r(\$devices);" },
-        { "type": "Button", "caption": "Save Robot Name", "onClick": "if(EVCF_SetRobotInfo(\$id,json_encode(\$devices))) { echo "Saved succesfull";} else { echo "Saving Failed! The device doesn\'t excist. Please refresh the XMPP info in the Splitter Module"; }" },
+        { "type": "Button", "caption": "Save Robot Name", "onClick": "if(EVCF_SetRobotInfo(\$id,json_encode(\$devices))) { echo \"Saved succesfull\";} else { echo \"Saving Failed! The device doesn\'t excist. Please refresh the XMPP info in the Splitter Module\"; }" },
         { "type": "Button", "caption": "Create Instance", "onClick": "EVCF_CreateRobotInstance(\$id,json_encode(\$devices));" }
     ]
 }
