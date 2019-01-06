@@ -239,7 +239,8 @@
                 {"caption" : "China (Different server then Asia!)", "value": "china"},
                 {"caption" : "Other", "value": "ww"}
             ]
-        }
+        },
+        { "type": "Button", "caption": "Reload Device List", "onClick": "EVSP_RefreshDeviceList($id);" }
     ],
     "actions":
     [
