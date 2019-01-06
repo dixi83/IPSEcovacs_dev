@@ -63,8 +63,7 @@ class EcovacsConfigurator extends IPSModule
         $device = json_decode($device, true);
 
         if (!isset($device['RobotSerialNr'])) {
-            echo "No device selected.. Please select a device and try again";
-            return;
+            return false;
         }
         
         $SplitterID     = IPS_GetInstance($this->InstanceID)['ConnectionID'];
