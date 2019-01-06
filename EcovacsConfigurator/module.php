@@ -59,6 +59,21 @@ class EcovacsConfigurator extends IPSModule
         SetValue($RobotsDataID,json_encode($devices));
     }
     
+    private function GetRobotInfo() {
+        $SplitterID     = IPS_GetInstance($this->InstanceID)['ConnectionID'];
+        $RobotsDataID   = IPS_GetObjectIDByIdent("XMPP_Robots",$SplitterID);
+        $RobotsData     = GetValue($RobotsDataID);
+
+        if ((strlen($RobotsData) > 2)) {
+            $values = substr($RobotsData, 1, -1); // remove first [ and last ], created by the json_encode()
+        } else {
+            $values = '';
+        }
+
+        return ',
+                    "values": [' .$values. ']';
+    }
+    
     public function GetConfigurationForm() {
         include('form.php');
         return $form;
