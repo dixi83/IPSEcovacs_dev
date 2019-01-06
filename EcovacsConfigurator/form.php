@@ -64,8 +64,8 @@ $form = <<<EOT
             ]$values
             
         },
-        { "type": "Button", "caption": "View Array (debug)", "onClick": "print_r(\$devices);" }
-        { "type": "Button", "caption": "Save Robot Name", "onClick": "SetRobotInfo(json_encode(\$devices));" }
+        { "type": "Button", "caption": "View Array (debug)", "onClick": "print_r(\$devices);" },
+        { "type": "Button", "caption": "Save Robot Name", "onClick": "SetRobotInfo(json_encode(\$devices));" },
         { "type": "Button", "caption": "Create Instance", "onClick": "CreateRobotInstance(json_encode(\$devices));" }
     ]
 }
