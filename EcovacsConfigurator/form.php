@@ -1,6 +1,6 @@
 <?php
 
-$values = EVCF GetRobotInfo();
+$values = $this->GetRobotInfo();
 
 $form = <<<EOT
 {
