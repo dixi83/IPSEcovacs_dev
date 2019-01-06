@@ -207,7 +207,7 @@ class EcovacsHTTP extends IPSModule
                         foreach($oldRobotInfo as $value){
                             if(($return['devices'][$i]['did']==$value['RobotSerialNr'])) {
                                 $prevName   = $value['RobotName'];
-                                $prevId     = $value['InstanceId'];
+                                $prevId     = $value['InstanceID'];
                             } else {
                                 $prevName   = "";
                                 $prevId     = 0;
@@ -220,7 +220,7 @@ class EcovacsHTTP extends IPSModule
                     
                     $Robot[$i]['RobotNr']       = $i;
                     $Robot[$i]['RobotName']     = $prevName;
-                    $Robot[$i]['InstanceId']    = $prevId;
+                    $Robot[$i]['InstanceID']    = $prevId;
                     $Robot[$i]['RobotSerialNr'] = $return['devices'][$i]['did'];
                     $Robot[$i]['XMPPaddress']   = $return['devices'][$i]['did'].'@'.$return['devices'][$i]['class'].'.ecorobot.net/'.$return['devices'][$i]['resource'];
                     ++$i;

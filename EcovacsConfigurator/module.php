@@ -30,8 +30,8 @@ class EcovacsConfigurator extends IPSModule
         
         $InstanceID = @IPS_CreateInstance('{071BCBF7-66BA-4341-8258-A8BED6F1000C}');
         
-        if (strlen($device['Name']) < 1) { //check if name given
-            $device['Name'] = 'Nr '.$device['RobotNr'];
+        if (strlen($device['RobotName']) < 1) { //check if name given
+            $device['RobotName'] = 'Nr '.$device['RobotNr'];
         }
         $device['InstanceID'] = $InstanceID;
         
@@ -48,7 +48,7 @@ class EcovacsConfigurator extends IPSModule
                 }
                 @IPS_SetProperty($InstanceID, 'RobotSerialNr', $device['RobotSerialNr']);
                 @IPS_ApplyChanges($InstanceID);
-                IPS_SetName($InstanceID,  'Deebot '. $device['Name']);
+                IPS_SetName($InstanceID,  'Deebot '. $device['RobotName']);
                 echo 'Instance created with ID '. $InstanceID;
             }
         } else {
@@ -70,7 +70,7 @@ class EcovacsConfigurator extends IPSModule
         print_r($devices);
         //foreach ($devices as $value) {
         //    if ($device['RobotSerialNr'] == $value['RobotSerialNr']){ // search for DeviceSerialNr
-        //        $devices[$i]['Name']        = $device['Name'];
+        //        $devices[$i]['RobotName']        = $device['RobotName'];
         //        $devices[$i]['InstanceID']  = $device['InstanceID'];
         //        $deviceFound = true;
         //    }
