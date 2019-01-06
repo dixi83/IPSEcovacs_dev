@@ -8,5 +8,10 @@
         { "type": "Button", "label": "Stop", "onClick": "EVDC_CMD_Stop($id);" },
         { "type": "Button", "label": "Start Auto Clean", "onClick": "EVDC_CMD_AutoClean($id);" },
         { "type": "Button", "label": "Go to Charger", "onClick": "EVDC_GoCharge($id);" }
+    ],
+    "status":
+    [
+        { "code": 102, "icon": "active", "caption": "Module active" },
+        { "code": 104, "icon": "inactive", "caption": "Module not activated" }
     ]
 }
