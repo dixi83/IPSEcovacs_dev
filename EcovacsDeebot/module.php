@@ -36,10 +36,10 @@ class EcovacsDeebot extends IPSModule
     
     protected function SetCommand($command) {        
         $EvovacsXMPP    = new EcovacsXMPP($this->InstanceID);
-        $robotSerialNr  = $this->ReadPropertyString("robotSerialNr");
+        $RobotSerialNr  = $this->ReadPropertyString("RobotSerialNr");
         
         try {
-            $EvovacsXMPP->XMPPsetCommand($robotSerialNr,$command);
+            $EvovacsXMPP->XMPPsetCommand($RobotSerialNr,$command);
         } catch(Exception $error) {
             IPS_LogMessage("Ecovacs Deebot", "XMPP: ".$error);
         }
@@ -47,10 +47,10 @@ class EcovacsDeebot extends IPSModule
     
     protected function GetCommand($command) {
         $EvovacsXMPP    = new EcovacsXMPP($this->InstanceID);
-        $robotSerialNr  = $this->ReadPropertyString("robotSerialNr");
+        $RobotSerialNr  = $this->ReadPropertyString("RobotSerialNr");
         
         try {
-            $EvovacsXMPP->XMPPgetCommand($robotSerialNr,$command);
+            $EvovacsXMPP->XMPPgetCommand($RobotSerialNr,$command);
         } catch(Exception $error) {
             IPS_LogMessage("Ecovacs Deebot", "XMPP: ".$error);
         }
