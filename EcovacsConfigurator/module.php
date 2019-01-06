@@ -23,13 +23,15 @@ class EcovacsConfigurator extends IPSModule
     }
     
     public function CreateRobotInstance(string $devices) { 
-        $devices = json_decode($devices, true)
+        $devices = json_decode($devices, true);
 
         if (($devices['InstanceID'] > 0)) {
             echo 'Instance already created';
             return;
         }
+        
         $InstanceID = @IPS_CreateInstance('{071BCBF7-66BA-4341-8258-A8BED6F1000C}');
+        
         if ($InstanceID >0) {
             if (IPS_GetInstance($InstanceID)['ConnectionID'] != IPS_GetInstance($id)['ConnectionID']) {
                 if (IPS_GetInstance($InstanceID)['ConnectionID'] > 0) {
