@@ -328,10 +328,13 @@ class EcovacsXMPP extends IPSModule {
     // Functions needed for EcoVacs Vac
     public function XMPPsetCommand($robotSerialNr,$command) { // just send message, <iq type="set"> will not get any responce from ecovacs servers
         
-        $EcovacsSplitter = new EcovacsSplitter($this->InstanceID);
+        //$EcovacsSplitter = new EcovacsSplitter($this->InstanceID);
+        $SplitterID     = IPS_GetInstance($this->InstanceID)['ConnectionID'];
+        $XMPPDataID     = IPS_GetObjectIDByIdent('XMPP_Info', $SplitterID);     
+        $XMPP           = json_decode(GetValue($XMPPDataID), true);
         
-        $XMPP   = json_decode($EcovacsSplitter->GetValue("XMPP_Info"),true);
-        $robots = json_decode($EcovacsSplitter->GetValue("XMPP_Robots"),true);
+        $RobotsDataID   = IPS_GetObjectIDByIdent('XMPP_Robots', $SplitterID);
+        $robots         = json_decode(GetValue($RobotsDataID), true);
         
         $set['server'] 		= 'msg-'.$XMPP['continent'].'.ecouser.net'; 
         $set['port']		= 5223;
@@ -413,10 +416,12 @@ class EcovacsXMPP extends IPSModule {
     
     public function XMPPgetCommand($robotSerialNr,$command) { // just send message, <iq type="set"> will not get any responce from ecovacs servers
     
-        $EcovacsSplitter = new EcovacsSplitter($this->InstanceID);
+        $SplitterID     = IPS_GetInstance($this->InstanceID)['ConnectionID'];
+        $XMPPDataID     = IPS_GetObjectIDByIdent('XMPP_Info', $SplitterID);     
+        $XMPP           = json_decode(GetValue($XMPPDataID), true);
         
-        $XMPP   = json_decode($EcovacsSplitter->GetValue("XMPP_Info"),true);
-        $robots = json_decode($EcovacsSplitter->GetValue("XMPP_Robots"),true);
+        $RobotsDataID   = IPS_GetObjectIDByIdent('XMPP_Robots', $SplitterID);
+        $robots         = json_decode(GetValue($RobotsDataID), true);
         
         $set['server'] 		= 'msg-'.$XMPP['continent'].'.ecouser.net'; 
         $set['port']		= 5223;
