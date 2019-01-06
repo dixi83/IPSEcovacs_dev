@@ -21,11 +21,9 @@ class EcovacsConfigurator extends IPSModule
     }
     
     public function SetRobotInstance(string $device) { 
-
-        
         $device = json_decode($device, true);
 
-        if (!isset($device['InstanceID'])) {
+        if (!isset($device['RobotSerialNr'])) {
             echo "No device selected.. Please select a device and try again";
             return;
         } elseif (($device['InstanceID'] > 0)) {
@@ -62,8 +60,12 @@ class EcovacsConfigurator extends IPSModule
     }
 
     public function SetRobotInfo(string $device){
-        
         $device = json_decode($device, true);
+
+        if (!isset($device['RobotSerialNr'])) {
+            echo "No device selected.. Please select a device and try again";
+            return;
+        }
         
         $SplitterID     = IPS_GetInstance($this->InstanceID)['ConnectionID'];
         $RobotsDataID   = IPS_GetObjectIDByIdent('XMPP_Robots', $SplitterID);
