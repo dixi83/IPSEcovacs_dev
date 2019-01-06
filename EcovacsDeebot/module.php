@@ -34,9 +34,9 @@ class EcovacsDeebot extends IPSModule
         }
 	}
     
-    public function Test(){
-        echo GetStatus($this->InstanceID);
-    }
+    //public function Test(){
+    //    echo GetStatus($this->InstanceID);
+    //}
     
     protected function SetCommand($command) {        
         $EvovacsXMPP    = new EcovacsXMPP($this->InstanceID);
@@ -98,6 +98,11 @@ class EcovacsDeebot extends IPSModule
         } else {
             $command = EcovacsXMPP::SET_CLEAN_BORDER_STANDARD;
         }
+        $this->SetCommand($command);
+    }
+    
+    public function CMD_GoCharge() {
+        $command = EcovacsXMPP::SET_CHARGE_GO;
         $this->SetCommand($command);
     }
     
