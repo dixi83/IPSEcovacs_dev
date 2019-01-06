@@ -19,11 +19,45 @@ class EcovacsConfigurator extends IPSModule
 	}
     
     public function __construct($InstanzID) {
-        parent::__construct($InstanzID);       
+        parent::__construct($InstanzID); //Never delete this line!       
+    }
+    
+    public function CreateRobotInstance(string $devices) { 
+        $devices = json_decode($devices, true)
+
+        if (($devices['InstanceID'] > 0)) {
+            echo 'Instance already created';
+            return;
+        }
+        $InstanceID = @IPS_CreateInstance('{071BCBF7-66BA-4341-8258-A8BED6F1000C}');
+        if ($InstanceID >0) {
+            if (IPS_GetInstance($InstanceID)['ConnectionID'] != IPS_GetInstance($id)['ConnectionID']) {
+                if (IPS_GetInstance($InstanceID)['ConnectionID'] > 0) {
+                    IPS_DisconnectInstance($InstanceID);
+                }
+                IPS_ConnectInstance($InstanceID, IPS_GetInstance($id)['ConnectionID']);
+            }
+            @IPS_SetProperty($InstanceID, 'RobotSerialNr', $devices['RobotSerialNr']);
+            @IPS_ApplyChanges($InstanceID);
+            if (strlen($devices['Name']) < 1) { //check if name given
+                $devices['Name'] = 'Nr '.$devices['RobotNr'];
+                SetRobotInfo($deices);
+            }
+            IPS_SetName($InstanceID,  'Deebot '. $devices['Name']);
+            echo 'Instance created with ID '. $InstanceID;
+        } else {
+            echo 'Failed to create instance';
+        }
+    }
+
+    public function SetRobotInfo(string $devices){
+        $devices = json_decode($devices, true);
+        $SplitterID     = IPS_GetInstance($this->InstanceID)['ConnectionID'];
+        $RobotsDataID   = IPS_GetObjectIDByIdent("XMPP_Robots",$SplitterID);
+        SetValue($RobotsDataID,json_encode($devices));
     }
     
     public function GetConfigurationForm() {
-        
         include('form.php');
         return $form;
     }
