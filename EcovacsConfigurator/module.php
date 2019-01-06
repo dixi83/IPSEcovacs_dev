@@ -67,15 +67,14 @@ class EcovacsConfigurator extends IPSModule
         $deviceFound = false;
         $i = 0;
         
-        print_r($devices);
-        //foreach ($devices as $value) {
-        //    if ($device['RobotSerialNr'] == $value['RobotSerialNr']){ // search for DeviceSerialNr
-        //        $devices[$i]['RobotName']        = $device['RobotName'];
-        //        $devices[$i]['InstanceID']  = $device['InstanceID'];
-        //        $deviceFound = true;
-        //    }
-        //    $i++;
-        //}
+        foreach ($devices as $value) {
+            if ($device['RobotSerialNr'] == $value['RobotSerialNr']){ // search for DeviceSerialNr
+                $devices[$i]['RobotName']        = $device['RobotName'];
+                $devices[$i]['InstanceID']  = $device['InstanceID'];
+                $deviceFound = true;
+            }
+            $i++;
+        }
         
         if (!$deviceFound) {
             return false;
