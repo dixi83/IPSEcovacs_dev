@@ -20,10 +20,15 @@ class EcovacsConfigurator extends IPSModule
         parent::__construct($InstanzID); //Never delete this line!       
     }
     
-    public function CreateRobotInstance(string $device) { 
+    public function SetRobotInstance(string $device) { 
+
+        
         $device = json_decode($device, true);
 
-        if (($device['InstanceID'] > 0)) {
+        if (!isset($device['InstanceID'])) {
+            echo "No device selected.. Please select a device and try again";
+            return;
+        } elseif (($device['InstanceID'] > 0)) {
             echo 'Instance already created';
             return;
         }
