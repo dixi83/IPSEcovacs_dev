@@ -1,18 +1,21 @@
 <?php
 
-$InstanceInfo   = IPS_GetInstance($this->InstanceID);
-$SplitterID     = $InstanceInfo['ConnectionID'];
-$RobotsDataID   = IPS_GetObjectIDByIdent("XMPP_Robots",$SplitterID);
-$RobotsData     = GetValue($RobotsDataID);
+function GetRobotInfo() {
+    $SplitterID     = IPS_GetInstance($this->InstanceID)['ConnectionID'];
+    $RobotsDataID   = IPS_GetObjectIDByIdent("XMPP_Robots",$SplitterID);
+    $RobotsData     = GetValue($RobotsDataID);
 
-if ((strlen($RobotsData) > 2)){
-    $values = substr($RobotsData, 1, -1);
-} else {
-    $values = '';
+    if ((strlen($RobotsData) > 2)){
+        $values = substr($RobotsData, 1, -1); // remove first [ and last ], created by the json_encode()
+    } else {
+        $values = '';
+    }
+
+    return = ',
+                "values": [' .$values. ']';
 }
 
-$values = ',
-            "values": [' .$values. ']';
+$values = GetRobotInfo();
 
 $form = <<<EOT
 {
@@ -32,15 +35,18 @@ $form = <<<EOT
             {
                 "caption": "#",
                 "name": "RobotNr", 
-                "width": "20px"
+                "width": "20px",
+                "visible": false
             }, {
                 "caption": "InstanceID",
                 "name": "InstanceID", 
-                "width": "75px"
+                "width": "75px",
+                "visible": true
             }, {
                 "caption": "Name",
                 "name": "RobotName",
                 "width": "auto",
+                "visible": true,
                 "edit": {
                     "type": "ValidationTextBox"
                 }
@@ -58,7 +64,9 @@ $form = <<<EOT
             ]$values
             
         },
-        { "type": "Button", "caption": "View", "onClick": "print_r(\$devices);" }
+        { "type": "Button", "caption": "View Array (debug)", "onClick": "print_r(\$devices);" }
+        { "type": "Button", "caption": "Save Robot Name", "onClick": "SetRobotInfo(json_encode(\$devices));" }
+        { "type": "Button", "caption": "Create Instance", "onClick": "CreateRobotInstance(json_encode(\$devices));" }
     ]
 }
 EOT;
