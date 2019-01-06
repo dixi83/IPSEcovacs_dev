@@ -39,7 +39,7 @@ class EcovacsConfigurator extends IPSModule
         $device['InstanceID'] = $InstanceID;
         
         if ($InstanceID > 0) {
-            if (!$this->SetRobotInfo(json_encode($device)) { // save "unsaved" name and check if device excists, a double check in case of a user changed 'XMPP_Robots'
+            if (!$this->SetRobotInfo(json_encode($device))) { // save "unsaved" name and check if device excists, a double check in case of a user changed 'XMPP_Robots'
                 echo 'Failed to create device doesn\'t excist. Please refresh the XMPP info in the Splitter Module' ;
                 return;
             } else {
