@@ -5,13 +5,13 @@ function GetRobotInfo() {
     $RobotsDataID   = IPS_GetObjectIDByIdent("XMPP_Robots",$SplitterID);
     $RobotsData     = GetValue($RobotsDataID);
 
-    if ((strlen($RobotsData) > 2)){
+    if ((strlen($RobotsData) > 2)) {
         $values = substr($RobotsData, 1, -1); // remove first [ and last ], created by the json_encode()
     } else {
         $values = '';
     }
 
-    return = ',
+    return ',
                 "values": [' .$values. ']';
 }
 
