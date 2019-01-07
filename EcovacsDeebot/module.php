@@ -44,6 +44,7 @@ class EcovacsDeebot extends IPSModule
         
         //try {
             $EvovacsXMPP->XMPPsetCommand($RobotSerialNr,$command);
+            echo "done";
         //} catch(Exception $error) {
             //IPS_LogMessage("Ecovacs Deebot", "XMPP: ".$error);
         //}
