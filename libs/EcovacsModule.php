@@ -405,8 +405,8 @@ class EcovacsXMPP extends IPSModule {
                 IPS_LogMessage("Ecovacs", 'Unknown Set command!');
                 return false;
         }
-        //$logger = new Logger('xmpp');
-        //$logger->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::DEBUG));
+        $logger = new Logger('xmpp');
+        $logger->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::DEBUG));
 
         $message = new Message;
         $message->setMessage('<ctl td="Clean"><clean type="auto" speed="standard"/></ctl>')
@@ -416,8 +416,8 @@ class EcovacsXMPP extends IPSModule {
 
         $options = new Options($set['server'].':'.$set['port']);
 
-        //$options->setLogger($logger)
-        //    ->setUsername($set['username'])
+        $options->setLogger($logger)
+            ->setUsername($set['username'])
         $options->setUsername($set['username'])
             ->setPassword($set['password'])
             ->setTo($set['domain']);
