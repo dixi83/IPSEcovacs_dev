@@ -410,7 +410,7 @@ class EcovacsXMPP extends IPSModule {
         $logger = new Logger('xmpp');
         $logger->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::DEBUG));
         
-        echo $SetMessage;
+        print_r($SetMessage);
 
         $message = new Message;
         $message->setMessage($SetMessage)
