@@ -7,7 +7,7 @@
     [
         { "type": "Button", "label": "Stop", "onClick": "EVDC_CMD_Stop($id);" },
         { "type": "Button", "label": "Start Auto Clean", "onClick": "EVDC_CMD_AutoClean($id,\"standard\");" },
-        { "type": "Button", "label": "Go to Charger", "onClick": "EVDC_GoCharge($id);" }
+        { "type": "Button", "label": "Go to Charger", "onClick": "EVDC_CMD_GoCharge($id);" }
     ],
     "status":
     [
