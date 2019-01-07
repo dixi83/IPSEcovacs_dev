@@ -34,10 +34,10 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace Fabiang\Xmpp\EventListener;
+namespace EVlibs\xmpp\EventListener;
 
-use Fabiang\Xmpp\Event\EventManagerAwareInterface;
-use Fabiang\Xmpp\OptionsAwareInterface;
+use EVlibs\xmpp\Event\EventManagerAwareInterface;
+use EVlibs\xmpp\OptionsAwareInterface;
 
 /**
  * Interface for event listeners.

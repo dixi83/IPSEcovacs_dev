@@ -34,21 +34,21 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace Fabiang\Xmpp\Protocol;
+namespace EVlibs\xmpp\Protocol;
 
-use Fabiang\Xmpp\Options;
-use Fabiang\Xmpp\EventListener\EventListenerInterface;
-use Fabiang\Xmpp\Event\EventManagerInterface;
-use Fabiang\Xmpp\Event\EventManager;
-use Fabiang\Xmpp\EventListener\Stream\Stream;
-use Fabiang\Xmpp\EventListener\Stream\StreamError;
-use Fabiang\Xmpp\EventListener\Stream\StartTls;
-use Fabiang\Xmpp\EventListener\Stream\Authentication;
-use Fabiang\Xmpp\EventListener\Stream\Bind;
-use Fabiang\Xmpp\EventListener\Stream\Session;
-use Fabiang\Xmpp\EventListener\Stream\Roster as RosterListener;
-use Fabiang\Xmpp\EventListener\Stream\Register as RegisterListener;
-use Fabiang\Xmpp\EventListener\Stream\BlockedUsers as BlockedUsersListener;
+use EVlibs\xmpp\Options;
+use EVlibs\xmpp\EventListener\EventListenerInterface;
+use EVlibs\xmpp\Event\EventManagerInterface;
+use EVlibs\xmpp\Event\EventManager;
+use EVlibs\xmpp\EventListener\Stream\Stream;
+use EVlibs\xmpp\EventListener\Stream\StreamError;
+use EVlibs\xmpp\EventListener\Stream\StartTls;
+use EVlibs\xmpp\EventListener\Stream\Authentication;
+use EVlibs\xmpp\EventListener\Stream\Bind;
+use EVlibs\xmpp\EventListener\Stream\Session;
+use EVlibs\xmpp\EventListener\Stream\Roster as RosterListener;
+use EVlibs\xmpp\EventListener\Stream\Register as RegisterListener;
+use EVlibs\xmpp\EventListener\Stream\BlockedUsers as BlockedUsersListener;
 
 /**
  * Default Protocol implementation.

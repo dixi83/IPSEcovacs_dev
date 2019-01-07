@@ -34,7 +34,7 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace xmpp\Event;
+namespace EVlibs\xmpp\Event;
 
 /**
  * XML parsing events.

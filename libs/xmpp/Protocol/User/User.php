@@ -34,7 +34,7 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace Fabiang\Xmpp\Protocol\User;
+namespace EVlibs\xmpp\Protocol\User;
 
 /**
  * User object.
