@@ -107,7 +107,7 @@ class Message implements ProtocolImplementationInterface
     public function toString()
     {
         if($this->getType() == 'set'){
-            return XML::quoteMessage(
+            return XML::rawMessage(
                 '<iq id="%s" to="%s" from="%s" type="%s">%s</iq>',
                 XML::generateId(),
                 $this->getTo(),
@@ -116,7 +116,7 @@ class Message implements ProtocolImplementationInterface
                 $this->getMessage()
             );
         } elseif($this->getType() == 'get'){
-            return XML::quoteMessage(
+            return XML::rawMessage(
                 '<iq id="%s" to="%s" from="%s" type="%s">%s</iq>',
                 XML::generateId(),
                 $this->getTo(),
