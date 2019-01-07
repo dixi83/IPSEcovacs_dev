@@ -399,6 +399,7 @@ class EcovacsXMPP extends IPSModule {
                 break;
             case self::SET_STOP:
                 $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="stop" speed="standard"/></ctl></query>';
+                echo "stop!";
                 break;
             case self::SET_CHARGE_GO:
                 $SetMessage = '<query xmlns="com:ctl"><ctl td="Charge"><charge type="go"/></ctl></query>';
