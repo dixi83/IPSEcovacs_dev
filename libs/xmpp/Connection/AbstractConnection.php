@@ -43,7 +43,7 @@ use xmpp\Event\EventManagerInterface;
 use xmpp\EventListener\BlockingEventListenerInterface;
 use xmpp\Options;
 use xmpp\Exception\TimeoutException;
-//use Psr\Log\LogLevel;
+use Psr\Log\LogLevel;
 
 /**
  * Connection test double.
