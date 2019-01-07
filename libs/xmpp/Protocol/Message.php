@@ -212,9 +212,9 @@ class Message implements ProtocolImplementationInterface
     public function getMessage($messageType = '')
     {
         if($messageType == 'set') {
-            return htmlspecialchars_decode($this->message);
+            return $this->message;
         } else {
-            return htmlspecialchars_decode($this->message);
+            return $this->message;
         }
     }
 
