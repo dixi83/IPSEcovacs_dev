@@ -398,10 +398,10 @@ class EcovacsXMPP extends IPSModule {
                 $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="singleroom" speed="strong"/></ctl></query>';
                 break;
             case self::SET_STOP:
-                $SetMessage = '\<query xmlns=\"com:ctl\"\>\<ctl td=\"Clean\"\>\<clean type=\"stop\" speed=\"standard\"/\>\</ctl\>\</query\>';
+                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="stop" speed="standard"/></ctl></query>';
                 break;
             case self::SET_CHARGE_GO:
-                $SetMessage = '\<query xmlns=\"com:ctl\"\>\<ctl td=\"Charge\"\>\<charge type=\"go\"/\>\</ctl\>\</query\>';
+                $SetMessage = '<query xmlns="com:ctl"><ctl td="Charge"><charge type="go"/></ctl></query>';
                 break;
             default:
                 IPS_LogMessage("Ecovacs", 'Unknown Set command!');
@@ -409,6 +409,8 @@ class EcovacsXMPP extends IPSModule {
         }
         $logger = new Logger('xmpp');
         $logger->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::DEBUG));
+        
+        echo $SetMessage;
 
         $message = new Message;
         $message->setMessage($SetMessage)
