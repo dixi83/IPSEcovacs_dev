@@ -418,7 +418,7 @@ class EcovacsXMPP extends IPSModule {
 
         $options->setLogger($logger)
             ->setUsername($set['username'])
-        $options->setUsername($set['username'])
+        //$options->setUsername($set['username'])
             ->setPassword($set['password'])
             ->setTo($set['domain']);
 
