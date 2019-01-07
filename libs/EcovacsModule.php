@@ -407,7 +407,7 @@ class EcovacsXMPP extends IPSModule {
         }
         
         $logger = new Logger('xmpp');
-        $logger->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::DEBUG));
+        $logger->pushHandler(new StreamHandler(__DIR__.'/XMPP_Set.log', Logger::DEBUG));
         
         $message = new Message;
         $message->setMessage($SetMessage)
@@ -419,7 +419,6 @@ class EcovacsXMPP extends IPSModule {
 
         $options->setLogger($logger)
             ->setUsername($set['username'])
-        //$options->setUsername($set['username'])
             ->setPassword($set['password'])
             ->setTo($set['domain']);
 
@@ -482,6 +481,9 @@ class EcovacsXMPP extends IPSModule {
                 return false;
         }
         
+        $logger = new Logger('xmpp');
+        $logger->pushHandler(new StreamHandler(__DIR__.'/XMPP_Get.log', Logger::DEBUG));
+        
         $message = new Message;
         $message->setMessage($GetMessage)
             ->setTo($set['vacAddr'])
@@ -490,7 +492,8 @@ class EcovacsXMPP extends IPSModule {
 
         $options = new Options($set['server'].':'.$set['port']);
 
-        $options->setUsername($set['username'])
+         $options->setLogger($logger)
+            ->setUsername($set['username'])
             ->setPassword($set['password'])
             ->setTo($set['domain']);
 
