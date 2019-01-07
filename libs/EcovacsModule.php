@@ -411,7 +411,7 @@ class EcovacsXMPP extends IPSModule {
         $logger->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::DEBUG));
 
         $message = new Message;
-        $message->setMessage('<ctl td="Clean"><clean type="auto" speed="standard"/></ctl>')
+        $message->setMessage($SetMessage)
             ->setTo($set['vacAddr'])
             ->setFrom($set['username'].'/'.md5($set['resource']))
             ->setType(Message::TYPE_EV_SET);
