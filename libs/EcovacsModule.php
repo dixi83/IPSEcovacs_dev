@@ -422,7 +422,7 @@ class EcovacsXMPP extends IPSModule {
             ->setPassword($set['password'])
             ->setTo($set['domain']);
 
-        $options->setSocksProxyAddress('localhost:8080');
+        //$options->setSocksProxyAddress('localhost:8080');
         $client = new Client($options);
         $client->connect();
         $client->send($message);
