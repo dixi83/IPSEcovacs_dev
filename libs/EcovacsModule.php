@@ -1,5 +1,24 @@
 <?php
 
+require_once __DIR__ . '/loadXMPP.php';
+$autoloaderXMPP = new AutoloaderXMPP('xmpp'); // TODO clean up this library (take out the unused classes and functions)
+$autoloaderXMPP->register();
+
+$autoloaderPsr = new AutoloaderPsr('Psr'); // TODO replace this in future for IP-Symocn's LogMessage()
+$autoloaderPsr->register();
+
+$autoloaderMonolog = new AutoloaderMonolog('Monolog'); // TODO replace this in future for IP-Symocn's LogMessage()
+$autoloaderMonolog->register();
+
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+use xmpp\Options;
+use xmpp\Client;
+use xmpp\Protocol\Roster;
+use xmpp\Protocol\Presence;
+use xmpp\Protocol\Message;
+use xmpp\Connection;
+
 class EcovacsHTTP extends IPSModule
 {    
     // IPS functions needed for the Module:
