@@ -49,7 +49,7 @@ class Logger extends AbstractEventListener
     /**
      * Log event.
      *
-     * @param \Fabiang\Xmpp\Event\EventInterface $event
+     * @param \xmpp\Event\EventInterface $event
      * @return $this
      */
     public function event(EventInterface $event)

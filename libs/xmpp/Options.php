@@ -144,9 +144,9 @@ class Options
      * @var array
      */
     protected $authenticationClasses = [
-        'digest-md5' => '\\Fabiang\\Xmpp\\EventListener\\Stream\\Authentication\\DigestMd5',
-        'plain'      => '\\Fabiang\\Xmpp\\EventListener\\Stream\\Authentication\\Plain',
-        'anonymous'  => '\\Fabiang\\Xmpp\\EventListener\\Stream\\Authentication\\Anonymous'
+        'digest-md5' => '\\xmpp\\EventListener\\Stream\\Authentication\\DigestMd5',
+        'plain'      => '\\xmpp\\EventListener\\Stream\\Authentication\\Plain',
+        'anonymous'  => '\\xmpp\\EventListener\\Stream\\Authentication\\Anonymous'
     ];
 
 
@@ -470,7 +470,7 @@ class Options
      * Set timeout for connection.
      *
      * @param integer $timeout Seconds
-     * @return \Fabiang\Xmpp\Options
+     * @return \xßmpp\Options
      */
     public function setTimeout($timeout)
     {
@@ -492,7 +492,7 @@ class Options
      *  Set context options for connection
      *
      * @param array $contextOptions
-     * @return \Fabiang\Xmpp\Options
+     * @return \xmpp\Options
      */
     public function setContextOptions($contextOptions)
     {
@@ -514,7 +514,7 @@ class Options
      * Set SOCKS proxy address
      *
      * @param string $socksProxyAddress
-     * @return \Fabiang\Xmpp\Options
+     * @return \xmpp\Options
      */
     public function setSocksProxyAddress($socksProxyAddress)
     {
@@ -536,7 +536,7 @@ class Options
      * Set auto approve subscriptions
      *
      * @param boolean $autoSubscribe
-     * @return \Fabiang\Xmpp\Options
+     * @return \xmpp\Options
      */
     public function setAutoSubscribe($autoSubscribe)
     {
