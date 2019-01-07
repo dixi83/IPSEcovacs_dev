@@ -370,7 +370,7 @@ class EcovacsXMPP extends IPSModule {
             return false;
         }
         
-        print_r($set);
+        //print_r($set);
         
         switch ($command) {
             case self::SET_CLEAN_AUTO_STANDARD:
@@ -407,11 +407,11 @@ class EcovacsXMPP extends IPSModule {
                 IPS_LogMessage("Ecovacs", 'Unknown Set command!');
                 return false;
         }
+        print_r($SetMessage);
+        
         $logger = new Logger('xmpp');
         $logger->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::DEBUG));
         
-        print_r($SetMessage);
-
         $message = new Message;
         $message->setMessage($SetMessage)
             ->setTo($set['vacAddr'])
