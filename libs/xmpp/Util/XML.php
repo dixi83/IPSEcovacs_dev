@@ -93,8 +93,8 @@ class XML
         );
     }
     
-        /**
-     * Replace variables in a string and quote them before.
+    /**
+     * Replace variables in a string and does not quote them. SPECIAL for raw predefined messages
      *
      * <b>Hint:</b> this function works like <code>sprintf</code>
      *
