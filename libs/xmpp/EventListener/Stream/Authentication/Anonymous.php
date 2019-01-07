@@ -34,9 +34,9 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace EVlibs\xmpp\EventListener\Stream\Authentication;
+namespace xmpp\EventListener\Stream\Authentication;
 
-use EVlibs\xmpp\EventListener\AbstractEventListener;
+use xmpp\EventListener\AbstractEventListener;
 
 /**
  * Handler for "anonymous" authentication mechanism.

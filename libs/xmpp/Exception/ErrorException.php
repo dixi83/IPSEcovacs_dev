@@ -34,7 +34,7 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace EVlibs\xmpp\Exception;
+namespace xmpp\Exception;
 
 /**
  * Exception interface.

@@ -34,9 +34,9 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace EVlibs\xmpp\EventListener\Stream\Authentication;
+namespace xmpp\EventListener\Stream\Authentication;
 
-use EVlibs\xmpp\EventListener\EventListenerInterface;
+use xmpp\EventListener\EventListenerInterface;
 
 /**
  * Interface for classes that handle authentication.

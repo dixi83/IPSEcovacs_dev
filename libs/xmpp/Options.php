@@ -34,11 +34,11 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace EVlibs\xmpp;
+namespace xmpp;
 
-use EVlibs\xmpp\Connection\ConnectionInterface;
-use EVlibs\xmpp\Protocol\ImplementationInterface;
-use EVlibs\xmpp\Protocol\DefaultImplementation;
+use xmpp\Connection\ConnectionInterface;
+use xmpp\Protocol\ImplementationInterface;
+use xmpp\Protocol\DefaultImplementation;
 use EVlibs\Psr\Log\LoggerInterface;
 
 /**

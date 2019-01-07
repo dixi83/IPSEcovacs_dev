@@ -34,10 +34,10 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace EVlibs\xmpp\Event;
+namespace xmpp\Event;
 
-use EVlibs\xmpp\Exception\OutOfRangeException;
-use EVlibs\xmpp\Exception\InvalidArgumentException;
+use xmpp\Exception\OutOfRangeException;
+use xmpp\Exception\InvalidArgumentException;
 
 /**
  * Generic event.

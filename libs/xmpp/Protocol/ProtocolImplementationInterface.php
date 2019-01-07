@@ -34,7 +34,7 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace EVlibs\xmpp\Protocol;
+namespace xmpp\Protocol;
 
 /**
  * Protocol setting for Xmpp.

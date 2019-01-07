@@ -34,11 +34,11 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace EVlibs\xmpp\Protocol;
+namespace xmpp\Protocol;
 
-use EVlibs\xmpp\OptionsAwareInterface;
-use EVlibs\xmpp\EventListener\EventListenerInterface;
-use EVlibs\xmpp\Event\EventManagerAwareInterface;
+use xmpp\OptionsAwareInterface;
+use xmpp\EventListener\EventListenerInterface;
+use xmpp\Event\EventManagerAwareInterface;
 
 /**
  * Protocol implementation interface.

@@ -1,8 +1,8 @@
 <?php
 
-namespace EVlibs\xmpp\Protocol;
+namespace xmpp\Protocol;
 
-use EVlibs\xmpp\Util\XML;
+use xmpp\Util\XML;
 
 /**
  * Protocol setting for Xmpp.

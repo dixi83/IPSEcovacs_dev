@@ -34,10 +34,10 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace EVlibs\xmpp\Stream;
+namespace xmpp\Stream;
 
-use EVlibs\xmpp\Exception\InvalidArgumentException;
-use EVlibs\xmpp\Util\ErrorHandler;
+use xmpp\Exception\InvalidArgumentException;
+use xmpp\Util\ErrorHandler;
 
 /**
  * Stream functions wrapper class.

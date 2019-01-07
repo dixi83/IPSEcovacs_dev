@@ -34,14 +34,14 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace EVlibs\xmpp\Stream;
+namespace xmpp\Stream;
 
-use EVlibs\xmpp\Event\EventManagerAwareInterface;
-use EVlibs\xmpp\Event\EventManagerInterface;
-use EVlibs\xmpp\Event\EventManager;
-use EVlibs\xmpp\Event\XMLEvent;
-use EVlibs\xmpp\Event\XMLEventInterface;
-use EVlibs\xmpp\Exception\XMLParserException;
+use xmpp\Event\EventManagerAwareInterface;
+use xmpp\Event\EventManagerInterface;
+use xmpp\Event\EventManager;
+use xmpp\Event\XMLEvent;
+use xmpp\Event\XMLEventInterface;
+use xmpp\Exception\XMLParserException;
 
 /**
  * Xml stream class.

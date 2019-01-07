@@ -34,9 +34,9 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace EVlibs\xmpp\EventListener;
+namespace xmpp\EventListener;
 
-use EVlibs\xmpp\Event\EventInterface;
+use xmpp\Event\EventInterface;
 
 /**
  * Event listener for logging events.

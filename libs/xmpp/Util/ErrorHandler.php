@@ -34,10 +34,10 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace EVlibs\xmpp\Util;
+namespace xmpp\Util;
 
-use EVlibs\xmpp\Exception\InvalidArgumentException;
-use EVlibs\xmpp\Exception\ErrorException;
+use xmpp\Exception\InvalidArgumentException;
+use xmpp\Exception\ErrorException;
 
 /**
  * XML utility methods.

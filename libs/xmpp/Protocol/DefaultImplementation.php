@@ -34,21 +34,21 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace EVlibs\xmpp\Protocol;
+namespace xmpp\Protocol;
 
-use EVlibs\xmpp\Options;
-use EVlibs\xmpp\EventListener\EventListenerInterface;
-use EVlibs\xmpp\Event\EventManagerInterface;
-use EVlibs\xmpp\Event\EventManager;
-use EVlibs\xmpp\EventListener\Stream\Stream;
-use EVlibs\xmpp\EventListener\Stream\StreamError;
-use EVlibs\xmpp\EventListener\Stream\StartTls;
-use EVlibs\xmpp\EventListener\Stream\Authentication;
-use EVlibs\xmpp\EventListener\Stream\Bind;
-use EVlibs\xmpp\EventListener\Stream\Session;
-use EVlibs\xmpp\EventListener\Stream\Roster as RosterListener;
-use EVlibs\xmpp\EventListener\Stream\Register as RegisterListener;
-use EVlibs\xmpp\EventListener\Stream\BlockedUsers as BlockedUsersListener;
+use xmpp\Options;
+use xmpp\EventListener\EventListenerInterface;
+use xmpp\Event\EventManagerInterface;
+use xmpp\Event\EventManager;
+use xmpp\EventListener\Stream\Stream;
+use xmpp\EventListener\Stream\StreamError;
+use xmpp\EventListener\Stream\StartTls;
+use xmpp\EventListener\Stream\Authentication;
+use xmpp\EventListener\Stream\Bind;
+use xmpp\EventListener\Stream\Session;
+use xmpp\EventListener\Stream\Roster as RosterListener;
+use xmpp\EventListener\Stream\Register as RegisterListener;
+use xmpp\EventListener\Stream\BlockedUsers as BlockedUsersListener;
 
 /**
  * Default Protocol implementation.

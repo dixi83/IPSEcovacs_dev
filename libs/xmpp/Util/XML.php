@@ -34,7 +34,7 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace EVlibs\xmpp\Util;
+namespace xmpp\Util;
 
 /**
  * XML utility methods.

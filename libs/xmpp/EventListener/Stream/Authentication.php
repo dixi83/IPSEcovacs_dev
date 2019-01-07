@@ -34,14 +34,14 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace EVlibs\xmpp\EventListener\Stream;
+namespace xmpp\EventListener\Stream;
 
-use EVlibs\xmpp\Event\XMLEvent;
-use EVlibs\xmpp\Exception\RuntimeException;
-use EVlibs\xmpp\EventListener\Stream\Authentication\AuthenticationInterface;
-use EVlibs\xmpp\Exception\Stream\AuthenticationErrorException;
-use EVlibs\xmpp\EventListener\AbstractEventListener;
-use EVlibs\xmpp\EventListener\BlockingEventListenerInterface;
+use xmpp\Event\XMLEvent;
+use xmpp\Exception\RuntimeException;
+use xmpp\EventListener\Stream\Authentication\AuthenticationInterface;
+use xmpp\Exception\Stream\AuthenticationErrorException;
+use xmpp\EventListener\AbstractEventListener;
+use xmpp\EventListener\BlockingEventListenerInterface;
 
 /**
  * Listener

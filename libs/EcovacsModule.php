@@ -324,9 +324,6 @@ class EcovacsXMPP extends IPSModule {
     
     // Functions needed for EcoVacs Vac
     public function XMPPsetCommand($robotSerialNr,$command) { // just send message, <iq type="set"> will not get any responce from ecovacs servers
-        // include xmpp library
-        require_once('xmpp/xmpp.php');
-        
         //$EcovacsSplitter = new EcovacsSplitter($this->InstanceID);
         $SplitterID     = IPS_GetInstance($this->InstanceID)['ConnectionID'];
         $XMPPDataID     = IPS_GetObjectIDByIdent('XMPP_Info', $SplitterID);     
@@ -414,9 +411,6 @@ class EcovacsXMPP extends IPSModule {
     }
     
     public function XMPPgetCommand($robotSerialNr,$command) { // just send message, <iq type="set"> will not get any responce from ecovacs servers
-        // include xmpp library
-        require_once('xmpp/xmpp.php');
-        
         $SplitterID     = IPS_GetInstance($this->InstanceID)['ConnectionID'];
         $XMPPDataID     = IPS_GetObjectIDByIdent('XMPP_Info', $SplitterID);     
         $XMPP           = json_decode(GetValue($XMPPDataID), true);

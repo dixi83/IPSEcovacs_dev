@@ -34,14 +34,14 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace EVlibs\xmpp\Connection;
+namespace xmpp\Connection;
 
 //use Psr\Log\LogLevel;
-use EVlibs\xmpp\Stream\SocketClient;
-use EVlibs\xmpp\Stream\SocksProxy;
-use EVlibs\xmpp\Util\XML;
-use EVlibs\xmpp\Options;
-use EVlibs\xmpp\Exception\TimeoutException;
+use xmpp\Stream\SocketClient;
+use xmpp\Stream\SocksProxy;
+use xmpp\Util\XML;
+use xmpp\Options;
+use xmpp\Exception\TimeoutException;
 
 /**
  * Connection to a socket stream.

@@ -34,11 +34,11 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace EVlibs\xmpp\EventListener\Stream;
+namespace xmpp\EventListener\Stream;
 
-use EVlibs\xmpp\EventListener\AbstractEventListener;
-use EVlibs\xmpp\Event\XMLEvent;
-use EVlibs\xmpp\Util\XML;
+use xmpp\EventListener\AbstractEventListener;
+use xmpp\Event\XMLEvent;
+use xmpp\Util\XML;
 
 /**
  * Listener

@@ -34,9 +34,9 @@
  * @link      http://github.com/fabiang/xmpp
  */
 
-namespace EVlibs\xmpp\Exception;
+namespace xmpp\Exception;
 
-use EVlibs\xmpp\Exception\InvalidArgumentException;
+use xmpp\Exception\InvalidArgumentException;
 
 /**
  * XML parser exception.

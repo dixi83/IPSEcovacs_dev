@@ -1,8 +1,8 @@
 <?php
 
-namespace EVlibs\xmpp\Stream;
+namespace xmpp\Stream;
 
-use EVlibs\xmpp\Options;
+use xmpp\Options;
 
 class SocksProxy extends SocketClient
 {
