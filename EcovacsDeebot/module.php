@@ -42,12 +42,11 @@ class EcovacsDeebot extends IPSModule
         $EvovacsXMPP    = new EcovacsXMPP($this->InstanceID);
         $RobotSerialNr  = $this->ReadPropertyString("RobotSerialNr");
         
-        //try {
+        try {
             $EvovacsXMPP->XMPPsetCommand($RobotSerialNr,$command);
-            echo "done";
-        //} catch(Exception $error) {
-            //IPS_LogMessage("Ecovacs Deebot", "XMPP: ".$error);
-        //}
+        } catch(Exception $error) {
+            LogMessage("XMPP: ".$error, KL_WARNING);
+        }
     }
     
     protected function GetCommand($command) {
