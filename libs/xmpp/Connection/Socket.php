@@ -36,7 +36,7 @@
 
 namespace xmpp\Connection;
 
-//use Psr\Log\LogLevel;
+use Psr\Log\LogLevel;
 use xmpp\Stream\SocketClient;
 use xmpp\Stream\SocksProxy;
 use xmpp\Util\XML;
