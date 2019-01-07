@@ -92,6 +92,37 @@ class XML
             )
         );
     }
+    
+        /**
+     * Replace variables in a string and quote them before.
+     *
+     * <b>Hint:</b> this function works like <code>sprintf</code>
+     *
+     * @param string $message
+     * @param mixed  $args
+     * @param mixed  $...
+     * @return string
+     */
+    public static function rawMessage($message)
+    {
+        $variables = func_get_args();
+
+        // shift message variable
+        array_shift($variables);
+
+        // workaround for `static` call in a closure
+        $class = __CLASS__;
+
+        return vsprintf(
+            $message,
+            array_map(
+                function ($var) use ($class) {
+                    return $var;
+                },
+                $variables
+            )
+        );
+    }
 
     /**
      * Generate a unique id.
