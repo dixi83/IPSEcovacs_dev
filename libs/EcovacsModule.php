@@ -370,6 +370,8 @@ class EcovacsXMPP extends IPSModule {
             return false;
         }
         
+        print_r($set);
+        
         switch ($command) {
             case self::SET_CLEAN_AUTO_STANDARD:
                 $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="auto" speed="standard"/></ctl></query>';
