@@ -39,7 +39,7 @@ namespace xmpp;
 use xmpp\Connection\ConnectionInterface;
 use xmpp\Protocol\ImplementationInterface;
 use xmpp\Protocol\DefaultImplementation;
-use EVlibs\Psr\Log\LoggerInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Xmpp connection options.
