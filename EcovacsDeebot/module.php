@@ -117,7 +117,7 @@ class EcovacsDeebot extends IPSModule
         $command = EcovacsXMPP::GET_BATTERYINFO;
         $return = $this->GetCommand($command);
         
-        echo $return; // not shure how to handle these XMPP replies yet
+        print_r($return); // not shure how to handle these XMPP replies yet
     }
     
 }
