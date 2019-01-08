@@ -513,7 +513,7 @@ class EcovacsXMPP extends IPSModule {
             } 
         }
         
-        print_r(messages)
+        print_r($messages);
         
         $client->disconnect();
         
