@@ -505,7 +505,7 @@ class EcovacsXMPP extends IPSModule {
         
         while(true) { // wait for messages
         	$messages = $client->getConnection()->receive(); //$client->getMessages(true);    
-        	if((count($messages) > 0) or ((time()-$startTime)>60)) {
+        	if((strlen($messages) > 0) or ((time()-$startTime)>60)) {
         		break;
         	}
         }
