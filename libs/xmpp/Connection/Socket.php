@@ -111,7 +111,7 @@ XML;
             $this->receivedAnyData = true;
             $address = $this->getAddress();
             $this->log("Received buffer '$buffer' from '{$address}'", LogLevel::DEBUG);
-            var_dump(htmlspecialchars($buffer));
+            //var_dump(htmlspecialchars($buffer));
             $this->getInputStream()->parse($buffer);
         }
 
@@ -120,7 +120,8 @@ XML;
         } catch (TimeoutException $exception) {
             $this->reconnectTls($exception);
         }
-        return $buffer;
+        $array = new SimpleXMLElement($buffer);
+        return $array;
     }
 
     /**
