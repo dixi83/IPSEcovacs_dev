@@ -503,26 +503,42 @@ class EcovacsXMPP extends IPSModule {
         
         $startTime = time();
         $i = 0;
-        //var_dump($startTime);
         
         while(true) { // wait for messages
-        	$messages = $client->getConnection()->receive(); //$client->getMessages(true);
-            //var_dump($messages);
+        	$messages = $client->getConnection()->receive();
         	if(strlen($messages) > 1) {
-        		$XmppReply[$i] =  simplexml_load_string($messages);
-                //break;
+        		$XmppReply[$i] = simplexml_load_string($messages);
                 $i++;
         	}
-            if((time()-$startTime) > 5) {
+            if(((time()-$startTime) > 5) or ($i>3)) {
                 break;
             }
         }
         
-        print_r($XmppReply);
+        if (!isset($XmppReply)) { // check if there was a reply
+            IPS_LogMessage("Ecovacs Deebot", "XMPP: No responce from robot within 5 seconds after connection");
+            return false;
+        }
+        if (!is_array($XmppReply)) { // check if the reply is a array()
+            $reply = print_r(htmlspecialchars($XmppReply),true);
+            IPS_LogMessage("Ecovacs Deebot", "XMPP: Invailid reply from robot. Received reply: ".$reply);
+            return false;
+        }
+        if (!(count($XmppReply) > 1)) { // if it is correctly answered there should be 2 messages
+            $reply = print_r(htmlspecialchars($XmppReply),true);
+            IPS_LogMessage("Ecovacs Deebot", "XMPP: Invailid reply from robot. Received reply: ".$reply);
+            return false;
+        }
+        
+        if ($XmppReply[0]['type']=='result') {
+            $return = $XmppReply[1]['query']['ctl'];
+        }
+        
+        print_r($return);
         
         $client->disconnect();
         
-        return $messages;
+        return $return;
     }
 }
 
