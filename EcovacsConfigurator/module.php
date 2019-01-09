@@ -20,6 +20,18 @@ class EcovacsConfigurator extends IPSModule
         parent::__construct($InstanzID); //Never delete this line!       
     }
     
+    public function CMD_PlaySound($RobotSerialNr) {
+        $command        = EcovacsXMPP::SET_PLAYSOUND;
+        $EvovacsXMPP    = new EcovacsXMPP($this->InstanceID);
+        
+        try {
+            $EvovacsXMPP->XMPPsetCommand($RobotSerialNr,$command);
+        } catch(Exception $error) {
+            LogMessage("XMPP: ".$error, KL_WARNING);
+        }
+        
+    }
+    
     public function SetRobotInstance(string $device) { 
         $device = json_decode($device, true);
 
