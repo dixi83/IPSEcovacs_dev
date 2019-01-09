@@ -510,12 +510,12 @@ class EcovacsXMPP extends IPSModule {
         		$XmppReply[$i] = simplexml_load_string($messages);
                 $i++;
         	}
-            if(((time()-$startTime) > 5) or ($i>3)) {
+            if(((time()-$startTime) > 5) or ($i>2)) {
                 break;
             }
         }
         
-        print_r($XmppReply);
+        //print_r($XmppReply);
         
         if (!isset($XmppReply)) { // check if there was a reply
             IPS_LogMessage("Ecovacs Deebot", "XMPP: No responce from robot within 5 seconds after connection");
