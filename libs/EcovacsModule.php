@@ -515,6 +515,8 @@ class EcovacsXMPP extends IPSModule {
             }
         }
         
+        print_r($XmppReply);
+        
         if (!isset($XmppReply)) { // check if there was a reply
             IPS_LogMessage("Ecovacs Deebot", "XMPP: No responce from robot within 5 seconds after connection");
             return false;
@@ -529,6 +531,8 @@ class EcovacsXMPP extends IPSModule {
             IPS_LogMessage("Ecovacs Deebot", "XMPP: Invailid reply from robot. Received reply: ".$reply);
             return false;
         }
+        
+        print_r($XmppReply);
         
         if ($XmppReply[0]['type']=='result') {
             $return = $XmppReply[1]['query']['ctl'];
