@@ -49,7 +49,7 @@ $form = <<<EOT
             ]$values
             
         },
-        { "type": "Button", "caption": "View Array (debug)", "onClick": "print_r(\$devices);" },
+        { "type": "Button", "caption": "Identify (play sound)", "onClick": "CMD_PlaySound(\$id,\$devices[\"RobotSerialNr\"]);" },
         { "type": "Button", "caption": "Save Robot Name", "onClick": "if(EVCF_SetRobotInfo(\$id,json_encode(\$devices))) { echo \"Saved succesfull\";} else { echo \"Saving Failed! No device selected\nIf selecting a device doesn't work, then reload the devicelist in the Splitter Module\"; }" },
         { "type": "Button", "caption": "Create Instance", "onClick": "EVCF_SetRobotInstance(\$id,json_encode(\$devices));" }
     ]
