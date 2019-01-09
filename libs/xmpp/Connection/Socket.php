@@ -106,13 +106,12 @@ XML;
     public function receive()
     {
         $buffer = $this->getSocket()->read(static::DEFAULT_LENGTH);
-        
-        var_dump($buffer);
 
         if ($buffer) {
             $this->receivedAnyData = true;
             $address = $this->getAddress();
             $this->log("Received buffer '$buffer' from '{$address}'", LogLevel::DEBUG);
+            var_dump($buffer);
             $this->getInputStream()->parse($buffer);
         }
 
