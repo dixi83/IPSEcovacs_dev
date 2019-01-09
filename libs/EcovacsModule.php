@@ -537,8 +537,8 @@ class EcovacsXMPP extends IPSModule {
         
         print_r($XmppReply);
         
-        if ($XmppReply[0]['type']=='result') {
-            $return = $XmppReply[1]['query']['ctl'];
+        if ($XmppReply[0]->iq->{'@attributes'}->type == 'result') {
+            $return = $XmppReply[1]->iq->query->ctl;
         }
         
         print_r($return);
