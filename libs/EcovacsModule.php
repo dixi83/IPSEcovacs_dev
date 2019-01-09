@@ -507,7 +507,10 @@ class EcovacsXMPP extends IPSModule {
         while(true) { // wait for messages
         	$messages = $client->getConnection()->receive();
         	if(strlen($messages) > 1) {
-        		$XmppReply[$i] = simplexml_load_string($messages);
+                $xml   = simplexml_load_string($messages);
+                $array = json_decode(json_encode((array) $xml), true);
+                $XmppReply[$i] = array($xml->getName() => $array);
+        		//$XmppReply[$i] = simplexml_load_string($messages);
                 $i++;
         	}
             if(((time()-$startTime) > 5) or ($i>2)) {
