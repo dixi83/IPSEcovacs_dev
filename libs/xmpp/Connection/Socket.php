@@ -121,7 +121,7 @@ XML;
             $this->reconnectTls($exception);
         }
         
-        return $result; //$array;
+        return $buffer; //$array;
     }
 
     /**
