@@ -27,7 +27,7 @@ class EcovacsConfigurator extends IPSModule
         try {
             $EvovacsXMPP->XMPPsetCommand($RobotSerialNr,$command);
         } catch(Exception $error) {
-            IPS_LogMessage("XMPP: ".$error);
+            IPS_LogMessage("Ecovacs Configurator", "XMPP: ".$error);
         }
         
     }
