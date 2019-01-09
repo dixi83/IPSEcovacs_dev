@@ -509,7 +509,7 @@ class EcovacsXMPP extends IPSModule {
         	$messages = $client->getConnection()->receive(); //$client->getMessages(true);
             //var_dump($messages);
         	if(strlen($messages) > 1) {
-        		$XmppReply[$i] = htmlspecialchars($messages);
+        		$XmppReply[$i] =  simplexml_load_string($messages);
                 //break;
                 $i++;
         	}
