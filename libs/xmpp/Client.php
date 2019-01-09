@@ -243,7 +243,8 @@ class Client implements EventManagerAwareInterface
         $connection->getSocket()->setBlocking($blocking);
         $connection->receive();
         $result = $this->messages;
+        $array = simplexml_load_string($result);
         $this->messages = [];
-        return $result;
+        return $array;
     }
 }
