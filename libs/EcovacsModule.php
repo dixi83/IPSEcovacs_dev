@@ -340,6 +340,7 @@ class EcovacsXMPP extends IPSModule {
     const SET_CLEAN_SINGLEROOM_STRONG   = 'set:clean:singleroom:strong';
     const SET_STOP                      = 'set:clean:stop';
     const SET_CHARGE_GO                 = 'set:charge:go';
+    const SET_PLAYSOUND                = 'set:playsound';
     
     // Functions needed for EcoVacs Vac
     public function XMPPsetCommand($robotSerialNr,$command) { // just send message, <iq type="set"> will not get any responce from ecovacs servers
@@ -401,6 +402,8 @@ class EcovacsXMPP extends IPSModule {
             case self::SET_CHARGE_GO:
                 $SetMessage = '<query xmlns="com:ctl"><ctl td="Charge"><charge type="go"/></ctl></query>';
                 break;
+            case self::SET_PLAYSOUND:
+                $SetMessages = '<query xmlns="com:ctl"><ctl sid="0" td="PlaySound" /></ctl></query>'
             default:
                 IPS_LogMessage("Ecovacs", 'Unknown Set command!');
                 return false;
