@@ -404,6 +404,7 @@ class EcovacsXMPP extends IPSModule {
                 break;
             case self::SET_PLAYSOUND:
                 $SetMessages = '<query xmlns="com:ctl"><ctl sid="0" td="PlaySound" /></ctl></query>';
+                break;
             default:
                 IPS_LogMessage("Ecovacs", 'Unknown Set command!');
                 return false;
