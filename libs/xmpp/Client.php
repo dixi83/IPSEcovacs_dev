@@ -243,8 +243,9 @@ class Client implements EventManagerAwareInterface
         $connection->getSocket()->setBlocking($blocking);
         $connection->receive();
         $result = $this->messages;
-        $array = simplexml_load_string($result);
+        //$array = simplexml_load_string($result);
+        var_dump($result); //htmlspecialchars($result));
         $this->messages = [];
-        return $array;
+        return $result;
     }
 }
