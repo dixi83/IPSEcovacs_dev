@@ -502,21 +502,23 @@ class EcovacsXMPP extends IPSModule {
         $client->send($message);
         
         $startTime = time();
-        
-        var_dump($startTime);
+        $i = 0;
+        //var_dump($startTime);
         
         while(true) { // wait for messages
         	$messages = $client->getConnection()->receive(); //$client->getMessages(true);
-            var_dump($messages);
-        	//if(count($messages) > 0) {
-        	//	break;
-        	//}
+            //var_dump($messages);
+        	if(strlen($messages) > 1) {
+        		$XmppReply[$i] = htmlspecialchars($messages);
+                //break;
+                $i++;
+        	}
             if((time()-$startTime) > 5) {
                 break;
             }
         }
         
-        print_r($messages);
+        print_r($XmppReply);
         
         $client->disconnect();
         
