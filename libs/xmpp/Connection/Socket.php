@@ -120,7 +120,7 @@ XML;
         } catch (TimeoutException $exception) {
             $this->reconnectTls($exception);
         }
-        $array = new SimpleXMLElement($buffer);
+        $array = simplexml_load_string($buffer);
         return $array;
     }
 
