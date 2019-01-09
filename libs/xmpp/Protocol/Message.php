@@ -66,13 +66,6 @@ class Message implements ProtocolImplementationInterface
      * Send <iq> Get message to Ecovacs Vac.
      */
 
-    const TYPE_EV_GET = 'set';
-
-    /**
-     * Message type.
-     *
-     * @var string
-     */
     protected $type = self::TYPE_CHAT;
 
     /**
@@ -107,15 +100,6 @@ class Message implements ProtocolImplementationInterface
     public function toString()
     {
         if($this->getType() == 'set'){
-            return XML::rawMessage(
-                '<iq id="%s" to="%s" from="%s" type="%s">%s</iq>',
-                XML::generateId(),
-                $this->getTo(),
-                $this->getFrom(),
-                $this->getType(),
-                $this->getMessage()
-            );
-        } elseif($this->getType() == 'get'){
             return XML::rawMessage(
                 '<iq id="%s" to="%s" from="%s" type="%s">%s</iq>',
                 XML::generateId(),
