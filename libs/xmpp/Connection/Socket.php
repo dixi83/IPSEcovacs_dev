@@ -106,6 +106,8 @@ XML;
     public function receive()
     {
         $buffer = $this->getSocket()->read(static::DEFAULT_LENGTH);
+        
+        var_dump($buffer);
 
         if ($buffer) {
             $this->receivedAnyData = true;
