@@ -10,11 +10,13 @@ class EcovacsDeebot extends IPSModule
         
         $this->ConnectParent("{8EB4291C-8EC8-4E10-B5D7-1F90CC37BD8D}"); // Ecovacs Splitter
         
+        $id = $this->InstanceID;
+        
         $this->RegisterPropertyBoolean("active", false);
         $this->RegisterPropertyString("RobotSerialNr", "");
         $this->RegisterPropertyInteger("RefreshStatus", 0);
-        $this->RegisterTimer("RefreshStatus", 0, "EVDB_RefreshStatus();");
-        $this->RegisterTimer("RefreshBatery", 0, "EVDB_RefreshBatery();");
+        $this->RegisterTimer("RefreshStatus", 0, 'EVDB_RefreshStatus($id);');
+        $this->RegisterTimer("RefreshBatery", 0, 'EVDB_RefreshBatery($id);');
     }
         
     public function ApplyChanges() {

@@ -13,6 +13,8 @@ class EcovacsSplitter extends IPSModule
         
         parent::Create(); //Never delete this line!
         
+        $id = $this->InstanceID;
+        
         $this->RegisterPropertyBoolean("active", false);
         $this->RegisterPropertyString("account", "");
         $this->RegisterPropertyString("password", "");
@@ -20,7 +22,6 @@ class EcovacsSplitter extends IPSModule
         $this->RegisterPropertyString("continent", "");
         $this->RegisterPropertyInteger("RefreshXMPPinfo", 0);
         $this->RegisterTimer("RefreshXMPPinfo", 0, 'EVSP_RefreshXMPPinfo($id);');
-        //$this->RegisterTimer("SendData", (1000 * 3600), 'EVSP_SendData($this->InstanceID)));');
     }
         
     public function ApplyChanges(){
@@ -31,7 +32,7 @@ class EcovacsSplitter extends IPSModule
         
         if($this->ReadPropertyBoolean("active")) {
             $this->SetStatus(102);
-            $this->SetTimerInterval("RefreshXMPPinfo", (1000 * 3600));
+            $this->SetTimerInterval("RefreshXMPPinfo", (1000 * 24 * 60 * 60)); //once a day
         } else {
             $this->SetStatus(104);
             $this->SetTimerInterval("RefreshXMPPinfo", 0);
