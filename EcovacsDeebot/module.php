@@ -40,7 +40,7 @@ class EcovacsDeebot extends IPSModule
     //    echo GetStatus($this->InstanceID);
     //}
     
-    protected function SetCommand($command) {        
+    protected function SetCommand(string $command) {        
         $EvovacsXMPP    = new EcovacsXMPP($this->InstanceID);
         $RobotSerialNr  = $this->ReadPropertyString("RobotSerialNr");
         
