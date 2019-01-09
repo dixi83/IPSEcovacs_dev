@@ -111,7 +111,7 @@ XML;
             $this->receivedAnyData = true;
             $address = $this->getAddress();
             $this->log("Received buffer '$buffer' from '{$address}'", LogLevel::DEBUG);
-            var_dump(strip_tags($buffer));
+            var_dump(htmlspecialchars($buffer));
             $this->getInputStream()->parse($buffer);
         }
 
