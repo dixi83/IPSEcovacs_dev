@@ -416,7 +416,7 @@ class EcovacsXMPP extends IPSModule {
         $message = new Message;
         $message->setMessage($SetMessage)
             ->setTo($set['vacAddr'])
-            ->setFrom($set['username'].'/'.md5($set['resource']))
+            ->setFrom($set['username'].'@'.$set['domain'].'/'.md5($set['resource']))
             ->setType(Message::TYPE_EV_SET);
 
         $options = new Options($set['server'].':'.$set['port']);
