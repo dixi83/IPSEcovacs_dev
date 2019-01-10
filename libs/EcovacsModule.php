@@ -343,97 +343,7 @@ class EcovacsXMPP extends IPSModule {
     const SET_PLAYSOUND                 = 'set:playsound';
     
     // Functions needed for EcoVacs Vac
-    public function XMPPsetCommand($robotSerialNr,$command) { // just send message, <iq type="set"> will not get any responce from ecovacs servers
-        //$EcovacsSplitter = new EcovacsSplitter($this->InstanceID);
-        $SplitterID     = IPS_GetInstance($this->InstanceID)['ConnectionID'];
-        $XMPPDataID     = IPS_GetObjectIDByIdent('XMPP_Info', $SplitterID);     
-        $XMPP           = json_decode(GetValue($XMPPDataID), true);
-        
-        $RobotsDataID   = IPS_GetObjectIDByIdent('XMPP_Robots', $SplitterID);
-        $robots         = json_decode(GetValue($RobotsDataID), true);
-        
-        $set['server'] 		= 'msg-'.$XMPP['continent'].'.ecouser.net'; 
-        $set['port']		= 5223;
-        $set['username']	= $XMPP['username'];//.'@'.$XMPP['domain'];	//sucks      DEBUG    username used to login: 201802265a9437ee73aa7
-        $set['password']	= $XMPP['password'];			            //sucks      DEBUG    password used to login: 0/372d00ce/glcTBbzoppbndSRpTflNTpk1gDCAYLQv
-        $set['resource']	= $XMPP['resource'];
-        $set['domain']		= $XMPP['domain'];
-        
-        
-        foreach($robots as $value){
-            if(($robotSerialNr==$value['RobotSerialNr'])){
-                $set['vacAddr']	= $value['XMPPaddress'];
-                break;
-            }
-        }
-        
-        if (!isset($set['vacAddr'])){
-            return false;
-        }
-        
-        switch ($command) {
-            case self::SET_CLEAN_AUTO_STANDARD:
-                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="auto" speed="standard"/></ctl></query>';
-                break;
-            case self::SET_CLEAN_BORDER_STANDARD:
-                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="border" speed="standard"/></ctl></query>';
-                break;
-            case self::SET_CLEAN_SPOT_STANDARD:
-                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="spot" speed="standard"/></ctl></query>';
-                break;
-            case self::SET_CLEAN_SINGLEROOM_STANDARD:
-                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="singleroom" speed="standard"/></ctl></query>';
-                break;
-            case self::SET_CLEAN_AUTO_STRONG:
-                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="auto" speed="strong"/></ctl></query>';
-                break;
-            case self::SET_CLEAN_BORDER_STRONG:
-                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="border" speed="strong"/></ctl></query>';
-                break;
-            case self::SET_CLEAN_SPOT_STRONG:
-                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="spot" speed="strong"/></ctl></query>';
-                break;
-            case self::SET_CLEAN_SINGLEROOM_STRONG:
-                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="singleroom" speed="strong"/></ctl></query>';
-                break;
-            case self::SET_STOP:
-                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="stop" speed="standard"/></ctl></query>';
-                break;
-            case self::SET_CHARGE_GO:
-                $SetMessage = '<query xmlns="com:ctl"><ctl td="Charge"><charge type="go"/></ctl></query>';
-                break;
-            case self::SET_PLAYSOUND:
-                $SetMessage = '<query xmlns="com:ctl"><ctl id="12351409" sid="0" td="PlaySound" /></ctl></query>';
-                break;
-            default:
-                IPS_LogMessage("Ecovacs", 'Unknown Set command!');
-                return false;
-        }
-        
-        $logger = new Logger('xmpp');
-        $logger->pushHandler(new StreamHandler(__DIR__.'/XMPP_Set.log', Logger::DEBUG));
-        
-        $message = new Message;
-        $message->setMessage($SetMessage)
-            ->setTo($set['vacAddr'])
-            ->setFrom($set['username'].'@'.$set['domain'].'/'.md5($set['resource']))
-            ->setType(Message::TYPE_EV_SET);
-
-        $options = new Options($set['server'].':'.$set['port']);
-
-        $options->setLogger($logger)
-            ->setUsername($set['username'])
-            ->setPassword($set['password'])
-            ->setTo($set['domain']);
-
-        //$options->setSocksProxyAddress('localhost:8080');
-        $client = new Client($options);
-        $client->connect();
-        $client->send($message);
-        $client->disconnect();
-    }
-    
-    public function XMPPgetCommand($robotSerialNr,$command) { // just send message, <iq type="set"> will not get any responce from ecovacs servers
+    public function XMPPcommand($robotSerialNr,$command) { // just send message, <iq type="set"> will not get any responce from ecovacs servers
         $SplitterID     = IPS_GetInstance($this->InstanceID)['ConnectionID'];
         $XMPPDataID     = IPS_GetObjectIDByIdent('XMPP_Info', $SplitterID);     
         $XMPP           = json_decode(GetValue($XMPPDataID), true);
@@ -461,58 +371,76 @@ class EcovacsXMPP extends IPSModule {
         
         switch ($command) {
             case self::SET_CLEAN_AUTO_STANDARD:
-                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="auto" speed="standard"/></ctl></query>';
+                $Message = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="auto" speed="standard"/></ctl></query>';
+                $ExpectReply = false;
                 break;
             case self::SET_CLEAN_BORDER_STANDARD:
-                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="border" speed="standard"/></ctl></query>';
+                $Message = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="border" speed="standard"/></ctl></query>';
+                $ExpectReply = false;
                 break;
             case self::SET_CLEAN_SPOT_STANDARD:
-                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="spot" speed="standard"/></ctl></query>';
+                $Message = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="spot" speed="standard"/></ctl></query>';
+                $ExpectReply = false;
                 break;
             case self::SET_CLEAN_SINGLEROOM_STANDARD:
-                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="singleroom" speed="standard"/></ctl></query>';
+                $Message = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="singleroom" speed="standard"/></ctl></query>';
+                $ExpectReply = false;
                 break;
             case self::SET_CLEAN_AUTO_STRONG:
-                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="auto" speed="strong"/></ctl></query>';
+                $Message = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="auto" speed="strong"/></ctl></query>';
+                $ExpectReply = false;
                 break;
             case self::SET_CLEAN_BORDER_STRONG:
-                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="border" speed="strong"/></ctl></query>';
+                $Message = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="border" speed="strong"/></ctl></query>';
+                $ExpectReply = false;
                 break;
             case self::SET_CLEAN_SPOT_STRONG:
-                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="spot" speed="strong"/></ctl></query>';
+                $Message = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="spot" speed="strong"/></ctl></query>';
+                $ExpectReply = false;
                 break;
             case self::SET_CLEAN_SINGLEROOM_STRONG:
-                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="singleroom" speed="strong"/></ctl></query>';
+                $Message = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="singleroom" speed="strong"/></ctl></query>';
+                $ExpectReply = false;
                 break;
             case self::SET_STOP:
-                $SetMessage = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="stop" speed="standard"/></ctl></query>';
+                $Message = '<query xmlns="com:ctl"><ctl td="Clean"><clean type="stop" speed="standard"/></ctl></query>';
+                $ExpectReply = false;
                 break;
             case self::SET_CHARGE_GO:
-                $SetMessage = '<query xmlns="com:ctl"><ctl td="Charge"><charge type="go"/></ctl></query>';
+                $Message = '<query xmlns="com:ctl"><ctl td="Charge"><charge type="go"/></ctl></query>';
+                $ExpectReply = false;
                 break;
             case self::SET_PLAYSOUND:
                 $GetMessage = '<query xmlns="com:ctl"><ctl id="12351409" sid="0" td="PlaySound" /></query>';
+                $ExpectReply = true;
                 break;
             case self::GET_CLEANSTATE:
                 $GetMessage = '<query xmlns="com:ctl"><ctl td="GetCleanState" /></query>';
+                $ExpectReply = true;
                 break;
             case self::GET_CHARGESTATE:
                 $GetMessage = '<query xmlns="com:ctl"><ctl td="GetChargeState" /></query>';
+                $ExpectReply = true;
                 break;
             case self::GET_BATTERYINFO:
                 $GetMessage = '<query xmlns="com:ctl"><ctl td="GetBatteryInfo" /></query>';
+                $ExpectReply = true;
                 break;
             case self::GET_LIFESPAN_BRUSH:
                 $GetMessage = '<query xmlns="com:ctl"><ctl td="GetLifeSpan" type="Brush" /></query>';
+                $ExpectReply = true;
                 break;
             case self::GET_LIFESPAN_SIDEBRUSH:
                 $GetMessage = '<query xmlns="com:ctl"><ctl td="GetLifeSpan" type="SideBrush" /></query>';
+                $ExpectReply = true;
                 break;
             case self::GET_LIFESPAN_DUSTCASEHEAP:
                 $GetMessage = '<query xmlns="com:ctl"><ctl td="GetLifeSpan" type="DustCaseHeap" /></query>';
+                $ExpectReply = true;
                 break;
             case self::GET_ERROR:
                 $GetMessage = '<query xmlns="com:ctl"><ctl td="GetError" /></query>';
+                $ExpectReply = true;
             default:
                 IPS_LogMessage("Ecovacs", 'Unknown Get command!');
                 return false;
@@ -538,20 +466,22 @@ class EcovacsXMPP extends IPSModule {
         $client->connect();
         $client->send($message);
         
-        $startTime = time();
-        $i = 0;
-        
-        while(true) { // wait for messages
-        	$messages = $client->getConnection()->receive();
-        	if(strlen($messages) > 1) {
-                $xml   = simplexml_load_string($messages);
-                $array = json_decode(json_encode((array) $xml), true);
-                $XmppReply[$i] = array($xml->getName() => $array);
-        		//$XmppReply[$i] = simplexml_load_string($messages);
-                $i++;
-        	}
-            if(((time()-$startTime) > 5) or ($i>2)) {
-                break;
+        if ($ExpectReply) {
+            $startTime = time();
+            $i = 0;
+
+            while(true) { // wait for messages
+                $messages = $client->getConnection()->receive();
+                if(strlen($messages) > 1) {
+                    $xml   = simplexml_load_string($messages);
+                    $array = json_decode(json_encode((array) $xml), true);
+                    $XmppReply[$i] = array($xml->getName() => $array);
+                    //$XmppReply[$i] = simplexml_load_string($messages);
+                    $i++;
+                }
+                if(((time()-$startTime) > 5) or ($i>2)) {
+                    break;
+                }
             }
         }
         
