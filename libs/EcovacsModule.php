@@ -502,13 +502,9 @@ class EcovacsXMPP extends IPSModule {
             return false;
         }
         
-        //print_r($XmppReply);
-        
         if ($XmppReply[0]['iq']['@attributes']['type'] == 'result') {
             $return = $XmppReply[1]['iq']['query']['ctl'];
         }
-        
-        //print_r($return);
         
         $client->disconnect();
         
