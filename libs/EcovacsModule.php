@@ -442,7 +442,7 @@ class EcovacsXMPP extends IPSModule {
                 $GetMessage = '<query xmlns="com:ctl"><ctl td="GetError" /></query>';
                 $ExpectReply = true;
             default:
-                IPS_LogMessage("Ecovacs", 'Unknown Get command!');
+                IPS_LogMessage("Ecovacs", 'Unknown command!');
                 return false;
         }
         
