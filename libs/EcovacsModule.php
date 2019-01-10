@@ -498,7 +498,7 @@ class EcovacsXMPP extends IPSModule {
             return false;
         }
         if (!(count($XmppReply) > 1)) { // if it is correctly answered there should be 2 messages
-            $reply = print_r(htmlspecialchars($XmppReply),true);
+            $reply = print_r($XmppReply,true);
             IPS_LogMessage("Ecovacs Deebot", "XMPP: Invailid reply from robot. Received reply: ".$reply);
             return false;
         }
