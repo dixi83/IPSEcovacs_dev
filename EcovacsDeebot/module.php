@@ -40,23 +40,12 @@ class EcovacsDeebot extends IPSModule
     //    echo GetStatus($this->InstanceID);
     //}
     
-    protected function SetCommand(string $command) {        
+    protected function Command(string $command) {        
         $EvovacsXMPP    = new EcovacsXMPP($this->InstanceID);
         $RobotSerialNr  = $this->ReadPropertyString("RobotSerialNr");
         
         try {
-            $EvovacsXMPP->XMPPsetCommand($RobotSerialNr,$command);
-        } catch(Exception $error) {
-            IPS_LogMessage("Ecovacs Deebot", "XMPP: ".$error);
-        }
-    }
-    
-    protected function GetCommand($command) {
-        $EvovacsXMPP    = new EcovacsXMPP($this->InstanceID);
-        $RobotSerialNr  = $this->ReadPropertyString("RobotSerialNr");
-        
-        try {
-            $EvovacsXMPP->XMPPgetCommand($RobotSerialNr,$command);
+            $EvovacsXMPP->XMPPcommand($RobotSerialNr,$command);
         } catch(Exception $error) {
             IPS_LogMessage("Ecovacs Deebot", "XMPP: ".$error);
         }
@@ -64,7 +53,7 @@ class EcovacsDeebot extends IPSModule
 
     public function CMD_Stop() {
         $command = EcovacsXMPP::SET_STOP;
-        $this->SetCommand($command);
+        $this->Command($command);
     }
     
     public function CMD_AutoClean(string $speed = EcovacsXMPP::SPEED_STANDARD) {
@@ -73,7 +62,7 @@ class EcovacsDeebot extends IPSModule
         } else {
             $command = EcovacsXMPP::SET_CLEAN_AUTO_STANDARD;
         }
-        $this->SetCommand($command);
+        $this->Command($command);
     }
     
     public function CMD_BorderClean(string $speed = EcovacsXMPP::SPEED_STANDARD) {
@@ -82,7 +71,7 @@ class EcovacsDeebot extends IPSModule
         } else {
             $command = EcovacsXMPP::SET_CLEAN_BORDER_STANDARD;
         }
-        $this->SetCommand($command);
+        $this->Command($command);
     }
     
     public function CMD_SpotClean(string $speed = EcovacsXMPP::SPEED_STANDARD) {
@@ -91,7 +80,7 @@ class EcovacsDeebot extends IPSModule
         } else {
             $command = EcovacsXMPP::SET_CLEAN_SPOT_STANDARD;
         }
-        $this->SetCommand($command);
+        $this->Command($command);
     }
     
     public function CMD_SingleroomClean(string $speed = EcovacsXMPP::SPEED_STANDARD) {
@@ -100,24 +89,24 @@ class EcovacsDeebot extends IPSModule
         } else {
             $command = EcovacsXMPP::SET_CLEAN_BORDER_STANDARD;
         }
-        $this->SetCommand($command);
+        $this->Command($command);
     }
     
     public function CMD_GoCharge() {
         $command = EcovacsXMPP::SET_CHARGE_GO;
-        $this->SetCommand($command);
+        $this->Command($command);
     }
     
     public function RefreshStatus() { // experimental
         $command = EcovacsXMPP::GET_CLEANSTATE; // TODO: also include GET_CHARGESTATE
-        $return = $this->GetCommand($command);
+        $return = $this->Command($command);
         
         echo $return; // not shure how to handle these XMPP replies yet
     }
     
     public function RefreshBatery() { // experimental
         $command = EcovacsXMPP::GET_BATTERYINFO;
-        $return = $this->GetCommand($command);
+        $return = $this->Command($command);
         
         print_r($return); // not shure how to handle these XMPP replies yet
     }
