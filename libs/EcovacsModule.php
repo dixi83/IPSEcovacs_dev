@@ -480,6 +480,7 @@ class EcovacsXMPP extends IPSModule {
                     //$XmppReply[$i] = simplexml_load_string($messages);
                     $i++;
                 }
+                if(((time()-$startTime) > 5) or ($i>1)) {
                     break;
                 }
             }
