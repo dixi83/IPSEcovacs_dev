@@ -423,7 +423,7 @@ class EcovacsXMPP extends IPSModule {
                 $ExpectReply = true;
                 break;
             case self::GET_BATTERYINFO:
-                $GetMessage = '<query xmlns="com:ctl"><ctl td="GetBatteryInfo" /></query>';
+                $GetMessage = '<query xmlns="com:ctl"><ctl td="GetBatteryInfo"></ctl></query>';
                 $ExpectReply = true;
                 break;
             case self::GET_LIFESPAN_BRUSH:
@@ -439,7 +439,7 @@ class EcovacsXMPP extends IPSModule {
                 $ExpectReply = true;
                 break;
             case self::GET_ERROR:
-                $GetMessage = '<query xmlns="com:ctl"><ctl td="GetError" /></query>';
+                $GetMessage = '<query xmlns="com:ctl"><ctl td="GetError"></ctl></query>';
                 $ExpectReply = true;
                 break;
             default:
