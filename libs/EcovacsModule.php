@@ -411,7 +411,7 @@ class EcovacsXMPP extends IPSModule {
                 $ExpectReply = false;
                 break;
             case self::SET_PLAYSOUND:
-                $GetMessage = '<query xmlns="com:ctl"><ctl id="12351409" sid="0" td="PlaySound" /></query>';
+                $GetMessage = '<query xmlns="com:ctl"><ctl sid="1" td="PlaySound" /></query>';
                 $ExpectReply = true;
                 break;
             case self::GET_CLEANSTATE:
@@ -480,7 +480,6 @@ class EcovacsXMPP extends IPSModule {
                     //$XmppReply[$i] = simplexml_load_string($messages);
                     $i++;
                 }
-                if(((time()-$startTime) > 5) or ($i>2)) {
                     break;
                 }
             }
