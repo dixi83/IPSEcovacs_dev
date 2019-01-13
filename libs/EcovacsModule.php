@@ -412,7 +412,7 @@ class EcovacsXMPP extends IPSModule {
                 break;
             case self::SET_PLAYSOUND:
                 $GetMessage = '<query xmlns="com:ctl"><ctl sid="1" td="PlaySound" /></query>';
-                $ExpectReply = true;
+                $ExpectReply = false;
                 break;
             case self::GET_CLEANSTATE:
                 $GetMessage = '<query xmlns="com:ctl"><ctl td="GetCleanState" /></query>';
@@ -439,7 +439,7 @@ class EcovacsXMPP extends IPSModule {
                 $ExpectReply = true;
                 break;
             case self::GET_ERROR:
-                $GetMessage = '<query xmlns="com:ctl"><ctl td="GetError"></ctl></query>';
+                $GetMessage = '<query xmlns="com:ctl"><ctl td="GetError"/></query>';
                 $ExpectReply = true;
                 break;
             default:
