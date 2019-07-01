@@ -8,7 +8,7 @@ class EcovacsConfigurator extends IPSModule
     public function Create() {
         parent::Create(); //Never delete this line!
         
-        //$this->ConnectParent("{8EB4291C-8EC8-4E10-B5D7-1F90CC37BD8D}"); // Ecovacs Splitter
+        $this->RequireParent("{8EB4291C-8EC8-4E10-B5D7-1F90CC37BD8D}"); // Ecovacs Splitter
     }
         
     public function ApplyChanges() {
